@@ -1,0 +1,33 @@
+# Sin /index.php/
+#<IfModule mod_rewrite.c/>
+#RewriteEngine on
+
+#RewriteBase /tesis/
+#RewriteCond %{REQUEST_URI} ^system.*
+#RewriteRule ^(.*)$ /index.php?/$1 [L]
+#RewriteCond %{REQUEST_URI} ^application.*
+#RewriteRule ^(.*)$ /index.php?/$1 [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ index.php?/$1 [L]
+#</IfModule>
+
+#<IfModule !mod_rewrite.c/>
+#ErrorDocument 404 /index.php
+#</IfModule>
+
+#RewriteEngine on
+#RewriteCond $1 !^(index\.php|css|js|images|robots\.txt)
+#RewriteRule ^(.*)$ index.php/$1 [L]
+
+#RewriteEngine on
+#RewriteCond $1 !^(index\.php|css|js|images|robots\.txt)
+#RewriteRule ^(.*)$ /index.php/$1 [L]
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /SIGERH/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L] 
+</IfModule>  
