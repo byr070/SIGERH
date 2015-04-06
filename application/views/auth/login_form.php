@@ -91,5 +91,4 @@ $captcha = array(
 		</td>
 	</tr>
 </table>
-
 <?php echo form_close(); ?>

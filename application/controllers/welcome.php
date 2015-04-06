@@ -17,8 +17,6 @@ class Welcome extends CI_Controller
 		} else {
 			$data['user_id']	= $this->tank_auth->get_user_id();
 			$data['username']	= $this->tank_auth->get_username();
-			
-			
 			$this->load->view('welcome', $data);
 		}
 	}

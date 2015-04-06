@@ -41,8 +41,8 @@ class Auth extends CI_Controller
 
 			$this->form_validation->set_rules('login', 'Login', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
-			//$this->form_validation->set_rules('remember', 'Remember me', 'integer');
 
+			//$this->form_validation->set_rules('remember', 'Remember me', 'integer');
 			// Get login for counting attempts to login
 			if ($this->config->item('login_count_attempts', 'tank_auth') AND
 					($login = $this->input->post('login'))) {
@@ -50,6 +50,7 @@ class Auth extends CI_Controller
 			} else {
 				$login = '';
 			}
+
 
 			/*$data['use_recaptcha'] = $this->config->item('use_recaptcha', 'tank_auth');
 			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
