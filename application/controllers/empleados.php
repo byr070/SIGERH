@@ -33,7 +33,7 @@ class Empleados extends CI_Controller
     }
 	
 	public function listar() {
-		if($this->tank_auth->is_admin()) {
+		//if($this->tank_auth->is_admin()) {
 			$crud = new grocery_CRUD();
 	        $crud->set_theme('datatables');
     	    $crud->set_subject('Empleado');
@@ -93,9 +93,9 @@ class Empleados extends CI_Controller
                 }
             }
 	        $this->_empleado_output($output);
-        } else {
-            redirect('/auth/');
-        }
+        //} else {
+        //    redirect('/inicio/');
+        //}
     }
 
     function _empleado_output($output = null) {

@@ -5,6 +5,8 @@ $login = array(
 	'value' => set_value('login'),
 	'maxlength'	=> 80,
 	'size'	=> 30,
+	'class' => 'form-control',
+	'placeholder' => 'Usuario'
 );
 if ($login_by_username AND $login_by_email) {
 	$login_label = 'Email or login';
@@ -17,6 +19,8 @@ $password = array(
 	'name'	=> 'password',
 	'id'	=> 'password',
 	'size'	=> 30,
+	'class' => 'form-control',
+	'placeholder'=> 'Clave'
 );
 $remember = array(
 	'name'	=> 'remember',
@@ -31,7 +35,33 @@ $captcha = array(
 	'maxlength'	=> 8,
 );
 ?>
-<?php echo form_open($this->uri->uri_string()); ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Iniciar Sesión</title>
+    <style type="text/css">
+    div.footer{
+		text-align: right;
+		font-size: 11px;
+		border-top: 1px solid #D0D0D0;
+		line-height: 32px;
+		padding: 0 10px 0 10px;
+		margin: 20px 0 0 0;
+	}
+	</style>
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/signin.css"); ?>" />
+</head>
+<body>
+<div class="container">
+	<div>
+        <center><img src="<?php echo base_url("assets/imagenes/icono-usuario-opt.gif"); ?>" /></center>   
+        <br />
+    </div>
+
+<?php //$attributes = array('class' => 'email', 'id' => 'myform'); ?>
+<?php echo form_open($this->uri->uri_string(),array('class'=>'form-signin')); ?>
 <table>
 	<tr>
 		<td><?php //echo form_label($login_label, $login['id']); ?></td>
@@ -80,16 +110,25 @@ $captcha = array(
 	<?php }
 	} ?>
 
-	<tr>
+	<tr class="row">
 		<td colspan="3">
-			<?php echo form_submit('submit', 'Let me in'); ?>
+			<?php $attributes = array('class' => 'btn btn-lg btn-primary btn-block', 'name' => 'entrar', 'value'=> 'Entrar'); ?>
+			<?php echo form_submit($attributes); ?>
 			<?php //echo form_checkbox($remember); ?>
 			<?php //echo form_label('Remember me', $remember['id']); ?>
-			<?php echo anchor('/auth/forgot_password/', 'Forgot password'); ?>
+			<?php echo anchor('/auth/forgot_password/', 'Recuperar clave'); ?>
 			<?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'Register'); ?>
 
 		</td>
 	</tr>
 </table>
-
 <?php echo form_close(); ?>
+	<div class="footer">
+			<p style="float: left;">© 2015 SIGERH. Todos los derechos reservados.</p>
+			<p style="float: right;">Página mostrada en <strong>{elapsed_time}</strong> segundos.</p>
+	</div>
+
+</div>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.js"); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
+</body>

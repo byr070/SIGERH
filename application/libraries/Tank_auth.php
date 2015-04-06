@@ -96,6 +96,7 @@ class Tank_auth
 						$user_id = $user->id;
 					} else { $user_id = null; }
 					$this->increase_login_attempt($login, $user_id);
+
 					$this->error = array('password' => 'auth_incorrect_password');
 				}
 			} else {															// fail - wrong login
@@ -616,6 +617,7 @@ class Tank_auth
 	 * @return	void
 	 */
 	private function increase_login_attempt($login, $user_id = NULL)
+
 	{
 		if ($this->ci->config->item('login_count_attempts', 'tank_auth')) {
 			if (!$this->is_max_login_attempts_exceeded($login)) {

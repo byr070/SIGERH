@@ -48,7 +48,7 @@
 		margin: 0 15px 0 15px;
 	}
 	
-	p.footer{
+	div.footer{
 		text-align: right;
 		font-size: 11px;
 		border-top: 1px solid #D0D0D0;
@@ -56,7 +56,7 @@
 		padding: 0 10px 0 10px;
 		margin: 20px 0 0 0;
 	}
-	
+
 	#container{
 		margin: 10px;
 		border: 1px solid #D0D0D0;
@@ -66,21 +66,23 @@
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 </head>
 <body>
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+	<div id="container">
+		<h1>Welcome to CodeIgniter!</h1>
+		<div id="body">
+			<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
+			<p>If you would like to edit this page you'll find it located at:</p>
+			<code>application/views/welcome_message.php</code>
 
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/welcome.php</code>
+			<p>The corresponding controller for this page is found at:</p>
+			<code>application/controllers/welcome.php</code>
 
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
+			<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+		</div>
+		<div class="footer">
+			<p style="float: left;">© 2015 SIGERH. Todos los derechos reservados.</p>
+			<p style="float: right;">Página mostrada en <strong>{elapsed_time}</strong> segundos.</p>
+		</div>
 	</div>
 	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.js"); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
