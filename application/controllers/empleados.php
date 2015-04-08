@@ -34,10 +34,11 @@ class Empleados extends CI_Controller
 	
 	public function listar() {
 		//if($this->tank_auth->is_admin()) {
+			$table_name='empleados';
 			$crud = new grocery_CRUD();
 	        $crud->set_theme('datatables');
     	    $crud->set_subject('Empleado');
-        	$crud->set_table('empleados');
+        	$crud->set_table($table_name);
 	        $crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID');
     	    $crud->fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID');
         	$crud->display_as('EMP_NOMBRE_COMPLETO','NOMBRE')
@@ -60,6 +61,7 @@ class Empleados extends CI_Controller
     	    //leer permisos desde la bd
             $id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $id_modulo[0]);
+            print_r($arr_acciones);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
             //print_r($arr_acciones);
             // $crud->unset_operations();
@@ -68,21 +70,21 @@ class Empleados extends CI_Controller
             $crud->unset_export();
             $crud->unset_print();
             //si no tiene permiso para add entonces
-            if(!in_array('Crear', $arr_acciones)) {
+            /*if(!in_array('Crear', $arr_acciones)) {
                 $crud->unset_add();
-            }
+            }*/
             //si no tiene permiso para editar entonces
-            if(!in_array('Editar', $arr_acciones)) {
+            /*if(!in_array('Editar', $arr_acciones)) {
                 $crud->unset_edit();
-            }
+            }*/
             //si no tiene permiso para leer entonces
-            if(!in_array('Ver', $arr_acciones)) {
+            /*if(!in_array('Ver', $arr_acciones)) {
                 $crud->unset_list();
-            }
+            }*/
             //si no tiene permiso para borrar entonces
-            if(!in_array('Eliminar', $arr_acciones)) {
+            /*if(!in_array('Eliminar', $arr_acciones)) {
                 $crud->unset_delete();
-            }
+            }*/
             try {
                 $output = $crud->render();
             } catch(Exception $e) {
@@ -105,7 +107,9 @@ class Empleados extends CI_Controller
         $output = array_merge((array)$output,$data);
         //recuperar modulos de la bd
         $arr_menu = $this->modulos_model->get_modulos_por_rol($data['is_admin']);
+        //if(!is_null($arr_menu)) {
         $menu['menu'] = $arr_menu;
+        //}else{$menu['menu'] = '';}
         $output = array_merge($output,$menu);
         $this->load->view('template/template.php',$output);    
     }

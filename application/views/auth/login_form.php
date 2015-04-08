@@ -9,7 +9,7 @@ $login = array(
 	'placeholder' => 'Usuario'
 );
 if ($login_by_username AND $login_by_email) {
-	$login_label = 'Email or login';
+	$login_label = 'Email o Usuario';
 } else if ($login_by_username) {
 	$login_label = 'Login';
 } else {
@@ -110,7 +110,7 @@ $captcha = array(
 	<?php }
 	} ?>
 
-	<tr class="row">
+	<tr>
 		<td colspan="3">
 			<?php $attributes = array('class' => 'btn btn-lg btn-primary btn-block', 'name' => 'entrar', 'value'=> 'Entrar'); ?>
 			<?php echo form_submit($attributes); ?>

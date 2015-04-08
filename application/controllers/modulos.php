@@ -30,10 +30,12 @@ class Modulos extends CI_Controller {
  
     public function listar() {
         if($this->tank_auth->is_admin()) {
+            $table_name='modulos';
             $crud = new grocery_CRUD();
+            $crud->where($table_name.'.ACTIVADO',1);
             $crud->set_theme('datatables');
             $crud->set_subject('Modulo');
-            $crud->set_table('modulos');
+            $crud->set_table($table_name);
             $crud->columns('MDL_DESCRIPCION','ADMIN','ACTIVADO','MODIFICADO');
             $crud->fields('MDL_DESCRIPCION');
             $crud->display_as('MDL_DESCRIPCION','MÓDULO')

@@ -31,10 +31,12 @@ class Roles extends CI_Controller {
  
     public function listar() {
         if($this->tank_auth->is_admin()) {
+            $table_name='roles';
             $crud = new grocery_CRUD();
+            $crud->where($table_name.'.ACTIVADO',1);
             $crud->set_theme('datatables');
             $crud->set_subject('Rol');
-            $crud->set_table('roles');
+            $crud->set_table($table_name);
             $crud->columns('RLS_DESCRIPCION','ACTIVADO','MODIFICADO');
             $crud->fields('RLS_DESCRIPCION');
             $crud->display_as('RLS_DESCRIPCION','ROL')

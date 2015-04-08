@@ -346,8 +346,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('29de0c8e637964c2f8803d3c59a93645','::1','Mozilla/5.0 (Windows NT 6.1; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0',1428464784,'');
-INSERT INTO `ci_sessions` VALUES ('a8c47d4d0ec74b9aae9c607cbc8b7c90','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36',1428470310,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('3b242797e7f9e8f453bc6eccdfabbdb2','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36',1429057335,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -453,7 +452,7 @@ CREATE TABLE `login_attempts` (
   `login` varchar(50) COLLATE utf8_bin NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -462,7 +461,6 @@ CREATE TABLE `login_attempts` (
 
 LOCK TABLES `login_attempts` WRITE;
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
-INSERT INTO `login_attempts` VALUES (1,'::1','SGRH_ADM','2015-04-08 04:51:05');
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -490,9 +488,9 @@ CREATE TABLE `modulos` (
 
 LOCK TABLES `modulos` WRITE;
 /*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
-INSERT INTO `modulos` VALUES (1,'Empleados',0,1,'2015-03-31 00:44:15','2015-04-03 07:19:23');
-INSERT INTO `modulos` VALUES (2,'Horarios',0,1,'2015-03-31 00:44:15','2015-04-03 07:19:18');
-INSERT INTO `modulos` VALUES (3,'Pagos',0,1,'2015-03-31 00:44:15','2015-04-03 07:19:14');
+INSERT INTO `modulos` VALUES (1,'Empleados',0,0,'2015-03-31 00:44:15','2015-04-11 02:00:12');
+INSERT INTO `modulos` VALUES (2,'Horarios',0,0,'2015-03-31 00:44:15','2015-04-11 01:44:36');
+INSERT INTO `modulos` VALUES (3,'Pagos',0,0,'2015-03-31 00:44:15','2015-04-11 01:44:42');
 INSERT INTO `modulos` VALUES (4,'Usuarios',1,1,'2015-03-31 00:44:15','2015-03-31 07:10:17');
 INSERT INTO `modulos` VALUES (5,'Roles',1,1,'2015-03-31 00:44:15','2015-03-31 07:10:21');
 INSERT INTO `modulos` VALUES (6,'Modulos',1,1,'2015-03-31 00:44:15','2015-03-31 07:10:24');
@@ -1627,8 +1625,8 @@ INSERT INTO `permisos` VALUES (15,1,4,3,1,'2015-03-31 00:59:45','2015-03-31 05:5
 INSERT INTO `permisos` VALUES (16,2,1,2,1,'2015-03-31 00:59:45','2015-04-03 07:30:54');
 INSERT INTO `permisos` VALUES (17,2,2,2,1,'2015-03-31 00:59:45','2015-03-31 05:59:45');
 INSERT INTO `permisos` VALUES (18,2,3,2,1,'2015-03-31 00:59:45','2015-03-31 05:59:45');
-INSERT INTO `permisos` VALUES (24,3,2,2,1,'0000-00-00 00:00:00','2015-04-05 06:30:27');
-INSERT INTO `permisos` VALUES (25,3,1,2,1,'0000-00-00 00:00:00','2015-04-05 06:30:15');
+INSERT INTO `permisos` VALUES (24,3,2,2,0,'0000-00-00 00:00:00','2015-04-10 01:13:20');
+INSERT INTO `permisos` VALUES (25,3,1,2,0,'0000-00-00 00:00:00','2015-04-10 01:31:35');
 INSERT INTO `permisos` VALUES (26,1,6,3,1,'0000-00-00 00:00:00','2015-04-05 06:35:53');
 INSERT INTO `permisos` VALUES (27,1,7,1,1,'0000-00-00 00:00:00','2015-04-05 06:43:01');
 INSERT INTO `permisos` VALUES (28,1,7,3,1,'0000-00-00 00:00:00','2015-04-05 06:44:36');
@@ -1735,7 +1733,7 @@ LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` VALUES (1,'Administrador',1,'2015-03-31 00:42:12','2015-03-31 05:42:12');
 INSERT INTO `roles` VALUES (2,'Empleado',1,'2015-03-31 00:42:43','2015-03-31 05:42:43');
-INSERT INTO `roles` VALUES (3,'Prueba',1,'0000-00-00 00:00:00','2015-04-05 06:29:29');
+INSERT INTO `roles` VALUES (3,'Sin permisos',1,'0000-00-00 00:00:00','2015-04-10 01:11:11');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1905,7 +1903,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-04-08 07:18:34','2015-03-15 01:30:16','2015-04-08 05:18:34',1);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-04-12 03:47:49','2015-03-15 01:30:16','2015-04-12 01:47:49',1);
 INSERT INTO `users` VALUES (4,'byr111','$2a$08$zCEhOaIvpy5OqJhl0vXTyefhe7oBUDq2rT9I25cenW.GM1J/0X/qW','g371397@trbvm.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-04-08 07:14:49','2015-03-26 03:35:14','2015-04-08 05:14:49',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1919,4 +1917,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-08  0:22:59
+-- Dump completed on 2015-04-14 19:28:11

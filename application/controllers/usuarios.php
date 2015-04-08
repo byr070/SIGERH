@@ -42,10 +42,12 @@ class Usuarios extends CI_Controller {
  
     public function listar() {
         if($this->tank_auth->is_admin()) {
+            $table_name='users';
             $crud = new grocery_CRUD();
+            $crud->where($table_name.'.activated',1);
             $crud->set_theme('datatables');
             $crud->set_subject('Usuario');
-            $crud->set_table('users');
+            $crud->set_table($table_name);
             $crud->columns('username','group_id','email','activated','banned','ban_reason','last_login');
             $crud->fields('username','email','group_id');
             $crud->display_as('username','Usuario')

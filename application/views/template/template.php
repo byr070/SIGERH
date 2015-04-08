@@ -48,6 +48,7 @@
     <!-- Fin Cabecera -->
     <?php $modulo=$this->uri->segment(1); ?>
     <!-- Inicio Menu -->
+    <?php if(!is_null($menu)) { ?>
     <nav class="navbar navbar-default">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
@@ -58,6 +59,7 @@
         </ul>
     </div>
 </nav>
+<?php } ?>
     <!-- Fin Menu -->
     <div>
         <?php echo $output; ?>

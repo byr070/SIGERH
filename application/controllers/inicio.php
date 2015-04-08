@@ -24,21 +24,10 @@ class Inicio extends CI_Controller
 			} else {
 				$data['user_id']	= $this->tank_auth->get_user_id();
 				$data['username']	= $this->tank_auth->get_username();
-				$this->load->view('template/cabecera', $data);
+				$this->load->view('template/template', $data);
 			}
 		}
 	}
-
-	public function adm()
-	{
-		//$this->load->view();
-	}
-
-	public function emp()
-	{
-		//$this->load->view();
-	}
-
 }
  
 /* End of file inicio.php */

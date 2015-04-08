@@ -103,6 +103,8 @@ class Modulos_model extends CI_Model
 		$this->db->where('RLS_ID', $is_admin ? 1 : 2);
 		$this->db->where('ADMIN', $configuracion ? 1 : 0);
 		$this->db->where(''.$this->permisos_table_name.'.ACTIVADO', 1);
+		$this->db->where(''.$this->roles_table_name.'.ACTIVADO', 1);
+		$this->db->where(''.$this->table_name.'.ACTIVADO', 1);
 		$query = $this->db->get();
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $row) {

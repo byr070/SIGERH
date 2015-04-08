@@ -31,10 +31,12 @@ class Permisos extends CI_Controller {
  
     public function listar() {
         if($this->tank_auth->is_admin()) {
+            $table_name = 'permisos';
             $crud = new grocery_CRUD();
+            $crud->where($table_name.'.ACTIVADO',1);
             $crud->set_theme('datatables');
             $crud->set_subject('Permiso');
-            $crud->set_table('permisos');
+            $crud->set_table($table_name);
             $crud->columns('ROL_ID','MODULO_ID','ACCION_ID','ACTIVADO','MODIFICADO');
             $crud->fields('ROL_ID','MODULO_ID','ACCION_ID');
             $crud->display_as('ROL_ID','ROL')
@@ -44,6 +46,7 @@ class Permisos extends CI_Controller {
             $crud->set_relation('ROL_ID','roles','RLS_DESCRIPCION');
             $crud->set_relation('MODULO_ID','modulos','MDL_DESCRIPCION');
             $crud->set_relation('ACCION_ID','acciones','ACC_DESCRIPCION');
+
             //leer permisos desde la bd
             $id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $id_modulo[0]);
