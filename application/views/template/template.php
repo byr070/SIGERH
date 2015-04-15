@@ -2,18 +2,36 @@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
+    <?php if(!is_null($css_files)) { ?>
     <?php foreach($css_files as $file): ?>
         <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
     <?php endforeach; ?>
+<?php } ?>
+<?php if(!is_null($js_files)) { ?>
     <?php foreach($js_files as $file): ?>
         <script src="<?php echo $file; ?>"></script>
-    <?php endforeach; ?>
+    <?php endforeach; ?>        
+        <?php } ?>
     <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
     <style type='text/css'>
+        * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
         body {
             font-family: Arial;
             font-size: 14px;
+              line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+    margin: 0;
         }
+        .top, .bottom {
+  padding: 15px;
+  background-color: #F5F5F5;
+  border: 1px solid #CCCCCC;
+}
         a {
             color: blue;
             text-decoration: none;
@@ -58,12 +76,13 @@
             <?php endforeach; ?>
         </ul>
     </div>
-</nav>
-<?php } ?>
+    </nav>
+    <?php } ?>
     <!-- Fin Menu -->
     <div>
+        <?php if(!is_null($output)) { ?>
         <?php echo $output; ?>
- 
+        <?php } ?>
     </div>
     <!-- Inicio Pie -->
     <div class="footer">

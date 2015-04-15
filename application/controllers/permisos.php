@@ -1,27 +1,23 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
 class Permisos extends CI_Controller {
+
+    private $id_modulo = NULL;
  
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
- 
-        /* Standard Libraries of codeigniter are required */
-        //$this->load->database();
-        //$this->load->helper('url');
-        /* ------------------ */ 
  
         $this->load->library('grocery_CRUD');
         $this->load->library('tank_auth_groups','','tank_auth');
-        $this->load->model('catalogos/modulos_model'); 
+        $this->load->model('catalogos/modulos_model');
+        $this->id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
     }
  
     public function index() {
         if (!$this->tank_auth->is_logged_in()) {
             redirect('/auth/login/');
         } else {
-            
-            if($this->tank_auth->is_admin()) {
+            if($this->tank_auth->is_admin() && !is_null($this->id_modulo)) {
                 redirect('/permisos/listar/'); 
             } else {
                 redirect('/inicio/');
@@ -30,7 +26,7 @@ class Permisos extends CI_Controller {
     }
  
     public function listar() {
-        if($this->tank_auth->is_admin()) {
+        if($this->tank_auth->is_admin() && !is_null($this->id_modulo)) {
             $table_name = 'permisos';
             $crud = new grocery_CRUD();
             $crud->where($table_name.'.ACTIVADO',1);
@@ -46,10 +42,8 @@ class Permisos extends CI_Controller {
             $crud->set_relation('ROL_ID','roles','RLS_DESCRIPCION');
             $crud->set_relation('MODULO_ID','modulos','MDL_DESCRIPCION');
             $crud->set_relation('ACCION_ID','acciones','ACC_DESCRIPCION');
-
             //leer permisos desde la bd
-            $id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
-            $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $id_modulo[0]);
+            $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
             //print_r($arr_acciones);
             // $crud->unset_operations();

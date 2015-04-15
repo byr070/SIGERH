@@ -346,7 +346,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('3b242797e7f9e8f453bc6eccdfabbdb2','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36',1429057335,'');
+INSERT INTO `ci_sessions` VALUES ('f9c063ec60ed574b4cb5b8e950dc323d','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36',1429078036,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -488,7 +488,7 @@ CREATE TABLE `modulos` (
 
 LOCK TABLES `modulos` WRITE;
 /*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
-INSERT INTO `modulos` VALUES (1,'Empleados',0,0,'2015-03-31 00:44:15','2015-04-11 02:00:12');
+INSERT INTO `modulos` VALUES (1,'Empleados',0,1,'2015-03-31 00:44:15','2015-04-15 06:09:24');
 INSERT INTO `modulos` VALUES (2,'Horarios',0,0,'2015-03-31 00:44:15','2015-04-11 01:44:36');
 INSERT INTO `modulos` VALUES (3,'Pagos',0,0,'2015-03-31 00:44:15','2015-04-11 01:44:42');
 INSERT INTO `modulos` VALUES (4,'Usuarios',1,1,'2015-03-31 00:44:15','2015-03-31 07:10:17');
@@ -1854,7 +1854,7 @@ CREATE TABLE `user_profiles` (
   `country` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `website` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1864,6 +1864,7 @@ CREATE TABLE `user_profiles` (
 LOCK TABLES `user_profiles` WRITE;
 /*!40000 ALTER TABLE `user_profiles` DISABLE KEYS */;
 INSERT INTO `user_profiles` VALUES (1,4,NULL,NULL);
+INSERT INTO `user_profiles` VALUES (2,6,NULL,NULL);
 /*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1894,7 +1895,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   KEY `FK_ROL_USER_ID` (`group_id`),
   CONSTRAINT `FK_ROL_USER_ID` FOREIGN KEY (`group_id`) REFERENCES `roles` (`RLS_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1903,8 +1904,10 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-04-12 03:47:49','2015-03-15 01:30:16','2015-04-12 01:47:49',1);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-04-15 07:28:58','2015-03-15 01:30:16','2015-04-15 05:28:58',1);
 INSERT INTO `users` VALUES (4,'byr111','$2a$08$zCEhOaIvpy5OqJhl0vXTyefhe7oBUDq2rT9I25cenW.GM1J/0X/qW','g371397@trbvm.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-04-08 07:14:49','2015-03-26 03:35:14','2015-04-08 05:14:49',2);
+INSERT INTO `users` VALUES (6,'usuario-prueba','$2a$08$BjOzWlezv4gC4VQCKBo0uevW3h1ukBENaTQsasOFVtW270eK6jyRC','g1749176@trbvm.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-04-15 03:02:39','2015-04-15 02:42:57','2015-04-15 01:02:39',2);
+INSERT INTO `users` VALUES (7,'usuario2','$2a$08$4Jh1Gu675WwM/RfG1LqhA.n7XbPr56jaj8uGS/5uy6tQksS4mxxiO','g1749591@trbvm.com',0,0,NULL,NULL,NULL,NULL,'05d1c8579a6fd70e5d68db19ca803ba4','::1','0000-00-00 00:00:00','2015-04-15 02:49:29','2015-04-15 00:49:29',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1917,4 +1920,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-14 19:28:11
+-- Dump completed on 2015-04-15  1:12:49

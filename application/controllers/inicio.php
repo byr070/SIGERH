@@ -6,6 +6,7 @@ class Inicio extends CI_Controller
 	{
 		parent::__construct();
 
+		$this->load->library('grocery_CRUD');
 		$this->load->library('tank_auth_groups','','tank_auth');
 		$this->lang->load('tank_auth','spanish');
 		$this->load->model('catalogos/modulos_model');
@@ -24,6 +25,16 @@ class Inicio extends CI_Controller
 			} else {
 				$data['user_id']	= $this->tank_auth->get_user_id();
 				$data['username']	= $this->tank_auth->get_username();
+				$data['is_admin']   = $this->tank_auth->is_admin();
+	        	$arr_menu = $this->modulos_model->get_modulos_por_rol($data['is_admin']);
+    		    $menu['menu'] = $arr_menu;
+	        	$data = array_merge($data,$menu);
+	        	//$crud = new grocery_CRUD();
+	        	//$output = $crud->render();
+	        	$output['css_files'] = null;
+	        	$output['js_files'] = null;
+	        	$output['output'] = null;
+	        	$data = array_merge($data,$output);
 				$this->load->view('template/template', $data);
 			}
 		}

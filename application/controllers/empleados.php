@@ -1,8 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Empleados extends CI_Controller
-{
-	function __construct()
-	{
+class Empleados extends CI_Controller {
+	
+	private $id_modulo = NULL;
+	
+	function __construct() {
 		parent::__construct();
 
 		$this->load->library('form_validation');
@@ -14,26 +15,23 @@ class Empleados extends CI_Controller
 		$this->lang->load('tank_auth','spanish');
 		//$this->load->model('empleado/empleado_model');
 		$this->load->model('catalogos/modulos_model');
+		$this->id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
 	}
 	
 	public function index() {
         if (!$this->tank_auth->is_logged_in()) {
             redirect('/auth/login/');
         } else {
-            //$data['user_id']    = $this->tank_auth->get_user_id();
-            //$data['username']   = $this->tank_auth->get_username();
-            
-            //if($this->tank_auth->is_admin()) {
-                redirect('/empleados/listar/');   
-            /*} else {
-                //show_404();
-                redirect('/auth/');
-            }*/
+        	if(!is_null($this->id_modulo)){
+                redirect('/empleados/listar/');
+            } else {
+            	redirect('/inicio/');
+            }
         }
     }
 	
 	public function listar() {
-		//if($this->tank_auth->is_admin()) {
+        if(!is_null($this->id_modulo)){
 			$table_name='empleados';
 			$crud = new grocery_CRUD();
 	        $crud->set_theme('datatables');
@@ -59,9 +57,7 @@ class Empleados extends CI_Controller
 	        $crud->set_relation('TARJETA_ID','tarjetas','TRJ_ID');
 	        $crud->set_relation('CARGO_ID','cargos','CRG_NOMBRE');
     	    //leer permisos desde la bd
-            $id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
-            $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $id_modulo[0]);
-            print_r($arr_acciones);
+            $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
             //print_r($arr_acciones);
             // $crud->unset_operations();
@@ -95,9 +91,9 @@ class Empleados extends CI_Controller
                 }
             }
 	        $this->_empleado_output($output);
-        //} else {
-        //    redirect('/inicio/');
-        //}
+        } else {
+        	redirect('/inicio/');
+        }
     }
 
     function _empleado_output($output = null) {
