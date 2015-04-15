@@ -56,6 +56,7 @@ class Empleados extends CI_Controller {
 	        $crud->set_relation('TIPO_ID','tipos','TIP_NOMBRE');
 	        $crud->set_relation('TARJETA_ID','tarjetas','TRJ_ID');
 	        $crud->set_relation('CARGO_ID','cargos','CRG_NOMBRE');
+	        $crud->callback_after_insert(array($this, 'registrar_usuario'));
     	    //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
@@ -108,6 +109,17 @@ class Empleados extends CI_Controller {
         //}else{$menu['menu'] = '';}
         $output = array_merge($output,$menu);
         $this->load->view('template/template.php',$output);    
+    }
+
+    function registrar_usuario($post_array,$primary_key) {
+	    //redirect('inicio');
+	    /*$user_logs_insert = array(
+    	    "user_id" => $primary_key,
+        	"created" => date('Y-m-d H:i:s'),
+	        "last_update" => date('Y-m-d H:i:s')
+    	);
+    	$this->db->insert('user_logs',$user_logs_insert);
+    	return true;*/
     }
 
 	function listar_anterior(){

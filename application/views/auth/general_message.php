@@ -17,15 +17,13 @@
     <link rel="stylesheet" href="<?php echo base_url("assets/css/signin.css"); ?>" />
 </head>
 <body>
-<div class="container">
-<?php echo $message; ?>
-
-<div class="footer">
+	<div class="container">
+		<?php echo $message; ?>
+		<div class="footer">
 			<p style="float: left;">© 2015 SIGERH. Todos los derechos reservados.</p>
 			<p style="float: right;">Página mostrada en <strong>{elapsed_time}</strong> segundos.</p>
+		</div>
 	</div>
-
-</div>
 	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.js"); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 </body>

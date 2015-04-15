@@ -61,9 +61,9 @@ class Usuarios extends CI_Controller {
             $crud->unset_export();
             $crud->unset_print();
             //si no tiene permiso para add entonces
-            if(!in_array('Crear', $arr_acciones)) {
+            //if(!in_array('Crear', $arr_acciones)) {
                 $crud->unset_add();
-            }
+            //}
             //si no tiene permiso para editar entonces
             if(!in_array('Editar', $arr_acciones)) {
                 $crud->unset_edit();
