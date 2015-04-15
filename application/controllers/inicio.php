@@ -19,14 +19,15 @@ class Inicio extends CI_Controller
 		} else {	
 			$data['is_admin']	= $this->tank_auth->is_admin();
 			//recuperar modulos de la bd
-			$arr_modulos = $this->modulos_model->get_modulos_por_rol($data['is_admin']);
+			$arr_modulos = $this->modulos_model->get_modulos_por_rol($this->session->userdata('group_id'));
+			//var_dump($arr_modulos);
 			if(!is_null($arr_modulos)) {
 				redirect(strtolower($arr_modulos[0]));
 			} else {
 				$data['user_id']	= $this->tank_auth->get_user_id();
 				$data['username']	= $this->tank_auth->get_username();
 				$data['is_admin']   = $this->tank_auth->is_admin();
-	        	$arr_menu = $this->modulos_model->get_modulos_por_rol($data['is_admin']);
+	        	$arr_menu = $this->modulos_model->get_modulos_por_rol($this->session->userdata('group_id'));
     		    $menu['menu'] = $arr_menu;
 	        	$data = array_merge($data,$menu);
 	        	//$crud = new grocery_CRUD();

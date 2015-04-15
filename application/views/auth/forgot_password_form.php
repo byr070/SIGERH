@@ -6,7 +6,7 @@ $login = array(
 	'maxlength'	=> 80,
 	'size'	=> 30,
 	'class' => 'form-control',
-	'placeholder' => 'Correo electrónico',
+	'placeholder' => 'Email o Usuario',
 );
 if ($this->config->item('use_username', 'tank_auth')) {
 	$login_label = 'Email o Usuario';

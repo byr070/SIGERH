@@ -83,7 +83,7 @@ class Roles extends CI_Controller {
         $data['is_admin']   = $this->tank_auth->is_admin();
         $output = array_merge((array)$output,$data);
         //recuperar modulos de la bd
-        $arr_menu = $this->modulos_model->get_modulos_por_rol($data['is_admin'], TRUE);
+        $arr_menu = $this->modulos_model->get_modulos_por_rol($this->session->userdata('group_id'), TRUE);
         $menu['menu'] = $arr_menu;
         $output = array_merge($output,$menu);
         $this->load->view('template/template.php',$output);    

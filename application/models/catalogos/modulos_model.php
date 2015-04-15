@@ -91,7 +91,7 @@ class Modulos_model extends CI_Model
 	 * @param	bool	si viene desde controlador configuracion
 	 * @return	object
 	 */
-	function get_modulos_por_rol($is_admin, $configuracion = FALSE)
+	function get_modulos_por_rol($id_rol, $configuracion = FALSE)
 	{
 		$arr_modulos = [];
 
@@ -100,7 +100,7 @@ class Modulos_model extends CI_Model
 		$this->db->from($this->permisos_table_name);
 		$this->db->join($this->roles_table_name, 'ROL_ID = RLS_ID');
 		$this->db->join($this->table_name, 'MODULO_ID = MDL_ID');
-		$this->db->where('RLS_ID', $is_admin ? 1 : 2);
+		$this->db->where('RLS_ID', $id_rol);
 		$this->db->where('ADMIN', $configuracion ? 1 : 0);
 		$this->db->where(''.$this->permisos_table_name.'.ACTIVADO', 1);
 		$this->db->where(''.$this->roles_table_name.'.ACTIVADO', 1);

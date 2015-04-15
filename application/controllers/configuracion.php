@@ -20,7 +20,7 @@ class Configuracion extends CI_Controller
 		} else {
 			$data['is_admin']	= $this->tank_auth->is_admin();
 			//recuperar modulos de la bd
-			$arr_modulos = $this->modulos_model->get_modulos_por_rol($data['is_admin'], TRUE);
+			$arr_modulos = $this->modulos_model->get_modulos_por_rol($this->session->userdata('group_id'), TRUE);
 			if(!is_null($arr_modulos)) {
 				redirect(strtolower($arr_modulos[0]));
 			} else {

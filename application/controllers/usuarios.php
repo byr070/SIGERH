@@ -53,6 +53,10 @@ class Usuarios extends CI_Controller {
                  ->display_as('ban_reason','Razón de Bloqueo')
                  ->display_as('last_login','Último Acceso');
             $crud->set_relation('group_id','roles','RLS_DESCRIPCION');
+            //max_length['.$this->config->item('username_max_length', 'tank_auth').']|
+            $crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space');
+            $crud->set_rules('email','correo electrónico','valid_email|required');
+            $crud->set_rules('group_id','roles','required');
             $crud->add_action('Desbloquear', '', 'usuarios/desbloquear','ui-icon-unlocked');
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
@@ -91,13 +95,17 @@ class Usuarios extends CI_Controller {
         }
     }
 
+    function alpha_dash_space($str)
+{
+    return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+} 
     function _usuario_output($output = null) {
         $data['user_id']    = $this->tank_auth->get_user_id();
         $data['username']   = $this->tank_auth->get_username();
         $data['is_admin']   = $this->tank_auth->is_admin();
         $output = array_merge((array)$output,$data);
         //recuperar modulos de la bd
-        $arr_menu = $this->modulos_model->get_modulos_por_rol($data['is_admin'], TRUE);
+        $arr_menu = $this->modulos_model->get_modulos_por_rol($this->session->userdata('group_id'), TRUE);
         $menu['menu'] = $arr_menu;
         $output = array_merge($output,$menu);
         $this->load->view('template/template.php',$output);    
