@@ -14,7 +14,9 @@ class Inicio extends CI_Controller
 
 	function index()
 	{
-		if (!$this->tank_auth->is_logged_in()) {
+		//var_dump($this->tank_auth->is_logged_in());
+		//var_dump($this->session->userdata);
+		/*if (!$this->tank_auth->is_logged_in()) {
 			redirect('/auth/login/');
 		} else {	
 			$data['is_admin']	= $this->tank_auth->is_admin();
@@ -38,7 +40,7 @@ class Inicio extends CI_Controller
 	        	$data = array_merge($data,$output);
 				$this->load->view('template/template', $data);
 			}
-		}
+		}*/
 	}
 }
  
