@@ -62,6 +62,9 @@ class Empleados extends CI_Controller {
 	        $crud->set_relation('TIPO_ID','tipos','TIP_NOMBRE');
 	        $crud->set_relation('TARJETA_ID','tarjetas','TRJ_ID');
 	        $crud->set_relation('CARGO_ID','cargos','CRG_NOMBRE');
+	        $crud->set_rules('EMP_NOMBRE_COMPLETO','nombre del empleado','trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space');
+            $crud->set_rules('email','correo electrónico','valid_email|required|is_unique[users.email]');
+            $crud->set_rules('clave','clave','required');
 	        $crud->callback_add_field('email',array($this,'email_field_add_callback'));
 	        $crud->callback_add_field('clave',array($this,'clave_field_add_callback'));
 	        $crud->callback_before_insert(array($this, 'registrar_usuario'));

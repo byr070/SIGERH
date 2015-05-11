@@ -2,11 +2,12 @@
 $login = array(
 	'name'	=> 'login',
 	'id'	=> 'login',
+	'title'	=> 'login',
 	'value' => set_value('login'),
 	'maxlength'	=> 80,
 	'size'	=> 30,
 	'class' => 'form-control',
-	'placeholder' => 'Usuario'
+	'placeholder' => 'Usuario',
 );
 if ($login_by_username AND $login_by_email) {
 	$login_label = 'Email o Usuario';
@@ -18,9 +19,10 @@ if ($login_by_username AND $login_by_email) {
 $password = array(
 	'name'	=> 'password',
 	'id'	=> 'password',
+	'title'	=> 'password',
 	'size'	=> 30,
 	'class' => 'form-control',
-	'placeholder'=> 'Clave'
+	'placeholder'=> 'Clave',
 );
 $remember = array(
 	'name'	=> 'remember',
@@ -56,7 +58,7 @@ $captcha = array(
 <body>
 <div class="container">
 	<div>
-        <center><img src="<?php echo base_url("assets/imagenes/icono-usuario-opt.gif"); ?>" /></center>   
+        <center><img alt="Ícono usuarios" src="<?php echo base_url("assets/imagenes/icono-usuario-opt.gif"); ?>" /></center>   
         <br />
     </div>
 
@@ -64,12 +66,12 @@ $captcha = array(
 <?php echo form_open($this->uri->uri_string(),array('class'=>'form-signin')); ?>
 <table>
 	<tr>
-		<td><?php //echo form_label($login_label, $login['id']); ?></td>
+		<th><?php //echo form_label($login_label, $login['id']); ?></th>
 		<td><?php echo form_input($login); ?></td>
 		<td style="color: red;"><?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?></td>
 	</tr>
 	<tr>
-		<td><?php //echo form_label('Password', $password['id']); ?></td>
+		<th><?php //echo form_label('Password', $password['id']); ?></th>
 		<td><?php echo form_password($password); ?></td>
 		<td style="color: red;"><?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?></td>
 	</tr>

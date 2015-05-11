@@ -39,7 +39,7 @@ class Usuarios extends CI_Controller {
         if($this->tank_auth->is_admin() && !is_null($this->id_modulo)) {
             $table_name='users';
             $crud = new grocery_CRUD();
-            $crud->where($table_name.'.activated',1);
+            //$crud->where($table_name.'.activated',1);
             $crud->set_theme('datatables');
             $crud->set_subject('Usuario');
             $crud->set_table($table_name);
@@ -58,6 +58,7 @@ class Usuarios extends CI_Controller {
             $crud->set_rules('email','correo electrónico','valid_email|required');
             $crud->set_rules('group_id','roles','required');
             $crud->add_action('Desbloquear', '', 'usuarios/desbloquear','ui-icon-unlocked');
+            
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //Ocultar botón Ver, Exportar, Imprimir
