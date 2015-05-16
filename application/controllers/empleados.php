@@ -67,6 +67,7 @@ class Empleados extends CI_Controller {
             $crud->set_rules('clave','clave','required');
 	        $crud->callback_add_field('email',array($this,'email_field_add_callback'));
 	        $crud->callback_add_field('clave',array($this,'clave_field_add_callback'));
+			$crud->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','callback_cedula_check');
 	        $crud->callback_before_insert(array($this, 'registrar_usuario'));
     	    //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
@@ -106,6 +107,37 @@ class Empleados extends CI_Controller {
         } else {
         	redirect('/inicio/');
         }
+    }
+
+    function cedula_check($value) {
+    	$arr = str_split($value);
+    	$sumaPares = 0;
+    	$sumaImpares = 0;
+
+    	if(sizeof($arr) == 10) { //10 caracteres
+    		for ($i=0; $i < 9; $i++) {
+    			if($i % 2){ //mod no es 0, i es impar, posición de cédula es par
+    				$sumaPares += intval($arr[$i]);
+    			}	
+    			else{ //mod es 0, i es par, posición de cédula es impar
+					if( (intval($arr[$i]) * 2) > 9 ){
+    					$sumaImpares += intval($arr[$i]) * 2 - 9;
+    				}else{
+    					$sumaImpares += intval($arr[$i]) * 2;
+    				}
+    			}    
+    		}
+			if( (10-(($sumaPares+$sumaImpares)%10) ) == intval($arr[9])){
+				return TRUE;
+			}else{
+				$this->form_validation->set_message('cedula_check', "Cédula incorrecta");
+        		return FALSE;
+			}
+    	}
+    	else{ // no hay 10
+    		$this->form_validation->set_message('cedula_check', "Cédula incorrecta, no tiene 10 dígitos");
+    		return FALSE;
+    	}
     }
 
     function _empleado_output($output = null) {
