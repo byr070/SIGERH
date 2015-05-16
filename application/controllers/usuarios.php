@@ -40,7 +40,7 @@ class Usuarios extends CI_Controller {
             $table_name='users';
             $crud = new grocery_CRUD();
             //$crud->where($table_name.'.activated',1);
-            //$crud->set_theme('twitter-bootstrap');
+            //$crud->set_theme('datatables');
             $crud->set_subject('Usuario');
             $crud->set_table($table_name);
             $crud->columns('username','group_id','email','activated','banned','ban_reason','last_login');
@@ -57,7 +57,7 @@ class Usuarios extends CI_Controller {
             $crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space');
             $crud->set_rules('email','correo electrónico','valid_email|required');
             $crud->set_rules('group_id','roles','required');
-            $crud->add_action('Desbloquear', '', 'usuarios/desbloquear','ui-icon-unlocked');
+            $crud->add_action('Desbloquear', base_url('assets/imagenes/unlock.png'), 'usuarios/desbloquear');
             
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
