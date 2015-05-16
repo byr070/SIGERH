@@ -34,7 +34,7 @@ class Empleados extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='empleados';
 			$crud = new grocery_CRUD();
-	        $crud->set_theme('datatables');
+	        $crud->set_theme('twitter-bootstrap');
     	    $crud->set_subject('Empleado');
     	    $crud->set_table($table_name);
     	    if(!$this->tank_auth->is_admin()){
@@ -124,13 +124,12 @@ class Empleados extends CI_Controller {
 
     function registrar_usuario($post_array) {
     	$email_activation = $this->config->item('email_activation', 'tank_auth');
-	    $username=$post_array['EMP_NOMBRE_COMPLETO'];
+	    //$username=$post_array['EMP_NOMBRE_COMPLETO'];
 		if (!is_null($data = $this->tank_auth->create_user(
-			$username,
+			$post_array['email'],
 			$post_array['email'],
 			$post_array['clave'],
-			$email_activation))) {									// success
-			
+			$email_activation))){									// success
 			
 			$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 

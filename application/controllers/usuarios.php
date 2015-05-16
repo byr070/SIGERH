@@ -40,7 +40,7 @@ class Usuarios extends CI_Controller {
             $table_name='users';
             $crud = new grocery_CRUD();
             //$crud->where($table_name.'.activated',1);
-            $crud->set_theme('datatables');
+            $crud->set_theme('twitter-bootstrap');
             $crud->set_subject('Usuario');
             $crud->set_table($table_name);
             $crud->columns('username','group_id','email','activated','banned','ban_reason','last_login');
