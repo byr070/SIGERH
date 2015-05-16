@@ -34,7 +34,7 @@ class Empleados extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='empleados';
 			$crud = new grocery_CRUD();
-	        $crud->set_theme('twitter-bootstrap');
+	        //$crud->set_theme('twitter-bootstrap');
     	    $crud->set_subject('Empleado');
     	    $crud->set_table($table_name);
     	    if(!$this->tank_auth->is_admin()){

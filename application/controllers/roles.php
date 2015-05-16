@@ -30,7 +30,7 @@ class Roles extends CI_Controller {
             $table_name='roles';
             $crud = new grocery_CRUD();
             $crud->where($table_name.'.ACTIVADO',1);
-            $crud->set_theme('twitter-bootstrap');
+            //$crud->set_theme('twitter-bootstrap');
             $crud->set_subject('Rol');
             $crud->set_table($table_name);
             $crud->columns('RLS_DESCRIPCION','ACTIVADO','MODIFICADO');

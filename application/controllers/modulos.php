@@ -30,7 +30,7 @@ class Modulos extends CI_Controller {
             $table_name='modulos';
             $crud = new grocery_CRUD();
             $crud->where($table_name.'.ACTIVADO',1);
-            $crud->set_theme('twitter-bootstrap');
+            //$crud->set_theme('twitter-bootstrap');
             $crud->set_subject('Modulo');
             $crud->set_table($table_name);
             $crud->columns('MDL_DESCRIPCION','ADMIN','ACTIVADO','MODIFICADO');
