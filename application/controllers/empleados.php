@@ -67,7 +67,7 @@ class Empleados extends CI_Controller {
             $crud->set_rules('clave','clave','required');
 	        $crud->callback_add_field('email',array($this,'email_field_add_callback'));
 	        $crud->callback_add_field('clave',array($this,'clave_field_add_callback'));
-			$crud->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','callback_cedula_check');
+			$crud->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','callback_cedula_ruc_check');
 	        $crud->callback_before_insert(array($this, 'registrar_usuario'));
     	    //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
@@ -109,12 +109,12 @@ class Empleados extends CI_Controller {
         }
     }
 
-    function cedula_check($value) {
+    function cedula_ruc_check($value) {
     	$arr = str_split($value);
     	$sumaPares = 0;
     	$sumaImpares = 0;
 
-    	if(sizeof($arr) == 10) { //10 caracteres
+    	if(sizeof($arr) == 10 || sizeof($arr) == 13) { //13 o 10 caracteres
     		for ($i=0; $i < 9; $i++) {
     			if($i % 2){ //mod no es 0, i es impar, posición de cédula es par
     				$sumaPares += intval($arr[$i]);
@@ -127,15 +127,32 @@ class Empleados extends CI_Controller {
     				}
     			}    
     		}
-			if( (10-(($sumaPares+$sumaImpares)%10) ) == intval($arr[9])){
-				return TRUE;
-			}else{
-				$this->form_validation->set_message('cedula_check', "Cédula incorrecta");
+			if( (10-(($sumaPares+$sumaImpares)%10) ) == intval($arr[9])){ //se comprueba el 10 caracter
+				if(sizeof($arr)==13){
+					//se verifican los últimos 3 con 001
+					if (intval($arr[10])==0 && intval($arr[11])==0 && intval($arr[12])==1){
+						//echo "ruc correcto";
+						return TRUE;
+					}
+					else{
+						//echo 'ruc incorrecto';
+						$this->form_validation->set_message('cedula_check', "RUC incorrecto");
+        				return FALSE;
+					}
+				}
+				else{ //10 caracteres corectos
+					//echo "cedula correcta";
+					return TRUE;	
+				}
+			}
+			else{ //10mo incorrecto
+				//echo '10mo incorecto';
+				$this->form_validation->set_message('cedula_check', "Cédula o RUC incorrecto");
         		return FALSE;
 			}
     	}
     	else{ // no hay 10
-    		$this->form_validation->set_message('cedula_check', "Cédula incorrecta, no tiene 10 dígitos");
+    		$this->form_validation->set_message('cedula_check', "Cédula o RUC incorrecto");
     		return FALSE;
     	}
     }
