@@ -6,12 +6,10 @@ class Empleados extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 
-		$this->load->library('form_validation');
 		$this->load->library('security');
 		$this->load->library('grocery_CRUD');
 		$this->load->library('tank_auth_groups','','tank_auth');
 		$this->load->library('table');
-		$this->lang->load('form_validation','spanish');
 		$this->lang->load('tank_auth','spanish');
 		//$this->load->model('empleado/empleado_model');
 		$this->load->model('catalogos/modulos_model');

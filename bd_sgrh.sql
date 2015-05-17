@@ -346,8 +346,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('15ae3fc043c225fdaafda94d8291e311','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36',1431823711,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
-INSERT INTO `ci_sessions` VALUES ('a3369b88e4c02447efa202567a9a3e5e','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36',1431819388,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('1edd5a7af49d446b43593df931e54469','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36',1431849524,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1912,7 +1911,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-17 02:14:57','2015-03-15 01:30:16','2015-05-17 00:14:57',1);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-17 09:56:48','2015-03-15 01:30:16','2015-05-17 07:56:48',1);
 INSERT INTO `users` VALUES (2,'usuario 1','$2a$08$.LT1HnCCNNOYoI0lHxGU6uH/fJDOeErCL..h0oRiLWW0Xdw1iXJky','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-05-01 21:46:18','2015-05-01 21:42:45','2015-05-11 07:57:56',2);
 INSERT INTO `users` VALUES (3,'min:4-max:20','$2a$08$kZeZkh4O/dwFWtwAX5PoF.cCcKVBFwGdZWouSCXCHwvo2FRC4PC5W','g3314673@trbvm.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-05-11 10:11:44','2015-05-11 10:09:59','2015-05-11 08:11:44',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -1927,4 +1926,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-16 21:26:46
+-- Dump completed on 2015-05-17  3:01:33

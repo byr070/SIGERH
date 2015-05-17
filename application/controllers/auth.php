@@ -10,6 +10,7 @@ class Auth extends CI_Controller
 		$this->load->library('security');
 		$this->load->library('tank_auth_groups','','tank_auth');
 		$this->lang->load('tank_auth');
+		$this->lang->load('form_validation');
 	}
 
 	function index()

@@ -26,7 +26,6 @@ class Tank_auth
 
 		$this->ci->load->config('tank_auth', TRUE);
 
-		$this->ci->load->library('session');
 		$this->ci->load->database();
 		$this->ci->load->model('tank_auth/users');
 
