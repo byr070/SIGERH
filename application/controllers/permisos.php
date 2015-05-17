@@ -42,6 +42,9 @@ class Permisos extends CI_Controller {
             $crud->set_relation('ROL_ID','roles','RLS_DESCRIPCION');
             $crud->set_relation('MODULO_ID','modulos','MDL_DESCRIPCION');
             $crud->set_relation('ACCION_ID','acciones','ACC_DESCRIPCION');
+            $crud->set_rules('ROL_ID','rol','required');
+            $crud->set_rules('MODULO_ID','modulo','required');
+            $crud->set_rules('ACCION_ID','acciones','required');
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
