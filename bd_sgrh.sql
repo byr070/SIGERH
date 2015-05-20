@@ -346,7 +346,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('1edd5a7af49d446b43593df931e54469','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36',1431849524,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('62432e99ba93fe600272d2d945463043','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36',1432109951,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,6 +447,50 @@ INSERT INTO `empleados` VALUES (4,'usuario 1',NULL,NULL,NULL,NULL,NULL,NULL,NULL
 UNLOCK TABLES;
 
 --
+-- Table structure for table `feriados`
+--
+
+DROP TABLE IF EXISTS `feriados`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `feriados` (
+  `FRD_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FRD_DESCRIPCION` varchar(50) NOT NULL,
+  `FRD_DIA` int(11) NOT NULL,
+  `FRD_MES` int(11) NOT NULL,
+  `FRD_RECUPERABLE` tinyint(1) DEFAULT '0',
+  `FRD_ESTADO` tinyint(1) NOT NULL DEFAULT '1',
+  `FRD_CREADO` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `FRD_MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`FRD_ID`),
+  UNIQUE KEY `UK_FERIADO` (`FRD_DESCRIPCION`,`FRD_DIA`,`FRD_MES`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `feriados`
+--
+
+LOCK TABLES `feriados` WRITE;
+/*!40000 ALTER TABLE `feriados` DISABLE KEYS */;
+INSERT INTO `feriados` VALUES (1,'Año Nuevo',1,1,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (2,'Año Nuevo',2,1,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (3,'Año Nuevo',3,1,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (4,'Año Nuevo',4,1,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (5,'Carnaval',16,2,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (6,'Carnaval',17,2,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (7,'Viernes Santo',3,4,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (8,'Día del Trabajo',1,5,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (9,'Batalla de Pichincha',24,5,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (10,'Primer Grito de Independencia',10,9,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (11,'Independencia de Guayaquil',9,10,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (12,'Día de Difuntos',2,11,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (13,'Independencia de Cuenca',3,11,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+INSERT INTO `feriados` VALUES (14,'Navidad',25,12,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
+/*!40000 ALTER TABLE `feriados` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `login_attempts`
 --
 
@@ -459,7 +503,7 @@ CREATE TABLE `login_attempts` (
   `login` varchar(50) COLLATE utf8_bin NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1583,6 +1627,43 @@ INSERT INTO `parroquias` VALUES (1024,'Manga Del Cura','2015-04-05 20:53:46','20
 UNLOCK TABLES;
 
 --
+-- Table structure for table `periodos_salida`
+--
+
+DROP TABLE IF EXISTS `periodos_salida`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `periodos_salida` (
+  `PRD_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PRD_FECHA_INICIO` date NOT NULL,
+  `PRD_FECHA_FIN` date NOT NULL,
+  `PRD_HORA_INICIO` time NOT NULL,
+  `PRD_HORA_FIN` time NOT NULL,
+  `PRD_HORAS_DISPONIBLES` int(11) NOT NULL,
+  `PRD_ESTADO` tinyint(1) NOT NULL DEFAULT '1',
+  `PRD_CREADO` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `PRD_MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `EMPLEADO_ID` int(11) NOT NULL,
+  `TIPO_PERMISO_ID` int(11) NOT NULL,
+  PRIMARY KEY (`PRD_ID`),
+  KEY `FK_EMPLEADO_PERIODO_ID` (`EMPLEADO_ID`),
+  KEY `FK_TIPO_PERMISO_ID` (`TIPO_PERMISO_ID`),
+  CONSTRAINT `FK_EMPLEADO_PERIODO_ID` FOREIGN KEY (`EMPLEADO_ID`) REFERENCES `empleados` (`EMP_ID`),
+  CONSTRAINT `FK_TIPO_PERMISO_ID` FOREIGN KEY (`TIPO_PERMISO_ID`) REFERENCES `tipos_permiso` (`TPP_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `periodos_salida`
+--
+
+LOCK TABLES `periodos_salida` WRITE;
+/*!40000 ALTER TABLE `periodos_salida` DISABLE KEYS */;
+INSERT INTO `periodos_salida` VALUES (2,'2015-05-01','2015-05-06','07:00:00','17:00:00',0,1,'2015-05-20 03:09:32','2015-05-20 08:09:32',2,1);
+/*!40000 ALTER TABLE `periodos_salida` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `permisos`
 --
 
@@ -1605,7 +1686,7 @@ CREATE TABLE `permisos` (
   CONSTRAINT `FK_ACCION_ID` FOREIGN KEY (`ACCION_ID`) REFERENCES `acciones` (`ACC_ID`),
   CONSTRAINT `FK_MODULO_ID` FOREIGN KEY (`MODULO_ID`) REFERENCES `modulos` (`MDL_ID`),
   CONSTRAINT `FK_ROL_ID` FOREIGN KEY (`ROL_ID`) REFERENCES `roles` (`RLS_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1823,6 +1904,33 @@ LOCK TABLES `tipos` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tipos_permiso`
+--
+
+DROP TABLE IF EXISTS `tipos_permiso`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipos_permiso` (
+  `TPP_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TPP_DESCRIPCION` varchar(50) NOT NULL,
+  `TPP_ACTIVADO` tinyint(1) NOT NULL DEFAULT '1',
+  `TPP_CREADO` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `TPP_MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`TPP_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipos_permiso`
+--
+
+LOCK TABLES `tipos_permiso` WRITE;
+/*!40000 ALTER TABLE `tipos_permiso` DISABLE KEYS */;
+INSERT INTO `tipos_permiso` VALUES (1,'Calamidad doméstica',1,'2015-05-20 03:09:03','2015-05-20 08:09:03');
+/*!40000 ALTER TABLE `tipos_permiso` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user_autologin`
 --
 
@@ -1911,10 +2019,41 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-17 09:56:48','2015-03-15 01:30:16','2015-05-17 07:56:48',1);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-20 09:43:47','2015-03-15 01:30:16','2015-05-20 07:43:47',1);
 INSERT INTO `users` VALUES (2,'usuario 1','$2a$08$.LT1HnCCNNOYoI0lHxGU6uH/fJDOeErCL..h0oRiLWW0Xdw1iXJky','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-05-01 21:46:18','2015-05-01 21:42:45','2015-05-11 07:57:56',2);
 INSERT INTO `users` VALUES (3,'min:4-max:20','$2a$08$kZeZkh4O/dwFWtwAX5PoF.cCcKVBFwGdZWouSCXCHwvo2FRC4PC5W','g3314673@trbvm.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-05-11 10:11:44','2015-05-11 10:09:59','2015-05-11 08:11:44',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vacaciones`
+--
+
+DROP TABLE IF EXISTS `vacaciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vacaciones` (
+  `VCC_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `VCC_FECHA_INICIO` date NOT NULL,
+  `VCC_FECHA_FIN` date NOT NULL,
+  `VCC_DIAS_DISPONIBLES` int(11) NOT NULL,
+  `VCC_ACTIVADO` tinyint(1) NOT NULL DEFAULT '1',
+  `VCC_CREADO` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `VCC_MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `EMPLEADO_ID` int(11) NOT NULL,
+  PRIMARY KEY (`VCC_ID`),
+  KEY `FK_EMPLEADO_VACACION_ID` (`EMPLEADO_ID`),
+  CONSTRAINT `FK_EMPLEADO_VACACION_ID` FOREIGN KEY (`EMPLEADO_ID`) REFERENCES `empleados` (`EMP_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vacaciones`
+--
+
+LOCK TABLES `vacaciones` WRITE;
+/*!40000 ALTER TABLE `vacaciones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vacaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1926,4 +2065,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-17  3:01:33
+-- Dump completed on 2015-05-20  3:22:05
