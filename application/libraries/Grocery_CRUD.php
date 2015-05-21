@@ -2242,9 +2242,8 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
 		} else {
 			$datetime = '';
 		}
-		$input = "<input id='field-{$field_info->name}' name='{$field_info->name}' type='text' value='$datetime' maxlength='5' class='time-input' /&gt;
-		&lt;a class='time-input-clear' tabindex='-1'&gt;".$this->l('form_button_clear')."&lt;/a&gt;
-		(hh:mm)";
+		_$input = "<input id='field-{$field_info->name}' name='{$field_info->name}' type='text' value='$datetime' maxlength='5' class='time-input' />
+		<a class='time-input-clear' tabindex='-1'>".$this->l('form_button_clear')."</a> (hh:mm)";
 		return $input;
 	}
 
