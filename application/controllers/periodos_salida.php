@@ -48,7 +48,8 @@ class Periodos_Salida extends CI_Controller {
            	//$crud->change_field_type('USUARIO_ID','invisible');
 	        $crud->set_relation('EMPLEADO_ID','empleados','EMP_NOMBRE_COMPLETO');
             $crud->set_relation('TIPO_PERMISO_ID','tipos_permiso','TPP_DESCRIPCION');
-
+            $crud->field_type('PRD_HORA_INICIO','time');
+            $crud->field_type('PRD_HORA_FIN','time');
             $crud->set_rules('EMPLEADO_ID','nombre de empleado','required');
             $crud->set_rules('TIPO_PERMISO_ID','tipo de permiso','required');
             $crud->set_rules('PRD_FECHA_INICIO','fecha inicio','required');

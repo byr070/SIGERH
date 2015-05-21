@@ -310,7 +310,13 @@ CREATE TABLE `cargos` (
   `CRG_DESCRIPCION` varchar(60) DEFAULT NULL,
   `CRG_CREADO` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `CRG_MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`CRG_ID`)
+  `JORNADA_ID` int(11) NOT NULL,
+  `HORARIO_ID` int(11) NOT NULL,
+  PRIMARY KEY (`CRG_ID`),
+  KEY `cargos_ibfk_1` (`JORNADA_ID`),
+  KEY `cargos_ibfk_2` (`HORARIO_ID`),
+  CONSTRAINT `cargos_ibfk_1` FOREIGN KEY (`JORNADA_ID`) REFERENCES `jornadas` (`JRN_ID`),
+  CONSTRAINT `cargos_ibfk_2` FOREIGN KEY (`HORARIO_ID`) REFERENCES `horarios` (`HRR_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -346,7 +352,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('62432e99ba93fe600272d2d945463043','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36',1432109951,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('51fa1665c1b34589889014dcc4c1617e','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36',1432182983,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -488,6 +494,58 @@ INSERT INTO `feriados` VALUES (12,'Día de Difuntos',2,11,0,1,'2015-05-20 02:06:
 INSERT INTO `feriados` VALUES (13,'Independencia de Cuenca',3,11,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
 INSERT INTO `feriados` VALUES (14,'Navidad',25,12,0,1,'2015-05-20 02:06:48','2015-05-20 07:06:48');
 /*!40000 ALTER TABLE `feriados` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `horarios`
+--
+
+DROP TABLE IF EXISTS `horarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `horarios` (
+  `HRR_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `HRR_FECHA_INICIO` date NOT NULL,
+  `HRR_FECHA_FIN` date NOT NULL,
+  `HRR_HORA_INICIO` time NOT NULL,
+  `HRR_HORA_FIN` time NOT NULL,
+  PRIMARY KEY (`HRR_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `horarios`
+--
+
+LOCK TABLES `horarios` WRITE;
+/*!40000 ALTER TABLE `horarios` DISABLE KEYS */;
+INSERT INTO `horarios` VALUES (1,'2015-05-20','2015-06-02','06:00:00','18:00:00');
+/*!40000 ALTER TABLE `horarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jornadas`
+--
+
+DROP TABLE IF EXISTS `jornadas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jornadas` (
+  `JRN_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `JRN_DIAS_TRABAJO` smallint(2) NOT NULL,
+  `JRN_DIAS_DESCANSO` smallint(2) NOT NULL,
+  PRIMARY KEY (`JRN_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jornadas`
+--
+
+LOCK TABLES `jornadas` WRITE;
+/*!40000 ALTER TABLE `jornadas` DISABLE KEYS */;
+INSERT INTO `jornadas` VALUES (1,14,7);
+/*!40000 ALTER TABLE `jornadas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2019,7 +2077,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-20 09:43:47','2015-03-15 01:30:16','2015-05-20 07:43:47',1);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-21 06:13:09','2015-03-15 01:30:16','2015-05-21 04:13:09',1);
 INSERT INTO `users` VALUES (2,'usuario 1','$2a$08$.LT1HnCCNNOYoI0lHxGU6uH/fJDOeErCL..h0oRiLWW0Xdw1iXJky','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-05-01 21:46:18','2015-05-01 21:42:45','2015-05-11 07:57:56',2);
 INSERT INTO `users` VALUES (3,'min:4-max:20','$2a$08$kZeZkh4O/dwFWtwAX5PoF.cCcKVBFwGdZWouSCXCHwvo2FRC4PC5W','g3314673@trbvm.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-05-11 10:11:44','2015-05-11 10:09:59','2015-05-11 08:11:44',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -2065,4 +2123,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-20  3:22:05
+-- Dump completed on 2015-05-20 23:42:50
