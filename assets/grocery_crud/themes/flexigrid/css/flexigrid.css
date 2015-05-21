@@ -341,6 +341,10 @@ div.form-div input.datetime-input
 {
 	width:150px !important;
 }
+div.form-div input.time-input
+{
+	width: 100px !important;
+}
 .form-field-box
 {
 	padding: 5px 10px;
