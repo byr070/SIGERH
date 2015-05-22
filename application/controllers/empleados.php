@@ -144,7 +144,7 @@ class Empleados extends CI_Controller {
 					}
 					else{
 						//echo 'ruc incorrecto';
-						$this->form_validation->set_message('cedula_ruc_check', "RUC incorrecto");
+						$this->form_validation->set_message('cedula_check', "RUC incorrecto");
         				return FALSE;
 					}
 				}
@@ -155,12 +155,12 @@ class Empleados extends CI_Controller {
 			}
 			else{ //10mo incorrecto
 				//echo '10mo incorecto';
-				$this->form_validation->set_message('cedula_ruc_check', "Cédula o RUC incorrecto");
+				$this->form_validation->set_message('cedula_check', "Cédula o RUC incorrecto");
         		return FALSE;
 			}
     	}
     	else{ // no hay 10
-    		$this->form_validation->set_message('cedula_ruc_check', "Cédula o RUC incorrecto");
+    		$this->form_validation->set_message('cedula_check', "Cédula o RUC incorrecto");
     		return FALSE;
     	}
     }

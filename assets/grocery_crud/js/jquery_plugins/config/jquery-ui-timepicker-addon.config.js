@@ -14,7 +14,7 @@ $(function(){
 		return false;
 	});
 	$('.time-input').timepicker({
-		stepMinute: 5,
+		stepMinute: 15,
 		timeFormat: 'HH:mm',
 		hourMin: 0,
 		hourMax: 23,
