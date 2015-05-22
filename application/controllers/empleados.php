@@ -38,35 +38,45 @@ class Empleados extends CI_Controller {
     	    if(!$this->tank_auth->is_admin()){
     	    	$crud->where('EMP_NOMBRE_COMPLETO',$this->tank_auth->get_username());
     	    }
-        	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID');
-    	    $crud->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID','USUARIO_ID','email','clave');
-    	    $crud->edit_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA');
-        	$crud->display_as('EMP_NOMBRE_COMPLETO','NOMBRE')
-            	 ->display_as('EMP_NUMERO_CEDULA','NÚMERO CEDULA')
-	             ->display_as('EMP_FECHA_NACIMIENTO','FECHA NACIMIENTO')
-    	         ->display_as('EMP_FECHA_INGRESO','FECHA INGRESO')
-        	     ->display_as('ORGANIZACION_ID','ORGANIZACIÓN')
-            	 ->display_as('CUADRILLA_ID','CUADRILLA')
-            	 ->display_as('TIPO_ID','TIPO')
-            	 ->display_as('TARJETA_ID','TARJETA')
-            	 ->display_as('CARGO_ID','CARGO')
-            	 ->display_as('email','CORREO ELECTRÓNICO')
-            	 ->display_as('clave','CLAVE');
-           	$crud->change_field_type('USUARIO_ID','invisible');
-	        $crud->set_relation('LUGAR_NACIMIENTO','parroquias','PRR_NOMBRE');
-	        $crud->set_relation('PROVINCIA_RESIDENCIA','provincias','PRV_NOMBRE');
-	        $crud->set_relation('ORGANIZACION_ID','organizaciones','ORG_NOMBRE');
-	        $crud->set_relation('CUADRILLA_ID','cuadrillas','CDR_NOMBRE');
-	        $crud->set_relation('TIPO_ID','tipos','TIP_NOMBRE');
-	        $crud->set_relation('TARJETA_ID','tarjetas','TRJ_ID');
-	        $crud->set_relation('CARGO_ID','cargos','CRG_NOMBRE');
-	        $crud->set_rules('EMP_NOMBRE_COMPLETO','nombre del empleado','trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space');
-            $crud->set_rules('email','correo electrónico','valid_email|required|is_unique[users.email]');
-            $crud->set_rules('clave','clave','required');
-	        $crud->callback_add_field('email',array($this,'email_field_add_callback'));
-	        $crud->callback_add_field('clave',array($this,'clave_field_add_callback'));
-			$crud->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','callback_cedula_ruc_check');
-	        $crud->callback_before_insert(array($this, 'registrar_usuario'));
+        	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
+        		'EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID')
+    	    ->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
+    	    	'LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CUADRILLA_ID',
+    	    	'TIPO_ID','TARJETA_ID','CARGO_ID','USUARIO_ID','email','clave')
+    	    ->edit_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
+    	    	'LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA')
+
+       		->display_as('EMP_NOMBRE_COMPLETO','NOMBRE')
+	    	->display_as('EMP_NUMERO_CEDULA','NÚMERO CEDULA')
+	        ->display_as('EMP_FECHA_NACIMIENTO','FECHA NACIMIENTO')
+	        ->display_as('EMP_FECHA_INGRESO','FECHA INGRESO')
+		    ->display_as('ORGANIZACION_ID','ORGANIZACIÓN')
+	    	->display_as('CUADRILLA_ID','CUADRILLA')
+	    	->display_as('TIPO_ID','TIPO')
+	    	->display_as('TARJETA_ID','TARJETA')
+	    	->display_as('CARGO_ID','CARGO')
+	    	->display_as('email','CORREO ELECTRÓNICO')
+	    	->display_as('clave','CLAVE')
+
+           	->change_field_type('USUARIO_ID','invisible')
+
+	        ->set_relation('LUGAR_NACIMIENTO','parroquias','PRR_NOMBRE')
+	        ->set_relation('PROVINCIA_RESIDENCIA','provincias','PRV_NOMBRE')
+	        ->set_relation('ORGANIZACION_ID','organizaciones','ORG_NOMBRE')
+	        ->set_relation('CUADRILLA_ID','cuadrillas','CDR_NOMBRE')
+	        ->set_relation('TIPO_ID','tipos','TIP_NOMBRE')
+	        ->set_relation('TARJETA_ID','tarjetas','TRJ_ID')
+	        ->set_relation('CARGO_ID','cargos','CRG_NOMBRE')
+	        ->set_rules('EMP_NOMBRE_COMPLETO','nombre del empleado',
+	        	'trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|required|xss_clean|min_length['.
+	        	$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space')
+            ->set_rules('email','correo electrónico','valid_email|required|is_unique[users.email]')
+            ->set_rules('clave','clave','required')
+	        ->callback_add_field('email',array($this,'email_field_add_callback'))
+	        ->callback_add_field('clave',array($this,'clave_field_add_callback'))
+			->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','callback_cedula_ruc_check')
+	        ->callback_before_insert(array($this, 'registrar_usuario'));
+    	    
     	    //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
@@ -96,7 +106,7 @@ class Empleados extends CI_Controller {
                 $output = $crud->render();
             } catch(Exception $e) {
                 if($e->getCode() == 14) {
-                    show_error('No tienes permisos para esta operación');
+                    show_error('No tiene permisos para esta operación');
                 } else {
                     show_error($e->getMessage());
                 }
@@ -181,7 +191,8 @@ class Empleados extends CI_Controller {
 			$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 
 			if ($email_activation) {									// send "activate" email
-				$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
+				$data['activation_period'] = 
+				$this->config->item('email_activation_expire', 'tank_auth') / 3600;
 
 				$this->_send_email('activate', $data['email'], $data);
 
@@ -368,7 +379,9 @@ class Empleados extends CI_Controller {
 			$this->form_validation->set_rules('numero_cedula', 'numero de cedula', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('crear_login', 'crear login', 'integer');
 			$this->form_validation->set_rules('email', 'email', 'trim|xss_clean|valid_email');
-			$this->form_validation->set_rules('clave', 'clave', 'trim|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
+			$this->form_validation->set_rules('clave', 'clave', 'trim|xss_clean|min_length['.
+				$this->config->item('password_min_length', 'tank_auth').']|max_length['.
+				$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
 			$this->form_validation->set_rules('confirmar_clave', 'Confirmar clave', 'trim|xss_clean|matches[clave]');
 			//$captcha_registration	= $this->config->item('captcha_registration', 'tank_auth');
 			$captcha_registration	= FALSE;
@@ -402,7 +415,8 @@ class Empleados extends CI_Controller {
 											$this->_send_email('welcome', $data['email'], $data);
 										}
 										unset($data['clave']); // Clear password (just for any case)
-										$this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.anchor('/login/entrar/', 'Login'));
+										$this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.
+											anchor('/login/entrar/', 'Login'));
 									}
 								}
 							}
