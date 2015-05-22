@@ -1,5 +1,4 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
 class Cargos extends CI_Controller {
 	
 	private $id_modulo = NULL;
@@ -7,6 +6,7 @@ class Cargos extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 
+		$this->load->library('security');
 		$this->load->library('grocery_CRUD');
 		$this->load->library('tank_auth_groups','','tank_auth');
 		$this->load->library('table');
@@ -20,11 +20,11 @@ class Cargos extends CI_Controller {
         if (!$this->tank_auth->is_logged_in()) {
             redirect('/auth/login/');
         } else {
-        	if(!is_null($this->id_modulo)){
+        	//if(!is_null($this->id_modulo)){
                 redirect('/cargos/listar/');
-            } else {
-            	redirect('/inicio/');
-            }
+            //} else {
+            //	redirect('/inicio/');
+            //}
         }
     }
 	
@@ -85,14 +85,14 @@ class Cargos extends CI_Controller {
                     show_error($e->getMessage());
                 }
             }
-	        $this->_cargo_output($output);
+	        $this->_periodo_output($output);
         //} else {
         //	redirect('/inicio/');
         //}
     }
 
 
-    function _cargo_output($output = null) {
+    function _periodo_output($output = null) {
     	$data['user_id']    = $this->tank_auth->get_user_id();
         $data['username']   = $this->tank_auth->get_username();
         $data['is_admin']   = $this->tank_auth->is_admin();
