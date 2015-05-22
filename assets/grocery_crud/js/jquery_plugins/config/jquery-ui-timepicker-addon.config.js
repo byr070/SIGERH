@@ -16,8 +16,8 @@ $(function(){
 	$('.time-input').timepicker({
 		stepMinute: 15,
 		timeFormat: 'HH:mm',
-		hourMin: 6,
-		hourMax: 20,
+		hourMin: 0,
+		hourMax: 23,
 		addSliderAccess:true,
 		sliderAccessArgs:{touchonly: false}
 	});
@@ -28,4 +28,4 @@ $(function(){
 		$(this).parent().find('.time-input').val("");
 		return false;
 	});
-});
+}); 
