@@ -42,6 +42,9 @@ class Vacaciones extends CI_Controller {
                  ->display_as('VCC_DIAS_DISPONIBLES','DIAS DISPONIBLES')
             	 ->display_as('EMPLEADO_ID','EMPLEADO');
            	//$crud->change_field_type('USUARIO_ID','invisible');
+            if(!$this->tank_auth->is_admin()){
+                $crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
+            }
 	        $crud->set_relation('EMPLEADO_ID','empleados','EMP_NOMBRE_COMPLETO');
             $crud->set_rules('EMPLEADO_ID','nombre de empleado','required');
             $crud->set_rules('VCC_FECHA_INICIO','fecha inicio','required');
