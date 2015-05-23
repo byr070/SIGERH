@@ -34,7 +34,9 @@ class Periodos_Salida extends CI_Controller {
 			$crud = new grocery_CRUD();
     	    $crud->set_subject('Periodo de salida');
     	    $crud->set_table($table_name);
-    	    
+    	    if(!$this->tank_auth->is_admin()){
+                $crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
+            }
         	$crud->columns('EMPLEADO_ID','TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN','PRD_HORAS_DISPONIBLES');
     	    $crud->add_fields('EMPLEADO_ID','TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
     	    $crud->edit_fields('TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
