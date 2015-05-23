@@ -67,6 +67,7 @@ class Empleados extends CI_Controller {
 	        $crud->callback_add_field('clave',array($this,'clave_field_add_callback'));
 			$crud->set_rules('EMP_NUMERO_CEDULA','número de cédula','callback_cedula_ruc_check|is_unique[empleados.EMP_NUMERO_CEDULA]');
 	        $crud->callback_before_insert(array($this, 'registrar_usuario'));
+
     	    //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
@@ -96,7 +97,7 @@ class Empleados extends CI_Controller {
                 $output = $crud->render();
             } catch(Exception $e) {
                 if($e->getCode() == 14) {
-                    show_error('No tienes permisos para esta operación');
+                    show_error('No tiene permisos para esta operación');
                 } else {
                     show_error($e->getMessage());
                 }
@@ -143,7 +144,7 @@ class Empleados extends CI_Controller {
 					}
 					else{
 						//echo 'ruc incorrecto';
-						$this->form_validation->set_message('cedula_check', "RUC incorrecto");
+						$this->form_validation->set_message('cedula_ruc_check', "RUC incorrecto");
         				return FALSE;
 					}
 				}
@@ -154,12 +155,12 @@ class Empleados extends CI_Controller {
 			}
 			else{ //10mo incorrecto
 				//echo '10mo incorecto';
-				$this->form_validation->set_message('cedula_check', "Cédula o RUC incorrecto");
+				$this->form_validation->set_message('cedula_ruc_check', "Cédula o RUC incorrecto");
         		return FALSE;
 			}
     	}
     	else{ // no hay 10
-    		$this->form_validation->set_message('cedula_check', "Cédula o RUC incorrecto");
+    		$this->form_validation->set_message('cedula_ruc_check', "Cédula o RUC incorrecto");
     		return FALSE;
     	}
     }
@@ -190,7 +191,8 @@ class Empleados extends CI_Controller {
 			$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 
 			if ($email_activation) {									// send "activate" email
-				$data['activation_period'] = $this->config->item('email_activation_expire', 'tank_auth') / 3600;
+				$data['activation_period'] = 
+				$this->config->item('email_activation_expire', 'tank_auth') / 3600;
 
 				$this->_send_email('activate', $data['email'], $data);
 
@@ -377,7 +379,9 @@ class Empleados extends CI_Controller {
 			$this->form_validation->set_rules('numero_cedula', 'numero de cedula', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('crear_login', 'crear login', 'integer');
 			$this->form_validation->set_rules('email', 'email', 'trim|xss_clean|valid_email');
-			$this->form_validation->set_rules('clave', 'clave', 'trim|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
+			$this->form_validation->set_rules('clave', 'clave', 'trim|xss_clean|min_length['.
+				$this->config->item('password_min_length', 'tank_auth').']|max_length['.
+				$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
 			$this->form_validation->set_rules('confirmar_clave', 'Confirmar clave', 'trim|xss_clean|matches[clave]');
 			//$captcha_registration	= $this->config->item('captcha_registration', 'tank_auth');
 			$captcha_registration	= FALSE;
@@ -411,7 +415,8 @@ class Empleados extends CI_Controller {
 											$this->_send_email('welcome', $data['email'], $data);
 										}
 										unset($data['clave']); // Clear password (just for any case)
-										$this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.anchor('/login/entrar/', 'Login'));
+										$this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.
+											anchor('/login/entrar/', 'Login'));
 									}
 								}
 							}
