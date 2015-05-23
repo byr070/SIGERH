@@ -42,7 +42,8 @@ class Jornadas extends CI_Controller {
     	    ->fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
     	    ->display_as('JRN_DIAS_TRABAJO','DÍAS DE TRABAJO')
     	    ->display_as('JRN_DIAS_DESCANSO','DÍAS DE DESCANSO')
-            ->required_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO');
+            ->required_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
+            ->unique_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO');
 
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
