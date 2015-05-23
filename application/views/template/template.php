@@ -73,7 +73,7 @@
     <!-- Inicio Pie -->
     <div class="footer">
             <p class="text-muted" style="float: left;">
-                
+                <span class="glyphicon glyphicon-copyright-mark"></span>
                 2015 SIGERH. Todos los derechos reservados
             </p>
             <p class="text-muted" style="float: right;">
