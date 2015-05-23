@@ -36,7 +36,7 @@ class Empleados extends CI_Controller {
     	    $crud->set_subject('Empleado');
     	    $crud->set_table($table_name);
     	    if(!$this->tank_auth->is_admin()){
-    	    	$crud->where('EMP_NOMBRE_COMPLETO',$this->tank_auth->get_username());
+    	    	$crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
     	    }
         	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID');
     	    $crud->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID','USUARIO_ID','email','clave');
