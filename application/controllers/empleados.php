@@ -65,7 +65,7 @@ class Empleados extends CI_Controller {
             $crud->set_rules('clave','clave','required');
 	        $crud->callback_add_field('email',array($this,'email_field_add_callback'));
 	        $crud->callback_add_field('clave',array($this,'clave_field_add_callback'));
-			$crud->set_rules('EMP_NUMERO_CEDULA','número de cédula','callback_cedula_ruc_check|is_unique[empleados.EMP_NUMERO_CEDULA]');
+			$crud->set_rules('EMP_NUMERO_CEDULA','número de cédula o RUC','required|callback_cedula_ruc_check|is_unique[empleados.EMP_NUMERO_CEDULA]');
 	        $crud->callback_before_insert(array($this, 'registrar_usuario'));
 
     	    //leer permisos desde la bd
@@ -97,7 +97,7 @@ class Empleados extends CI_Controller {
                 $output = $crud->render();
             } catch(Exception $e) {
                 if($e->getCode() == 14) {
-                    show_error('No tiene permisos para esta operación');
+                    show_error('No tiene permisos para esta operación.');
                 } else {
                     show_error($e->getMessage());
                 }
@@ -144,7 +144,7 @@ class Empleados extends CI_Controller {
 					}
 					else{
 						//echo 'ruc incorrecto';
-						$this->form_validation->set_message('cedula_ruc_check', "RUC incorrecto");
+						$this->form_validation->set_message('cedula_ruc_check', "RUC incorrecto.");
         				return FALSE;
 					}
 				}
@@ -155,12 +155,12 @@ class Empleados extends CI_Controller {
 			}
 			else{ //10mo incorrecto
 				//echo '10mo incorecto';
-				$this->form_validation->set_message('cedula_ruc_check', "Cédula o RUC incorrecto");
+				$this->form_validation->set_message('cedula_ruc_check', "El campo %s es incorrecto.");
         		return FALSE;
 			}
     	}
     	else{ // no hay 10
-    		$this->form_validation->set_message('cedula_ruc_check', "Cédula o RUC incorrecto");
+    		$this->form_validation->set_message('cedula_ruc_check', "El campo %s está incompleto.");
     		return FALSE;
     	}
     }
