@@ -1,2 +1,4 @@
-Hi, <strong><?php echo $username; ?></strong>! You are logged in now. <?php echo anchor('/auth/logout/', 'Logout'); ?>
+Hi, <strong><?php echo $username; ?>
+</strong>! You are logged in now. 
+<?php echo anchor('/auth/logout/', 'Logout'); ?>
 
