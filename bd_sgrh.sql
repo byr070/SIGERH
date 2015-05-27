@@ -352,7 +352,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('6f1ac5f3f3d30bdf483a0dc63785f1b2','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36',1432711310,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('350d9e2702cee53d42b256c356f61c43','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36',1432716050,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -588,7 +588,7 @@ CREATE TABLE `modulos` (
   `CREADO` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`MDL_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -604,6 +604,9 @@ INSERT INTO `modulos` VALUES (4,'Usuarios',1,1,'2015-03-31 00:44:15','2015-04-20
 INSERT INTO `modulos` VALUES (5,'Roles',1,1,'2015-03-31 00:44:15','2015-04-20 08:39:53');
 INSERT INTO `modulos` VALUES (6,'Modulos',1,1,'2015-03-31 00:44:15','2015-04-20 08:39:53');
 INSERT INTO `modulos` VALUES (7,'Permisos',1,1,'2015-03-31 00:44:15','2015-04-20 08:39:53');
+INSERT INTO `modulos` VALUES (8,'Periodos_salida',0,1,'2015-05-27 02:56:07','2015-05-27 08:37:09');
+INSERT INTO `modulos` VALUES (9,'Vacaciones',0,1,'2015-05-27 02:51:40','2015-05-27 08:37:38');
+INSERT INTO `modulos` VALUES (10,'Tipos_permiso',0,1,'2015-05-27 03:36:13','2015-05-27 08:36:13');
 /*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1744,7 +1747,7 @@ CREATE TABLE `permisos` (
   CONSTRAINT `FK_ACCION_ID` FOREIGN KEY (`ACCION_ID`) REFERENCES `acciones` (`ACC_ID`),
   CONSTRAINT `FK_MODULO_ID` FOREIGN KEY (`MODULO_ID`) REFERENCES `modulos` (`MDL_ID`),
   CONSTRAINT `FK_ROL_ID` FOREIGN KEY (`ROL_ID`) REFERENCES `roles` (`RLS_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1776,6 +1779,15 @@ INSERT INTO `permisos` VALUES (25,3,1,2,0,'0000-00-00 00:00:00','2015-04-10 01:3
 INSERT INTO `permisos` VALUES (26,1,6,3,1,'0000-00-00 00:00:00','2015-04-05 06:35:53');
 INSERT INTO `permisos` VALUES (27,1,7,1,1,'0000-00-00 00:00:00','2015-04-05 06:43:01');
 INSERT INTO `permisos` VALUES (28,1,7,3,1,'0000-00-00 00:00:00','2015-04-05 06:44:36');
+INSERT INTO `permisos` VALUES (29,1,8,1,1,'0000-00-00 00:00:00','2015-05-27 08:29:37');
+INSERT INTO `permisos` VALUES (30,1,8,3,1,'0000-00-00 00:00:00','2015-05-27 08:29:42');
+INSERT INTO `permisos` VALUES (31,1,8,2,1,'0000-00-00 00:00:00','2015-05-27 08:29:45');
+INSERT INTO `permisos` VALUES (32,1,9,1,1,'0000-00-00 00:00:00','2015-05-27 08:30:42');
+INSERT INTO `permisos` VALUES (33,1,9,3,1,'0000-00-00 00:00:00','2015-05-27 08:30:56');
+INSERT INTO `permisos` VALUES (34,1,9,2,1,'0000-00-00 00:00:00','2015-05-27 08:31:10');
+INSERT INTO `permisos` VALUES (35,1,10,1,1,'0000-00-00 00:00:00','2015-05-27 08:38:23');
+INSERT INTO `permisos` VALUES (36,1,10,3,1,'0000-00-00 00:00:00','2015-05-27 08:38:37');
+INSERT INTO `permisos` VALUES (37,1,10,2,1,'0000-00-00 00:00:00','2015-05-27 08:38:49');
 /*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2132,4 +2144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-27  2:41:59
+-- Dump completed on 2015-05-27  3:44:26
