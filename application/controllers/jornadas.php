@@ -54,22 +54,28 @@ class Jornadas extends CI_Controller {
             $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
-    	    //si no tiene permiso para add entonces
-            if(!in_array('Crear', $arr_acciones)) {
-                $crud->unset_add();
+    	    
+            if (is_null($arr_acciones)) {
+                redirect('/inicio/');
+            } else {
+                //si no tiene permiso para add entonces
+                if(!in_array('Crear', $arr_acciones)) {
+                    $crud->unset_add();
+                }
+                //si no tiene permiso para editar entonces
+                if(!in_array('Editar', $arr_acciones)) {
+                    $crud->unset_edit();
+                }
+                //si no tiene permiso para leer entonces
+                if(!in_array('Ver', $arr_acciones)) {
+                    $crud->unset_list();
+                }
+                //si no tiene permiso para borrar entonces
+                if(!in_array('Eliminar', $arr_acciones)) {
+                    $crud->unset_delete();
+                }
             }
-            //si no tiene permiso para editar entonces
-            if(!in_array('Editar', $arr_acciones)) {
-                $crud->unset_edit();
-            }
-            //si no tiene permiso para leer entonces
-            if(!in_array('Ver', $arr_acciones)) {
-                $crud->unset_list();
-            }
-            //si no tiene permiso para borrar entonces
-            if(!in_array('Eliminar', $arr_acciones)) {
-                $crud->unset_delete();
-            }
+
             try {
                 $output = $crud->render();
             } catch(Exception $e) {
