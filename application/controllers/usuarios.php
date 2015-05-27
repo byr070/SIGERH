@@ -54,7 +54,7 @@ class Usuarios extends CI_Controller {
                  ->display_as('last_login','Último Acceso');
             $crud->set_relation('group_id','roles','RLS_DESCRIPCION');
             //max_length['.$this->config->item('username_max_length', 'tank_auth').']|
-            $crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space');
+            $crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback_alpha_dash_space');
             $crud->set_rules('email','correo electrónico','valid_email|required');
             $crud->set_rules('group_id','roles','required');
             $crud->add_action('Desbloquear', base_url('assets/imagenes/unlock.png'), 'usuarios/desbloquear');

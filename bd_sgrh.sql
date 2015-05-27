@@ -352,8 +352,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('34654a04a50ce6df87e6e83868700aef','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36',1432432713,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"7\";s:8:\"username\";s:19:\"byr_070@hotmail.com\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"2\";}');
-INSERT INTO `ci_sessions` VALUES ('8c89e91d532006e4c544518cc2750180','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36',1432431569,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('6f1ac5f3f3d30bdf483a0dc63785f1b2','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36',1432711310,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1709,7 +1708,7 @@ CREATE TABLE `periodos_salida` (
   KEY `FK_TIPO_PERMISO_ID` (`TIPO_PERMISO_ID`),
   CONSTRAINT `FK_EMPLEADO_PERIODO_ID` FOREIGN KEY (`EMPLEADO_ID`) REFERENCES `empleados` (`EMP_ID`),
   CONSTRAINT `FK_TIPO_PERMISO_ID` FOREIGN KEY (`TIPO_PERMISO_ID`) REFERENCES `tipos_permiso` (`TPP_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1718,10 +1717,7 @@ CREATE TABLE `periodos_salida` (
 
 LOCK TABLES `periodos_salida` WRITE;
 /*!40000 ALTER TABLE `periodos_salida` DISABLE KEYS */;
-INSERT INTO `periodos_salida` VALUES (1,'2015-05-22','2015-05-29','00:00:00','00:00:00',0,1,'2015-05-21 22:56:03','2015-05-22 03:56:03',1,1);
-INSERT INTO `periodos_salida` VALUES (2,'2015-05-26','2015-05-28','00:00:00','00:00:00',0,1,'2015-05-22 19:57:30','2015-05-23 00:57:30',1,1);
-INSERT INTO `periodos_salida` VALUES (3,'2015-06-16','2015-06-30','00:00:00','00:00:00',0,1,'2015-05-23 00:37:10','2015-05-23 05:37:10',5,1);
-INSERT INTO `periodos_salida` VALUES (4,'2015-06-01','2015-06-15','00:00:00','00:00:00',0,1,'2015-05-23 18:30:02','2015-05-23 23:30:02',6,1);
+INSERT INTO `periodos_salida` VALUES (1,'2015-05-01','2015-05-15','00:00:00','00:00:00',0,1,'2015-05-27 01:24:50','2015-05-27 06:24:50',1,1);
 /*!40000 ALTER TABLE `periodos_salida` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2083,13 +2079,13 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-24 01:26:04','2015-03-15 01:30:16','2015-05-23 23:26:04',1);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-27 01:52:00','2015-03-15 01:30:16','2015-05-26 23:52:00',1);
 INSERT INTO `users` VALUES (2,'byr_071@hotmail.com','$2a$08$9L/GRAjbCsIiQVtpYfNwYO0nC8eB/HDQFjs/2p/59F7KHQjQv2RhS','byr_071@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','0000-00-00 00:00:00','2015-05-22 03:43:04','2015-05-23 00:43:55',2);
 INSERT INTO `users` VALUES (3,'byr_072@hotmail.com','$2a$08$LzppMjjBWfG/vzq6wPeNGeHqSrhK1Al41y/cCOD4Z.rKX5x9t0d/2','byr_072@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','0000-00-00 00:00:00','2015-05-23 02:44:03','2015-05-23 02:16:58',2);
 INSERT INTO `users` VALUES (4,'byr_073@hotmail.com','$2a$08$8uyIkrx5j4EKLfD6aPXTwejh2h2/Sw7NVhBqR/Z9m1IUMjRNNIWpK','byr_073@hotmail.com',0,0,NULL,NULL,NULL,NULL,'a2c47ee168e863335e52ba0cfe962e98','::1','0000-00-00 00:00:00','2015-05-23 04:17:10','2015-05-23 02:54:55',2);
 INSERT INTO `users` VALUES (5,'byr_074@hotmail.com','$2a$08$/vn.pHOop/3CqvJKwPAc/uQTuKyCB/jytwlGrj4qMpX7UvvmvRFw2','byr_074@hotmail.com',0,0,NULL,NULL,NULL,NULL,'7a3d8b6487edefbfc510141e1078afb0','::1','0000-00-00 00:00:00','2015-05-23 05:26:04','2015-05-23 04:11:08',2);
 INSERT INTO `users` VALUES (6,'byr_071@hotmail.com','$2a$08$VbyzB7pC/7g9BoiHtBiKKu/QzqPKsA.4qVGUFDU0eLxLC6kSpWzDe','byr_071@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-05-23 06:47:39','2015-05-23 06:13:04','2015-05-23 22:36:49',2);
-INSERT INTO `users` VALUES (7,'byr_070@hotmail.com','$2a$08$tx.U1VU7yZ.FPgXJVHVNweAjiHKULrk6EA/87/aqnBT2p8LIT7cC2','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-05-24 03:58:34','2015-05-24 01:11:14','2015-05-24 01:58:34',2);
+INSERT INTO `users` VALUES (7,'byr_070@hotmail.com','$2a$08$tx.U1VU7yZ.FPgXJVHVNweAjiHKULrk6EA/87/aqnBT2p8LIT7cC2','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-05-24 14:30:40','2015-05-24 01:11:14','2015-05-24 12:30:40',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2104,8 +2100,8 @@ CREATE TABLE `vacaciones` (
   `VCC_ID` int(11) NOT NULL AUTO_INCREMENT,
   `VCC_FECHA_INICIO` date NOT NULL,
   `VCC_FECHA_FIN` date NOT NULL,
-  `VCC_DIAS_DISPONIBLES` int(11) NOT NULL,
-  `VCC_ACTIVADO` tinyint(1) NOT NULL DEFAULT '1',
+  `VCC_DIAS_DISPONIBLES` int(11) NOT NULL DEFAULT '15',
+  `VCC_ESTADO` tinyint(1) NOT NULL DEFAULT '1',
   `VCC_CREADO` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `VCC_MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `EMPLEADO_ID` int(11) NOT NULL,
@@ -2121,9 +2117,9 @@ CREATE TABLE `vacaciones` (
 
 LOCK TABLES `vacaciones` WRITE;
 /*!40000 ALTER TABLE `vacaciones` DISABLE KEYS */;
-INSERT INTO `vacaciones` VALUES (1,'2015-05-25','2015-06-01',0,1,'2015-05-23 00:38:10','2015-05-23 05:38:10',4);
-INSERT INTO `vacaciones` VALUES (2,'2015-05-29','2015-06-12',0,1,'2015-05-23 00:42:22','2015-05-23 05:42:22',4);
-INSERT INTO `vacaciones` VALUES (3,'2015-07-01','2015-07-04',0,1,'2015-05-23 18:47:11','2015-05-23 23:47:11',6);
+INSERT INTO `vacaciones` VALUES (1,'2015-05-07','2015-05-10',0,1,'2015-05-27 01:43:35','2015-05-27 06:43:35',1);
+INSERT INTO `vacaciones` VALUES (2,'2015-05-11','2015-05-15',15,1,'2015-05-27 01:49:43','2015-05-27 06:49:43',1);
+INSERT INTO `vacaciones` VALUES (3,'2015-05-20','2015-05-22',15,1,'2015-05-27 02:21:49','2015-05-27 07:21:49',1);
 /*!40000 ALTER TABLE `vacaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -2136,4 +2132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-23 21:12:03
+-- Dump completed on 2015-05-27  2:41:59

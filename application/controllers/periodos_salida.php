@@ -11,8 +11,8 @@ class Periodos_Salida extends CI_Controller {
 		$this->load->library('tank_auth_groups','','tank_auth');
 		$this->load->library('table');
 		$this->lang->load('tank_auth','spanish');
-		//$this->load->model('empleado/empleado_model');
-		$this->load->model('catalogos/modulos_model');
+		$this->load->model('p_salida/periodos_salida_model');
+        $this->load->model('catalogos/modulos_model');
 		$this->id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
 	}
 	
@@ -54,10 +54,11 @@ class Periodos_Salida extends CI_Controller {
             $crud->field_type('PRD_HORA_FIN','time');
             $crud->set_rules('EMPLEADO_ID','nombre de empleado','required');
             $crud->set_rules('TIPO_PERMISO_ID','tipo de permiso','required');
-            $crud->set_rules('PRD_FECHA_INICIO','fecha inicio','required');
-            $crud->set_rules('PRD_FECHA_FIN','fecha fin','required');
+            $crud->set_rules('PRD_FECHA_INICIO','fecha inicio','required|callback_verificar_fecha_cruzada[EMPLEADO_ID]');
+            $crud->set_rules('PRD_FECHA_FIN','fecha fin','required|callback_verificar_fecha[PRD_FECHA_INICIO]|callback_verificar_fecha_cruzada[EMPLEADO_ID]|callback_verificar_periodo_cruzado[PRD_FECHA_INICIO,EMPLEADO_ID]');
             $crud->set_rules('PRD_HORA_INICIO','hora inicio','required');
-            $crud->set_rules('PRD_HORA_FIN','hora fin','required');
+            $crud->set_rules('PRD_HORA_FIN','hora fin','required|callback_verificar_hora[PRD_FECHA_INICIO,PRD_FECHA_FIN,PRD_HORA_INICIO,EMPLEADO_ID]');
+            $crud->callback_before_insert(array($this, 'verificar_horas'));
 	        //leer permisos desde la bd
             //$arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
@@ -98,6 +99,79 @@ class Periodos_Salida extends CI_Controller {
         //}
     }
 
+    function verificar_horas($post_array) {
+        if($post_array['PRD_FECHA_INICIO']!=$post_array['PRD_FECHA_FIN']){
+            $post_array['PRD_HORA_INICIO']="00:00";
+            $post_array['PRD_HORA_FIN']="00:00";
+        }
+        return $post_array;
+    }
+
+    function verificar_fecha($fecha_fin,$fecha_inicio_name) {
+        $fecha_inicio = $_POST[$fecha_inicio_name];
+        $fecha_i_f=date_format(date_create($fecha_inicio),"Y-m-d");
+        $fecha_f_f=date_format(date_create($fecha_fin),"Y-m-d");
+        if ($fecha_f_f < $fecha_i_f) {
+            $this->form_validation->set_message('verificar_fecha', 'La %s debe ser mayor que %s.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+    
+    function verificar_fecha_cruzada($fecha,$empleado_name) {
+        $empleado_id = $_POST[$empleado_name];
+        $arr_fechas = $this->periodos_salida_model->get_fechas_por_empleado($empleado_id);
+        $fecha_f=date_format(date_create($fecha),"Y-m-d");
+        foreach ($arr_fechas as $key => $value) {
+            $fecha_inicio=date_format(date_create($value['PRD_FECHA_INICIO']),"Y-m-d");
+            $fecha_fin=date_format(date_create($value['PRD_FECHA_FIN']),"Y-m-d");
+            if($fecha_f >= $fecha_inicio && $fecha_f <= $fecha_fin){
+                $this->form_validation->set_message('verificar_fecha_cruzada', 'La %s se cruza con un periodo registrado.');
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
+    
+    function verificar_periodo_cruzado($fecha_fin,$fields_name) {
+        list($fecha_inicio_param,$empleado_id_param) = split(',', $fields_name);
+        
+        $fecha_inicio = $_POST[$fecha_inicio_param];
+        $empleado_id = $_POST[$empleado_id_param];
+        
+        $fecha_i_f=date_format(date_create($fecha_inicio),"Y-m-d");
+        $fecha_f_f=date_format(date_create($fecha_fin),"Y-m-d");
+        
+        $arr_fechas = $this->periodos_salida_model->get_fechas_por_empleado($empleado_id);
+        foreach ($arr_fechas as $key => $value) {
+            $fecha_f=date_format(date_create($value['PRD_FECHA_FIN']),"Y-m-d");
+            if($fecha_f >= $fecha_i_f && $fecha_f <= $fecha_f_f){
+                $this->form_validation->set_message('verificar_periodo_cruzado', 'La %s se cruza con un periodo registrado.');
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
+
+    function verificar_hora($hora_fin,$fields_name) {
+        
+        list($fecha_inicio_param, $fecha_fin_param, $hora_inicio_param,$empleado_id_param) = split(',', $fields_name);
+
+        $fecha_inicio = $_POST[$fecha_inicio_param];
+        $fecha_fin = $_POST[$fecha_fin_param];
+        $hora_inicio = $_POST[$hora_inicio_param];
+        $empleado_id = $_POST[$empleado_id_param];
+        
+        if ($fecha_inicio==$fecha_fin) {
+            if($hora_fin <= $hora_inicio) {
+                $this->form_validation->set_message('verificar_hora', 'La %s debe ser mayor que la hora inicio.');
+                return FALSE;
+            } else {
+                return TRUE;
+            }
+        }
+    }
 
     function _periodo_output($output = null) {
     	$data['user_id']    = $this->tank_auth->get_user_id();
