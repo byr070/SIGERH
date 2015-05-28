@@ -42,7 +42,8 @@ class Jornadas extends CI_Controller {
     	    ->fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
     	    ->display_as('JRN_DIAS_TRABAJO','DÍAS DE TRABAJO')
     	    ->display_as('JRN_DIAS_DESCANSO','DÍAS DE DESCANSO')
-            ->required_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO');
+            ->required_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
+            ->unique_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO');
 
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
@@ -53,22 +54,28 @@ class Jornadas extends CI_Controller {
             $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
-    	    //si no tiene permiso para add entonces
-            if(!in_array('Crear', $arr_acciones)) {
-                $crud->unset_add();
+    	    
+            if (is_null($arr_acciones)) {
+                redirect('/inicio/');
+            } else {
+                //si no tiene permiso para add entonces
+                if(!in_array('Crear', $arr_acciones)) {
+                    $crud->unset_add();
+                }
+                //si no tiene permiso para editar entonces
+                if(!in_array('Editar', $arr_acciones)) {
+                    $crud->unset_edit();
+                }
+                //si no tiene permiso para leer entonces
+                if(!in_array('Ver', $arr_acciones)) {
+                    $crud->unset_list();
+                }
+                //si no tiene permiso para borrar entonces
+                if(!in_array('Eliminar', $arr_acciones)) {
+                    $crud->unset_delete();
+                }
             }
-            //si no tiene permiso para editar entonces
-            if(!in_array('Editar', $arr_acciones)) {
-                $crud->unset_edit();
-            }
-            //si no tiene permiso para leer entonces
-            if(!in_array('Ver', $arr_acciones)) {
-                $crud->unset_list();
-            }
-            //si no tiene permiso para borrar entonces
-            if(!in_array('Eliminar', $arr_acciones)) {
-                $crud->unset_delete();
-            }
+
             try {
                 $output = $crud->render();
             } catch(Exception $e) {
