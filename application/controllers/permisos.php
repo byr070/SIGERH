@@ -30,6 +30,7 @@ class Permisos extends CI_Controller {
             $table_name = 'permisos';
             $crud = new grocery_CRUD();
             $crud->where($table_name.'.ACTIVADO',1);
+            //$crud->set_theme('twitter-bootstrap');
             $crud->set_subject('Permiso');
             $crud->set_table($table_name);
             $crud->columns('ROL_ID','MODULO_ID','ACCION_ID','ACTIVADO','MODIFICADO');
@@ -53,28 +54,22 @@ class Permisos extends CI_Controller {
             $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
-            
-            if (is_null($arr_acciones)) {
-                redirect('/inicio/');
-            } else {
-                //si no tiene permiso para add entonces
-                if(!in_array('Crear', $arr_acciones)) {
-                    $crud->unset_add();
-                }
-                //si no tiene permiso para editar entonces
-                if(!in_array('Editar', $arr_acciones)) {
-                    $crud->unset_edit();
-                }
-                //si no tiene permiso para leer entonces
-                if(!in_array('Ver', $arr_acciones)) {
-                    $crud->unset_list();
-                }
-                //si no tiene permiso para borrar entonces
-                if(!in_array('Eliminar', $arr_acciones)) {
-                    $crud->unset_delete();
-                }
+            //si no tiene permiso para add entonces
+            if(!in_array('Crear', $arr_acciones)) {
+                $crud->unset_add();
             }
-
+            //si no tiene permiso para editar entonces
+            if(!in_array('Editar', $arr_acciones)) {
+                $crud->unset_edit();
+            }
+            //si no tiene permiso para leer entonces
+            if(!in_array('Ver', $arr_acciones)) {
+                $crud->unset_list();
+            }
+            //si no tiene permiso para borrar entonces
+            if(!in_array('Eliminar', $arr_acciones)) {
+                $crud->unset_delete();
+            }
             try {
                 $output = $crud->render();
             } catch(Exception $e) {
