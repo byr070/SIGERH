@@ -34,6 +34,7 @@ $lang['auth_subject_activate'] = 'Bienvenido a %s!';
 $lang['auth_subject_forgot_password'] = 'Ha olvidado su contraseña en %s?';
 $lang['auth_subject_reset_password'] = 'Su nueva contraseña en %s';
 $lang['auth_subject_change_email'] = 'Su nuevo email en %s';
+$lang['auth_subject_orden_pago_salario'] = 'Orden de Pago en %s';
 
 
 /* End of file tank_auth_lang.php */

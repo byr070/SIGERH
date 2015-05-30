@@ -352,7 +352,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('350d9e2702cee53d42b256c356f61c43','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36',1432716050,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('d40e0fc5542273b91b48ca13890d9a56','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36',1433027816,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2091,7 +2091,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-27 01:52:00','2015-03-15 01:30:16','2015-05-26 23:52:00',1);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin@admin.com',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-05-30 17:50:15','2015-03-15 01:30:16','2015-05-30 22:50:15',1);
 INSERT INTO `users` VALUES (2,'byr_071@hotmail.com','$2a$08$9L/GRAjbCsIiQVtpYfNwYO0nC8eB/HDQFjs/2p/59F7KHQjQv2RhS','byr_071@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','0000-00-00 00:00:00','2015-05-22 03:43:04','2015-05-23 00:43:55',2);
 INSERT INTO `users` VALUES (3,'byr_072@hotmail.com','$2a$08$LzppMjjBWfG/vzq6wPeNGeHqSrhK1Al41y/cCOD4Z.rKX5x9t0d/2','byr_072@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','0000-00-00 00:00:00','2015-05-23 02:44:03','2015-05-23 02:16:58',2);
 INSERT INTO `users` VALUES (4,'byr_073@hotmail.com','$2a$08$8uyIkrx5j4EKLfD6aPXTwejh2h2/Sw7NVhBqR/Z9m1IUMjRNNIWpK','byr_073@hotmail.com',0,0,NULL,NULL,NULL,NULL,'a2c47ee168e863335e52ba0cfe962e98','::1','0000-00-00 00:00:00','2015-05-23 04:17:10','2015-05-23 02:54:55',2);
@@ -2144,4 +2144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-27  3:48:27
+-- Dump completed on 2015-05-30 18:21:38
