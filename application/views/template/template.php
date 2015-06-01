@@ -64,7 +64,22 @@
             $modulo=$this->uri->segment(1); ?>
         <li role="presentation">
             <?php echo ($modulo == strtolower($item)) ? '' : '' ; ?>
-            <a href='<?php echo site_url(''.strtolower($item).'/')?>'><?php echo $item;?></a>
+            <a href='<?php echo site_url(''.strtolower($item).'/')?>'>
+                <?php switch ($item):
+                case 'Periodos_salida':
+                    echo 'Periodos de Salida';
+                    break;
+                case 'Tipos_permiso': 
+                    echo 'Tipos de Permiso'; 
+                    break;
+                case 'Modulos':
+                    echo 'Módulos';
+                    break; 
+                default: 
+                    echo $item; 
+                    break;
+                endswitch; ?>
+            </a>
         </li>
         <?php endforeach; }?>
     </ul>
