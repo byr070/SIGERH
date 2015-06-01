@@ -40,8 +40,8 @@ class Jornadas extends CI_Controller {
     	    ->columns('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
 
     	    ->fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
-    	    ->display_as('JRN_DIAS_TRABAJO','DÍAS DE TRABAJO')
-    	    ->display_as('JRN_DIAS_DESCANSO','DÍAS DE DESCANSO')
+    	    ->display_as('JRN_DIAS_TRABAJO','Días de trabajo')
+    	    ->display_as('JRN_DIAS_DESCANSO','Días de descanso')
             ->required_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
 
             ->order_by('JRN_DIAS_TRABAJO','asc')
@@ -53,6 +53,9 @@ class Jornadas extends CI_Controller {
             
             ->callback_add_field('JRN_DIAS_DESCANSO',array($this,'add_field_dias_descanso'))
             ->callback_edit_field('JRN_DIAS_DESCANSO',array($this,'edit_field_dias_descanso'))
+            ->callback_column('JRN_DIAS_TRABAJO',array($this,'column_dias'))
+            ->callback_column('JRN_DIAS_DESCANSO',array($this,'column_dias'))
+
             ->unique_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO');
             
 
@@ -91,10 +94,13 @@ class Jornadas extends CI_Controller {
         }
 
     }
+    function column_dias($value,$row){
+        return $value.' días';
+    }
     function add_field_dias_trabajo(){
-        return '<input type="range" id="addTrabajo" min="1" max="30" value="21" oninput="outputUpdateTrabajo(value)">
+        return '<input type="range" id="addTrabajo" min="2" max="30" value="21" oninput="outputUpdateTrabajo(value)">
         <div class="input-group">
-            <input type="number" name="JRN_DIAS_TRABAJO" for="addTrabajo" value="21" min="1"
+            <input type="number" name="JRN_DIAS_TRABAJO" for="addTrabajo" value="21" min="2"
              class="form-control currency" id="daysTrabajo" />
             <span class="input-group-addon">días</span>
         </div>
@@ -102,10 +108,10 @@ class Jornadas extends CI_Controller {
         ';        
     }
     function edit_field_dias_trabajo($value, $primary_key){
-        return '<input type="range" id="editTrabajo" min="1" max="30" value="'.$value.'" oninput="outputUpdateTrabajo(value)">
+        return '<input type="range" id="editTrabajo" min="2" max="30" value="'.$value.'" oninput="outputUpdateTrabajo(value)">
         
         <div class="input-group">
-            <input type="number" name="JRN_DIAS_TRABAJO" for="editTrabajo" value="'.$value.'" min="1"
+            <input type="number" name="JRN_DIAS_TRABAJO" for="editTrabajo" value="'.$value.'" min="2"
              class="form-control currency" id="daysTrabajo" />
             <span class="input-group-addon">días</span>
         </div>
@@ -113,18 +119,18 @@ class Jornadas extends CI_Controller {
     }
     
     function add_field_dias_descanso(){
-        return '<input type="range" id="addDescanso" min="1" max="30" value="7" oninput="outputUpdateDescanso(value)">
+        return '<input type="range" id="addDescanso" min="2" max="30" value="7" oninput="outputUpdateDescanso(value)">
         <div class="input-group">
-            <input type="number" name="JRN_DIAS_DESCANSO" for="addDescanso" value="7" min="1"
+            <input type="number" name="JRN_DIAS_DESCANSO" for="addDescanso" value="7" min="2"
              class="form-control currency" id="daysDescanso" />
             <span class="input-group-addon">días</span>
         </div>
         ';        
     }
     function edit_field_dias_descanso($value, $primary_key){
-        return '<input type="range" id="editDescanso" min="1" max="30" value="'.$value.'" oninput="outputUpdateDescanso(value)">
+        return '<input type="range" id="editDescanso" min="2" max="30" value="'.$value.'" oninput="outputUpdateDescanso(value)">
         <div class="input-group">
-            <input type="number" name="JRN_DIAS_DESCANSO" for="editDescanso" value="'.$value.'" min="1"
+            <input type="number" name="JRN_DIAS_DESCANSO" for="editDescanso" value="'.$value.'" min="2"
              class="form-control currency" id="daysDescanso" />
             <span class="input-group-addon">días</span>
         </div>
