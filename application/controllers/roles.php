@@ -39,11 +39,6 @@ class Roles extends CI_Controller {
                  ->display_as('ACTIVADO','ESTADO');
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
-            //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
-            //print_r($arr_acciones);
-            // $crud->unset_operations();
-            //Ocultar botón Ver, Exportar, Imprimir
-            $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
             //si no tiene permiso para add entonces

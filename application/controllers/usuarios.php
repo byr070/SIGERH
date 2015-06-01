@@ -40,18 +40,18 @@ class Usuarios extends CI_Controller {
             $table_name='users';
             $crud = new grocery_CRUD();
             //$crud->where($table_name.'.activated',1);
-            //$crud->set_theme('datatables');
+            $crud->set_theme('bootstrap');
             $crud->set_subject('Usuario');
             $crud->set_table($table_name);
             $crud->columns('username','group_id','email','activated','banned','ban_reason','last_login');
             $crud->fields('username','email','group_id');
             $crud->display_as('username','Usuario')
                  ->display_as('group_id','Rol')
-                 ->display_as('email','Correo Electrónico')
+                 ->display_as('email','Correo electrónico')
                  ->display_as('activated','Estado')
                  ->display_as('banned','Bloqueado')
-                 ->display_as('ban_reason','Razón de Bloqueo')
-                 ->display_as('last_login','Último Acceso');
+                 ->display_as('ban_reason','Razón de bloqueo')
+                 ->display_as('last_login','Último acceso');
             $crud->set_relation('group_id','roles','RLS_DESCRIPCION');
             //max_length['.$this->config->item('username_max_length', 'tank_auth').']|
             $crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space');

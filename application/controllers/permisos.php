@@ -35,10 +35,10 @@ class Permisos extends CI_Controller {
             $crud->set_table($table_name);
             $crud->columns('ROL_ID','MODULO_ID','ACCION_ID','ACTIVADO','MODIFICADO');
             $crud->fields('ROL_ID','MODULO_ID','ACCION_ID');
-            $crud->display_as('ROL_ID','ROL')
-                 ->display_as('MODULO_ID','MÓDULO')
-                 ->display_as('ACCION_ID','ACCIÓN')
-                 ->display_as('ACTIVADO','ESTADO');
+            $crud->display_as('ROL_ID','Rol')
+                 ->display_as('MODULO_ID','Módulo')
+                 ->display_as('ACCION_ID','Acción')
+                 ->display_as('ACTIVADO','Estado');
             $crud->set_relation('ROL_ID','roles','RLS_DESCRIPCION');
             $crud->set_relation('MODULO_ID','modulos','MDL_DESCRIPCION');
             $crud->set_relation('ACCION_ID','acciones','ACC_DESCRIPCION');
@@ -47,10 +47,6 @@ class Permisos extends CI_Controller {
             $crud->set_rules('ACCION_ID','acciones','required');
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
-            //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
-            //print_r($arr_acciones);
-            // $crud->unset_operations();
-            //Ocultar botón Ver, Exportar, Imprimir
             $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
