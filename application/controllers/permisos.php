@@ -30,7 +30,7 @@ class Permisos extends CI_Controller {
             $table_name = 'permisos';
             $crud = new grocery_CRUD();
             $crud->where($table_name.'.ACTIVADO',1);
-            //$crud->set_theme('twitter-bootstrap');
+            $crud->set_theme('bootstrap');
             $crud->set_subject('Permiso');
             $crud->set_table($table_name);
             $crud->columns('ROL_ID','MODULO_ID','ACCION_ID','ACTIVADO','MODIFICADO');
