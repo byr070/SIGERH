@@ -32,14 +32,14 @@ class Empleados extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='empleados';
 			$crud = new grocery_CRUD();
-	        //$crud->set_theme('twitter-bootstrap');
+	        // $crud->set_theme('bootstrap');
     	    $crud->set_subject('Empleado');
     	    $crud->set_table($table_name);
     	    if(!$this->tank_auth->is_admin()){
     	    	$crud->where('EMP_NOMBRE_COMPLETO',$this->tank_auth->get_username());
     	    }
         	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
-        		'EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID')
+        		'EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID','CARGO_ID','CARGO_ID','CARGO_ID','CARGO_ID','CARGO_ID','CARGO_ID')
     	    ->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
     	    	'LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CUADRILLA_ID',
     	    	'TIPO_ID','TARJETA_ID','CARGO_ID','USUARIO_ID','email','clave')
@@ -144,7 +144,7 @@ class Empleados extends CI_Controller {
 					}
 					else{
 						//echo 'ruc incorrecto';
-						$this->form_validation->set_message('cedula_check', "RUC incorrecto");
+						$this->form_validation->set_message('cedula_ruc_check', "RUC incorrecto");
         				return FALSE;
 					}
 				}
@@ -155,12 +155,12 @@ class Empleados extends CI_Controller {
 			}
 			else{ //10mo incorrecto
 				//echo '10mo incorecto';
-				$this->form_validation->set_message('cedula_check', "Cédula o RUC incorrecto");
+				$this->form_validation->set_message('cedula_ruc_check', "Cédula o RUC incorrecto");
         		return FALSE;
 			}
     	}
     	else{ // no hay 10
-    		$this->form_validation->set_message('cedula_check', "Cédula o RUC incorrecto");
+    		$this->form_validation->set_message('cedula_ruc_check', "Cédula o RUC incorrecto");
     		return FALSE;
     	}
     }
