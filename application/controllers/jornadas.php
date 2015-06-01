@@ -43,15 +43,18 @@ class Jornadas extends CI_Controller {
     	    ->display_as('JRN_DIAS_TRABAJO','DÍAS DE TRABAJO')
     	    ->display_as('JRN_DIAS_DESCANSO','DÍAS DE DESCANSO')
             ->required_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
+
             ->order_by('JRN_DIAS_TRABAJO','asc')
             // ->unique_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
-            ->set_rules('JRN_DIAS_TRABAJO','días de trabajo','is_natural_no_zero')
-            ->set_rules('JRN_DIAS_DESCANSO','días de descanso','is_natural_no_zero')
+            ->set_rules('JRN_DIAS_TRABAJO','días de trabajo','numeric|max_length[2]|is_natural_no_zero')
+            ->set_rules('JRN_DIAS_DESCANSO','días de descanso','numeric|max_length[2]|is_natural_no_zero');
             ->callback_add_field('JRN_DIAS_TRABAJO',array($this,'add_field_dias_trabajo'))
             ->callback_edit_field('JRN_DIAS_TRABAJO',array($this,'edit_field_dias_trabajo'))
             
             ->callback_add_field('JRN_DIAS_DESCANSO',array($this,'add_field_dias_descanso'))
             ->callback_edit_field('JRN_DIAS_DESCANSO',array($this,'edit_field_dias_descanso'));
+            ->unique_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
+            
 
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);

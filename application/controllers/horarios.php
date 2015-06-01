@@ -35,8 +35,12 @@ class Horarios extends CI_Controller {
             // $crud->set_theme('bootstrap');
     	    $crud->set_subject('Horario')
             ->set_table($table_name)
-            ->columns('HRR_HORA_INICIO','HRR_HORA_FIN')
-            ->fields('HRR_HORA_INICIO','HRR_HORA_FIN')
+
+            ->columns('HRR_FECHA_INICIO','HRR_FECHA_FIN','HRR_HORA_INICIO','HRR_HORA_FIN')
+            ->fields('HRR_FECHA_INICIO','HRR_FECHA_FIN','HRR_HORA_INICIO','HRR_HORA_FIN')
+            ->display_as('HRR_FECHA_INICIO','FECHA INICIO')
+            ->display_as('HRR_FECHA_FIN','FECHA FIN')
+
             ->display_as('HRR_HORA_INICIO','HORA INICIO')
             ->display_as('HRR_HORA_FIN','HORA FIN')
 

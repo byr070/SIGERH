@@ -5,54 +5,24 @@
     <?php if(!is_null($css_files)) { ?>
     <?php foreach($css_files as $file): ?>
         <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
-    <?php endforeach; ?>
-<?php } ?>
-<?php if(!is_null($js_files)) { ?>
-    <?php foreach($js_files as $file): ?>
-        <script src="<?php echo $file; ?>"></script>
-    <?php endforeach; ?>        
-        <?php } ?>
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
-    <style type='text/css'>
-        * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-        body {
-            font-family: Arial;
-            font-size: 14px;
-              line-height: 1.42857143;
-  color: #333;
-  background-color: #fff;
-    margin: 0;
-        }
-        .top, .bottom {
-  padding: 15px;
-  background-color: #F5F5F5;
-  border: 1px solid #CCCCCC;
-}
-        a {
-            color: blue;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        div.footer{
-            text-align: right;
-            font-size: 11px;
-            border-top: 1px solid #D0D0D0;
-            line-height: 32px;
-            padding: 0 10px 0 10px;
-            margin: 20px 0 0 0;
-        }
-
-.navbar {
-  margin-bottom: 20px;
-}
-
+    <?php endforeach; 
+    } 
+    if(!is_null($js_files)) {
+        foreach($js_files as $file): ?>
+            <script src="<?php echo $file; ?>"></script>
+        <?php endforeach;
+    } ?>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" />
+    <style type="text/css">
+    div.footer{
+        text-align: right;
+        font-size: 11px;
+        border-top: 1px solid #D0D0D0;
+        line-height: 32px;
+        padding: 0 10px 0 10px;
+        margin: 20px 0 0 0;
+    }
     </style>
 </head>
 <body>
@@ -67,17 +37,30 @@
     <?php $modulo=$this->uri->segment(1); ?>
     <!-- Inicio Menu -->
     <?php if(!is_null($menu)) { ?>
-    <nav class="navbar navbar-default">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <?php foreach($menu as $item): ?>
-            <?php $modulo=$this->uri->segment(1); ?>
-            <li <?php echo ($modulo == strtolower($item)) ? 'class="active"' : '' ; ?> ><a href='<?php echo site_url(''.strtolower($item).'/')?>'><?php echo $item;?></a></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-    </nav>
-    <?php } ?>
+    <ul class="nav nav-tabs nav-justified">
+        <?php foreach($menu as $item):
+            $modulo=$this->uri->segment(1); ?>
+        <li role="presentation">
+            <?php echo ($modulo == strtolower($item)) ? '' : '' ; ?>
+            <a href='<?php echo site_url(''.strtolower($item).'/')?>'>
+                <?php switch ($item):
+                case 'Periodos_salida':
+                    echo 'Periodos de Salida';
+                    break;
+                case 'Tipos_permiso': 
+                    echo 'Tipos de Permiso'; 
+                    break;
+                case 'Modulos':
+                    echo 'Módulos';
+                    break; 
+                default: 
+                    echo $item; 
+                    break;
+                endswitch; ?>
+            </a>
+        </li>
+        <?php endforeach; }?>
+    </ul>
     <!-- Fin Menu -->
     <div>
         <?php if(!is_null($output)) { ?>
