@@ -32,7 +32,7 @@ class Horarios extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='horarios';
 			$crud = new grocery_CRUD();
-            // $crud->set_theme('bootstrap');
+            $crud->set_theme('bootstrap');
     	    $crud->set_subject('Horario')
             ->set_table($table_name)
 
