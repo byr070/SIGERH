@@ -34,7 +34,7 @@ class Jornadas extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='jornadas';
 			$crud = new grocery_CRUD();
-	        $crud->set_theme('flexigrid')
+	        $crud->set_theme('bootstrap')
     	    ->set_subject('Jornada')
     	    ->set_table($table_name)
     	    ->columns('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
@@ -42,15 +42,19 @@ class Jornadas extends CI_Controller {
     	    ->fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
     	    ->display_as('JRN_DIAS_TRABAJO','DÍAS DE TRABAJO')
     	    ->display_as('JRN_DIAS_DESCANSO','DÍAS DE DESCANSO')
-            ->required_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO');
+            ->required_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
+            ->order_by('JRN_DIAS_TRABAJO','asc')
+            // ->unique_fields('JRN_DIAS_TRABAJO','JRN_DIAS_DESCANSO')
+            ->set_rules('JRN_DIAS_TRABAJO','días de trabajo','is_natural_no_zero')
+            ->set_rules('JRN_DIAS_DESCANSO','días de descanso','is_natural_no_zero')
+            ->callback_add_field('JRN_DIAS_TRABAJO',array($this,'add_field_dias_trabajo'))
+            ->callback_edit_field('JRN_DIAS_TRABAJO',array($this,'edit_field_dias_trabajo'))
+            
+            ->callback_add_field('JRN_DIAS_DESCANSO',array($this,'add_field_dias_descanso'))
+            ->callback_edit_field('JRN_DIAS_DESCANSO',array($this,'edit_field_dias_descanso'));
 
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
-            //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
-            //print_r($arr_acciones);
-            // $crud->unset_operations();
-            //Ocultar botón Ver, Exportar, Imprimir
-            $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
     	    //si no tiene permiso para add entonces
@@ -84,7 +88,46 @@ class Jornadas extends CI_Controller {
         }
 
     }
+    function add_field_dias_trabajo(){
+        return '<input type="range" id="addTrabajo" min="1" max="30" value="21" oninput="outputUpdateTrabajo(value)">
+        <div class="input-group">
+            <input type="number" name="JRN_DIAS_TRABAJO" for="addTrabajo" value="21" min="1"
+             class="form-control currency" id="daysTrabajo" />
+            <span class="input-group-addon">días</span>
+        </div>
+        
+        ';        
+    }
+    function edit_field_dias_trabajo($value, $primary_key){
+        return '<input type="range" id="editTrabajo" min="1" max="30" value="'.$value.'" oninput="outputUpdateTrabajo(value)">
+        
+        <div class="input-group">
+            <input type="number" name="JRN_DIAS_TRABAJO" for="editTrabajo" value="'.$value.'" min="1"
+             class="form-control currency" id="daysTrabajo" />
+            <span class="input-group-addon">días</span>
+        </div>
+        ';        
+    }
     
+    function add_field_dias_descanso(){
+        return '<input type="range" id="addDescanso" min="1" max="30" value="7" oninput="outputUpdateDescanso(value)">
+        <div class="input-group">
+            <input type="number" name="JRN_DIAS_DESCANSO" for="addDescanso" value="7" min="1"
+             class="form-control currency" id="daysDescanso" />
+            <span class="input-group-addon">días</span>
+        </div>
+        ';        
+    }
+    function edit_field_dias_descanso($value, $primary_key){
+        return '<input type="range" id="editDescanso" min="1" max="30" value="'.$value.'" oninput="outputUpdateDescanso(value)">
+        <div class="input-group">
+            <input type="number" name="JRN_DIAS_DESCANSO" for="editDescanso" value="'.$value.'" min="1"
+             class="form-control currency" id="daysDescanso" />
+            <span class="input-group-addon">días</span>
+        </div>
+        ';        
+    }
+
     function _jornada_output($output = null) {
     	$data['user_id']    = $this->tank_auth->get_user_id();
         $data['username']   = $this->tank_auth->get_username();
