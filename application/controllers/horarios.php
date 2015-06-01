@@ -32,31 +32,25 @@ class Horarios extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='horarios';
 			$crud = new grocery_CRUD();
+            // $crud->set_theme('bootstrap');
     	    $crud->set_subject('Horario')
             ->set_table($table_name)
-            ->columns('HRR_ID','HRR_FECHA_INICIO','HRR_FECHA_FIN','HRR_HORA_INICIO','HRR_HORA_FIN')
-            ->fields('HRR_FECHA_INICIO','HRR_FECHA_FIN','HRR_HORA_INICIO','HRR_HORA_FIN')
-            ->display_as('HRR_FECHA_INICIO','FECHA INICIO')
-            ->display_as('HRR_FECHA_FIN','FECHA FIN')
+            ->columns('HRR_HORA_INICIO','HRR_HORA_FIN')
+            ->fields('HRR_HORA_INICIO','HRR_HORA_FIN')
             ->display_as('HRR_HORA_INICIO','HORA INICIO')
             ->display_as('HRR_HORA_FIN','HORA FIN')
 
-            ->set_rules('HRR_FECHA_INICIO','fecha de inicio','required')
-            ->set_rules('HRR_HORA_FIN','fecha de fin','required')
             ->set_rules('HRR_HORA_INICIO','hora de inicio','required')
             ->set_rules('HRR_HORA_FIN','hora de fin','required')
 
             ->field_type('HRR_HORA_INICIO','time')
             ->field_type('HRR_HORA_FIN','time');
 
+            // ->callback_add_field('HRR_HORA_INICIO',array($this,'add_field_hora_inicio'));
+
             //leer permisos desde la bd
-            $arr_acciones = $this->modulos_model->
-            get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
-            //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
-            //print_r($arr_acciones);
-            // $crud->unset_operations();
-            //Ocultar botón Ver, Exportar, Imprimir
-            $crud->unset_read();
+            $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
+
             $crud->unset_export();
             $crud->unset_print();
             //si no tiene permiso para add entonces
@@ -90,6 +84,19 @@ class Horarios extends CI_Controller {
         }
     }
 
+    function add_field_hora_inicio(){
+        return '
+        <div class="well">
+          <div id="datetimepicker3" class="input-append">
+            <input data-format="hh:mm:ss" type="text"></input>
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+          </div>
+        </div>
+        ';
+    }
 
     function _horarios_output($output = null) {
     	$data['user_id']    = $this->tank_auth->get_user_id();
