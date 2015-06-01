@@ -32,7 +32,7 @@ class Empleados extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='empleados';
 			$crud = new grocery_CRUD();
-	        // $crud->set_theme('bootstrap');
+	        $crud->set_theme('bootstrap');
     	    $crud->set_subject('Empleado');
     	    $crud->set_table($table_name);
     	    if(!$this->tank_auth->is_admin()){
@@ -79,10 +79,6 @@ class Empleados extends CI_Controller {
     	    
     	    //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
-            //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
-            //print_r($arr_acciones);
-            // $crud->unset_operations();
-            //Ocultar botón Ver, Exportar, Imprimir
             $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
@@ -91,9 +87,9 @@ class Empleados extends CI_Controller {
                 $crud->unset_add();
             }
             //si no tiene permiso para editar entonces
-            /*if(!in_array('Editar', $arr_acciones)) {
+            if(!in_array('Editar', $arr_acciones)) {
                 $crud->unset_edit();
-            }*/
+            }
             //si no tiene permiso para leer entonces
             if(!in_array('Ver', $arr_acciones)) {
                 $crud->unset_list();
