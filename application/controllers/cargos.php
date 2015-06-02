@@ -35,15 +35,17 @@ class Cargos extends CI_Controller {
             ->columns('CRG_NOMBRE','CRG_SUELDO')
             ->fields('CRG_NOMBRE','CRG_SUELDO')
             
-            ->display_as('CRG_NOMBRE','NOMBRE')
-            ->display_as('CRG_SUELDO','SUELDO')
+            ->display_as('CRG_NOMBRE','Nombre')
+            ->display_as('CRG_SUELDO','Sueldo')
             
 
             ->set_rules('CRG_NOMBRE','nombre del cargo','required')
             ->set_rules('CRG_SUELDO','descripción del cargo','required|numeric')
             
             ->callback_add_field('CRG_SUELDO',array($this,'add_field_sueldo'))
-            ->callback_edit_field('CRG_SUELDO',array($this,'edit_field_sueldo'));
+            ->callback_edit_field('CRG_SUELDO',array($this,'edit_field_sueldo'))
+
+            ->callback_column('CRG_SUELDO',array($this,'valueToDollar'));
 
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
@@ -80,6 +82,10 @@ class Cargos extends CI_Controller {
         }
     }
 
+    function valueToDollar($value, $row){
+        return '$ '.$value;
+    }
+
     function add_field_sueldo(){
         return '<input type="range" id="addSueldo" min="1" max="15000" value="1000" oninput="outputUpdateSueldo(value)">
         <div class="input-group">
@@ -113,8 +119,6 @@ class Cargos extends CI_Controller {
         $output = array_merge($output,$menu);
         $this->load->view('template/template.php',$output);    
     }
-
-
 }
 
 /* End of file periodos_salida.php */
