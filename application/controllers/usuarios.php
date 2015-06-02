@@ -54,7 +54,7 @@ class Usuarios extends CI_Controller {
                  ->display_as('last_login','Último acceso');
             $crud->set_relation('group_id','roles','RLS_DESCRIPCION');
             //max_length['.$this->config->item('username_max_length', 'tank_auth').']|
-            $crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space');
+            $crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback_alpha_dash_space');
             $crud->set_rules('email','correo electrónico','valid_email|required');
             $crud->set_rules('group_id','roles','required');
             $crud->add_action('Desbloquear', base_url('assets/imagenes/unlock.png'), 'usuarios/desbloquear');
@@ -65,21 +65,23 @@ class Usuarios extends CI_Controller {
             $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
-            //si no tiene permiso para add entonces
-            //if(!in_array('Crear', $arr_acciones)) {
-                $crud->unset_add();
-            //}
-            //si no tiene permiso para editar entonces
-            if(!in_array('Editar', $arr_acciones)) {
-                $crud->unset_edit();
-            }
-            //si no tiene permiso para leer entonces
-            if(!in_array('Ver', $arr_acciones)) {
-                $crud->unset_list();
-            }
-            //si no tiene permiso para borrar entonces
-            if(!in_array('Eliminar', $arr_acciones)) {
-                $crud->unset_delete();
+            $crud->unset_add();
+
+            if (is_null($arr_acciones)) {
+                redirect('/inicio/');
+            } else {
+                //si no tiene permiso para editar entonces
+                if(!in_array('Editar', $arr_acciones)) {
+                    $crud->unset_edit();
+                }
+                //si no tiene permiso para leer entonces
+                if(!in_array('Ver', $arr_acciones)) {
+                    $crud->unset_list();
+                }
+                //si no tiene permiso para borrar entonces
+                if(!in_array('Eliminar', $arr_acciones)) {
+                    $crud->unset_delete();
+                }
             }
             try {
                 $output = $crud->render();

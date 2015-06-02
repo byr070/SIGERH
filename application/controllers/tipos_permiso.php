@@ -11,7 +11,6 @@ class Tipos_permiso extends CI_Controller {
 		$this->load->library('tank_auth_groups','','tank_auth');
 		$this->load->library('table');
 		$this->lang->load('tank_auth','spanish');
-		//$this->load->model('empleado/empleado_model');
 		$this->load->model('catalogos/modulos_model');
 		$this->id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
 	}
@@ -36,31 +35,36 @@ class Tipos_permiso extends CI_Controller {
     	    $crud->set_subject('Tipo de permiso');
     	    $crud->set_table($table_name);
     	    
-        	$crud->columns('TPP_ID','TPP_DESCRIPCION');
+        	$crud->columns('TPP_ID','TPP_DESCRIPCION','TPP_MODIFICADO');
     	    $crud->add_fields('TPP_DESCRIPCION');
     	    $crud->edit_fields('TPP_DESCRIPCION');
-        	$crud->display_as('TPP_DESCRIPCION','Tipo de permiso');
-            $crud->columns('TPP_DESCRIPCION');
+            $crud->display_as('TPP_ID','ID');
+            $crud->display_as('TPP_DESCRIPCION','TIPO DE PERMISO');
+            $crud->display_as('TPP_MODIFICADO','MODIFICADO');
 	        $crud->set_rules('TPP_DESCRIPCION','tipo de permiso','required');
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             $crud->unset_export();
             $crud->unset_print();
-            //si no tiene permiso para add entonces
-            if(!in_array('Crear', $arr_acciones)) {
-                $crud->unset_add();
-            }
-            //si no tiene permiso para editar entonces
-            if(!in_array('Editar', $arr_acciones)) {
-                $crud->unset_edit();
-            }
-            //si no tiene permiso para leer entonces
-            if(!in_array('Ver', $arr_acciones)) {
-                $crud->unset_list();
-            }
-            //si no tiene permiso para borrar entonces
-            if(!in_array('Eliminar', $arr_acciones)) {
-                $crud->unset_delete();
+            if (is_null($arr_acciones)) {
+                redirect('/inicio/');
+            } else {
+                //si no tiene permiso para add entonces
+                if(!in_array('Crear', $arr_acciones)) {
+                    $crud->unset_add();
+                }
+                //si no tiene permiso para editar entonces
+                if(!in_array('Editar', $arr_acciones)) {
+                    $crud->unset_edit();
+                }
+                //si no tiene permiso para leer entonces
+                if(!in_array('Ver', $arr_acciones)) {
+                    $crud->unset_list();
+                }
+                //si no tiene permiso para borrar entonces
+                if(!in_array('Eliminar', $arr_acciones)) {
+                    $crud->unset_delete();
+                }
             }
             try {
                 $output = $crud->render();

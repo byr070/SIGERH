@@ -39,7 +39,7 @@ class Empleados extends CI_Controller {
     	    	$crud->where('EMP_NOMBRE_COMPLETO',$this->tank_auth->get_username());
     	    }
         	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
-        		'EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID','CARGO_ID','CARGO_ID','CARGO_ID','CARGO_ID','CARGO_ID','CARGO_ID')
+        		'EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID')
     	    ->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
     	    	'LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CUADRILLA_ID',
     	    	'TIPO_ID','TARJETA_ID','CARGO_ID','USUARIO_ID','email','clave')
@@ -82,21 +82,25 @@ class Empleados extends CI_Controller {
             $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
-            //si no tiene permiso para add entonces
-            if(!in_array('Crear', $arr_acciones)) {
-                $crud->unset_add();
-            }
-            //si no tiene permiso para editar entonces
-            if(!in_array('Editar', $arr_acciones)) {
-                $crud->unset_edit();
-            }
-            //si no tiene permiso para leer entonces
-            if(!in_array('Ver', $arr_acciones)) {
-                $crud->unset_list();
-            }
-            //si no tiene permiso para borrar entonces
-            if(!in_array('Eliminar', $arr_acciones)) {
-                $crud->unset_delete();
+            if (is_null($arr_acciones)) {
+                redirect('/inicio/');
+            } else {
+                //si no tiene permiso para add entonces
+                if(!in_array('Crear', $arr_acciones)) {
+                    $crud->unset_add();
+                }
+                //si no tiene permiso para editar entonces
+                if(!in_array('Editar', $arr_acciones)) {
+                    $crud->unset_edit();
+                }
+                //si no tiene permiso para leer entonces
+                if(!in_array('Ver', $arr_acciones)) {
+                    $crud->unset_list();
+                }
+                //si no tiene permiso para borrar entonces
+                if(!in_array('Eliminar', $arr_acciones)) {
+                    $crud->unset_delete();
+                }
             }
             try {
                 $output = $crud->render();

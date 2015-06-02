@@ -45,7 +45,7 @@
             <a href='<?php echo site_url(''.strtolower($item).'/')?>'>
                 <?php switch ($item):
                 case 'Periodos_salida':
-                    echo 'Periodos de Salida';
+                    echo 'Periodo de salida';
                     break;
                 case 'Tipos_permiso': 
                     echo 'Tipos de Permiso'; 
