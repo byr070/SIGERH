@@ -10,6 +10,30 @@ function outputUpdateSueldo(number) {
     document.querySelector('#sueldoInput').value = number;
 }
 
+function outputUpdateExtrasCincuenta(number){
+	document.querySelector('#horasCincuenta').value = number;
+}
+
+function outputUpdateExtrasCien(number){
+	document.querySelector('#horasCien').value = number;
+}
+
+function outputUpdateExtrasCien(number){
+	document.querySelector('#horasCien').value = number;
+}
+
+function outputUpdateComision(number){
+	document.querySelector('#comision').value = number;
+}
+
+function outputUpdateQuirografario(number){
+	document.querySelector('#quirografario').value = number;
+}
+
+function outputUpdateAnticipo(number){
+	document.querySelector('#anticipo').value = number;
+}
+
 $(function () {
 
     var save_and_close = false;
