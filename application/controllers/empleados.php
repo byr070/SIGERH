@@ -5,7 +5,7 @@ class Empleados extends CI_Controller {
 	
 	function __construct() {
 		parent::__construct();
-
+		$this->load->library('gc_dependent_select');
 		$this->load->library('security');
 		$this->load->library('grocery_CRUD');
 		$this->load->library('tank_auth_groups','','tank_auth');
@@ -32,51 +32,90 @@ class Empleados extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='empleados';
 			$crud = new grocery_CRUD();
-	        $crud->set_theme('bootstrap');
     	    $crud->set_subject('Empleado');
     	    $crud->set_table($table_name);
     	    if(!$this->tank_auth->is_admin()){
     	    	$crud->where('EMP_NOMBRE_COMPLETO',$this->tank_auth->get_username());
     	    }
         	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
-        		'EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID')
-    	    ->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
-    	    	'LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CUADRILLA_ID',
-    	    	'TIPO_ID','TARJETA_ID','CARGO_ID','USUARIO_ID','email','clave')
-    	    ->edit_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
-    	    	'LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA')
-
-       		->display_as('EMP_NOMBRE_COMPLETO','NOMBRE')
-	    	->display_as('EMP_NUMERO_CEDULA','NÚMERO CEDULA')
-	        ->display_as('EMP_FECHA_NACIMIENTO','FECHA NACIMIENTO')
-	        ->display_as('EMP_FECHA_INGRESO','FECHA INGRESO')
-		    ->display_as('ORGANIZACION_ID','ORGANIZACIÓN')
-	    	->display_as('CUADRILLA_ID','CUADRILLA')
-	    	->display_as('TIPO_ID','TIPO')
-	    	->display_as('TARJETA_ID','TARJETA')
-	    	->display_as('CARGO_ID','CARGO')
-	    	->display_as('email','CORREO ELECTRÓNICO')
-	    	->display_as('clave','CLAVE')
+    	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
+    	    	'PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO',
+    	    	'EMP_ESTADO','EMP_ESTADO_CIVIL','EMP_TIPO_SANGRE',
+    	    	'EMP_NOMBRE_CONYUGUE','EMP_NUMERO_HIJOS',
+    	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
+    	    	'EMP_FECHA_INGRESO','EMP_FECHA_SALIDA',
+    	    	'ORGANIZACION_ID','CUADRILLA_ID','TARJETA_ID','CARGO_ID')
+    	    ->fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
+    	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
+    	    	'PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO',
+    	    	'EMP_ESTADO','EMP_ESTADO_CIVIL','EMP_TIPO_SANGRE',
+    	    	'EMP_NOMBRE_CONYUGUE','EMP_NUMERO_HIJOS',
+    	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
+    	    	'EMP_FECHA_INGRESO','EMP_FECHA_SALIDA',
+    	    	'ORGANIZACION_ID','CUADRILLA_ID','TARJETA_ID','CARGO_ID',
+    	    	'email','clave')
+       		->display_as('EMP_NOMBRE_COMPLETO','Nombre completo')
+	    	->display_as('EMP_NUMERO_CEDULA','Número de cédula o RUC')
+	        ->display_as('EMP_FECHA_NACIMIENTO','Fecha de nacimiento')
+	        ->display_as('PROVINCIA_NACIMIENTO','Provincia de nacimiento')
+	        ->display_as('CANTON_NACIMIENTO','Cantón de nacimiento')
+	        ->display_as('PARROQUIA_NACIMIENTO','Parroquia de nacimiento')
+	        ->display_as('PROVINCIA_RESIDENCIA','Provincia de residencia')
+	        ->display_as('EMP_DIRECCION_DOMICILIO','Dirección de domicilio')
+	        ->display_as('EMP_ESTADO','Estado')
+	        ->display_as('EMP_ESTADO_CIVIL','Estado civil')
+	        ->display_as('EMP_TIPO_SANGRE','Tipo de sangre')
+	        ->display_as('EMP_NOMBRE_CONYUGUE','Nombre del cónyugue')
+	        ->display_as('EMP_NUMERO_HIJOS','Número de hijos')
+	        ->display_as('EMP_EMERG_NOMBRE','Nombre contacto emergencia')
+	        ->display_as('EMP_EMERG_PARENTESCO','Parentezco contacto emergencia')
+	        ->display_as('EMP_EMERG_TELEFONO','Teléfono contacto emergencia')
+	        ->display_as('EMP_FECHA_INGRESO','Fecha de ingreso')
+	        ->display_as('EMP_FECHA_SALIDA','Fecha de salida')
+		    ->display_as('ORGANIZACION_ID','Organización')
+	    	->display_as('CUADRILLA_ID','Cuadrilla')
+	    	->display_as('TARJETA_ID','Tarjeta')
+	    	->display_as('CARGO_ID','Cargo')
+	    	->display_as('email','Correo electónico')
+	    	->display_as('clave','Clave')
 
            	->change_field_type('USUARIO_ID','invisible')
+           	->change_field_type('EMP_ESTADO','dropdown', array('1' => 'TRABAJO', '2' => 'DESCANSO'))
+           	->change_field_type('EMP_ESTADO_CIVIL','enum',array('Soltero(a)','Casado(a)','Viudo(a)',
+           		'Divorciado(a)','Unión de hecho'))
+           	->change_field_type('EMP_TIPO_SANGRE','enum',array(
+           		'Tipo O Rh +','Tipo O Rh -',
+           		'Tipo A Rh +','Tipo A Rh -',
+           		'Tipo B Rh +','Tipo B Rh -',
+           		'Tipo AB Rh +','Tipo AB Rh -'))
 
-	        ->set_relation('LUGAR_NACIMIENTO','parroquias','PRR_NOMBRE')
+	        ->set_relation('PROVINCIA_NACIMIENTO','provincias','PRV_NOMBRE')
+	        ->set_relation('CANTON_NACIMIENTO','cantones','CNT_NOMBRE')
+	        ->set_relation('PARROQUIA_NACIMIENTO','parroquias','PRR_NOMBRE')
+
 	        ->set_relation('PROVINCIA_RESIDENCIA','provincias','PRV_NOMBRE')
 	        ->set_relation('ORGANIZACION_ID','organizaciones','ORG_NOMBRE')
 	        ->set_relation('CUADRILLA_ID','cuadrillas','CDR_NOMBRE')
-	        ->set_relation('TIPO_ID','tipos','TIP_NOMBRE')
 	        ->set_relation('TARJETA_ID','tarjetas','TRJ_ID')
 	        ->set_relation('CARGO_ID','cargos','CRG_NOMBRE')
-	        ->set_rules('EMP_NOMBRE_COMPLETO','nombre del empleado',
-	        	'trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|required|xss_clean|min_length['.
-	        	$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space')
-            ->set_rules('email','correo electrónico','valid_email|required|is_unique[users.email]')
-            ->set_rules('clave','clave','required')
+
+	        ->required_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_TIPO_SANGRE',
+	        	'email','clave')
+
+	        ->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','callback_cedula_ruc_check')
+	        ->set_rules('EMP_NOMBRE_COMPLETO','Nombre del empleado','trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space')
+	        ->set_rules('EMP_NOMBRE_CONYUGUE','Nombre del cónyugue','trim|max_length[55]|callback__alpha_dash_space')
+	        ->set_rules('EMP_NUMERO_HIJOS','Número de hijos','integer')
+            ->set_rules('email','correo electrónico','valid_email|is_unique[users.email]')
+            ->set_rules('EMP_EMERG_NOMBRE','trim|max_length[55]|callback__alpha_dash_space')
+            ->set_rules('EMP_EMERG_PARENTESCO','trim|max_length[20]|callback__alpha_dash_space')
+            ->set_rules('EMP_EMERG_TELEFONO','trim|max_length[10]|numeric')
+	        
 	        ->callback_add_field('email',array($this,'email_field_add_callback'))
 	        ->callback_add_field('clave',array($this,'clave_field_add_callback'))
-			->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','callback_cedula_ruc_check')
+			
 	        ->callback_before_insert(array($this, 'registrar_usuario'));
-    	    
+
     	    //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             $crud->unset_read();
