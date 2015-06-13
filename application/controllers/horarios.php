@@ -42,15 +42,17 @@ class Horarios extends CI_Controller {
             ->display_as('HRR_FECHA_FIN','FECHA FIN')
 
             ->display_as('HRR_HORA_INICIO','HORA INICIO')
-            ->display_as('HRR_HORA_FIN','HORA FIN')
+            ->display_as('','HORA FIN')
 
             ->set_rules('HRR_HORA_INICIO','hora de inicio','required')
             ->set_rules('HRR_HORA_FIN','hora de fin','required')
 
-            ->field_type('HRR_HORA_INICIO','time')
-            ->field_type('HRR_HORA_FIN','time');
 
-            // ->callback_add_field('HRR_HORA_INICIO',array($this,'add_field_hora_inicio'));
+            // ->field_type('HRR_HORA_INICIO','time')
+            // ->field_type('HRR_HORA_FIN','time')
+
+            ->callback_add_field('HRR_HORA_INICIO',array($this,'add_field_hora_inicio'))
+            ->callback_add_field('HRR_HORA_FIN',array($this,'add_field_hora_fin'));
 
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
@@ -94,15 +96,23 @@ class Horarios extends CI_Controller {
 
     function add_field_hora_inicio(){
         return '
-        <div class="well">
-          <div id="datetimepicker3" class="input-append">
-            <input data-format="hh:mm:ss" type="text"></input>
-            <span class="add-on">
-              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-              </i>
-            </span>
-          </div>
-        </div>
+            <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
+                <input type="text" class="form-control" value="" placeholder="Elegir hora" id="field-HRR_HORA_INICIO" name="HRR_HORA_INICIO">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        ';
+    }
+
+    function add_field_hora_fin(){
+        return '
+            <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
+                <input type="text" class="form-control" value="" placeholder="Elegir hora" id="field-HRR_HORA_FIN" name="HRR_HORA_FIN">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
         ';
     }
 

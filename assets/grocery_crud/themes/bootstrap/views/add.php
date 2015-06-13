@@ -88,7 +88,20 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap-clockpicker.min.js"); ?>"></script>
+
 <script>
+    $('.clockpicker').clockpicker({
+        'default' :'now',
+        placement: 'right',
+        // donetext:'Aceptar',
+        autoclose:true,  
+        // fromnow:1000,
+        }).find('input').change(function(){
+            console.log(this.value);
+        });
+
 	var validation_url = '<?php echo $validation_url?>';
 	var list_url = '<?php echo $list_url?>';
 
