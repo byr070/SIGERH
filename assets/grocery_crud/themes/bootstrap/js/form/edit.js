@@ -1,9 +1,12 @@
-function outputUpdateTrabajo(number) {
-    document.querySelector('#daysTrabajo').value = number;
+function outputUpdateTrabajoJornada(number){
+	document.querySelector('#field-JRN_DIAS_TRABAJO').value=number;
 }
 
-function outputUpdateDescanso(number) {
-    document.querySelector('#daysDescanso').value = number;
+function outputUpdateDescansoJornada(number) {
+    document.querySelector('#field-JRN_DIAS_DESCANSO').value = number;
+}
+function outputUpdateTrabajo(number) {
+    document.querySelector('#field-PGS_DIAS_TRABAJADOS').value = number;
 }
 
 function outputUpdateSueldo(number) {
@@ -11,27 +14,23 @@ function outputUpdateSueldo(number) {
 }
 
 function outputUpdateExtrasCincuenta(number){
-	document.querySelector('#horasCincuenta').value = number;
+	document.querySelector('#field-PGS_HORAS_EXTRAS_50').value = number;
 }
 
 function outputUpdateExtrasCien(number){
-	document.querySelector('#horasCien').value = number;
-}
-
-function outputUpdateExtrasCien(number){
-	document.querySelector('#horasCien').value = number;
+	document.querySelector('#field-PGS_HORAS_EXTRAS_100').value = number;
 }
 
 function outputUpdateComision(number){
-	document.querySelector('#comision').value = number;
+	document.querySelector('#field-PGS_COMISIONES').value = number;
 }
 
 function outputUpdateQuirografario(number){
-	document.querySelector('#quirografario').value = number;
+	document.querySelector('#field-PGS_QUIROGRAFARIO').value = number;
 }
 
 function outputUpdateAnticipo(number){
-	document.querySelector('#anticipo').value = number;
+	document.querySelector('#field-PGS_ANTICIPOS').value = number;
 }
 
 $(function () {
