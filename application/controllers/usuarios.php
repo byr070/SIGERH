@@ -9,6 +9,7 @@ class Usuarios extends CI_Controller {
  
         $this->load->library('grocery_CRUD');
         $this->load->library('tank_auth_groups','','tank_auth');
+        $this->lang->load('tank_auth','spanish');
         $this->load->model('catalogos/modulos_model');
         $this->id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
     }
@@ -39,12 +40,10 @@ class Usuarios extends CI_Controller {
         if($this->tank_auth->is_admin() && !is_null($this->id_modulo)) {
             $table_name='users';
             $crud = new grocery_CRUD();
-            //$crud->where($table_name.'.activated',1);
-            //$crud->set_theme('datatables');
             $crud->set_subject('Usuario');
             $crud->set_table($table_name);
             $crud->columns('username','group_id','email','activated','banned','ban_reason','last_login');
-            $crud->fields('username','email','group_id');
+            $crud->fields('email','group_id');
             $crud->display_as('username','Usuario')
                  ->display_as('group_id','Rol')
                  ->display_as('email','Correo Electrónico')
@@ -54,10 +53,12 @@ class Usuarios extends CI_Controller {
                  ->display_as('last_login','Último Acceso');
             $crud->set_relation('group_id','roles','RLS_DESCRIPCION');
             //max_length['.$this->config->item('username_max_length', 'tank_auth').']|
-            $crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback_alpha_dash_space');
+            //$crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback_alpha_dash_space');
+            $crud->set_rules('username','nombre de usuario','trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']');
             $crud->set_rules('email','correo electrónico','valid_email|required');
             $crud->set_rules('group_id','roles','required');
             $crud->add_action('Desbloquear', base_url('assets/imagenes/unlock.png'), 'usuarios/desbloquear');
+            $crud->callback_after_update(array($this,'enviar_mail'));
             
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
@@ -99,10 +100,10 @@ class Usuarios extends CI_Controller {
         }
     }
 
-    function alpha_dash_space($str)
-{
-    return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
-} 
+    /*function alpha_dash_space($str) {
+        return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+    }*/
+
     function _usuario_output($output = null) {
         $data['user_id']    = $this->tank_auth->get_user_id();
         $data['username']   = $this->tank_auth->get_username();
@@ -113,6 +114,33 @@ class Usuarios extends CI_Controller {
         $menu['menu'] = $arr_menu;
         $output = array_merge($output,$menu);
         $this->load->view('template/template.php',$output);    
+    }
+
+    function enviar_mail($post_array,$primary_key) {
+        $data['username']=$post_array['username'];
+        $data['email']=$post_array['email'];
+        $data['site_name'] = $this->config->item('website_name', 'tank_auth');
+        $this->_send_email('welcome', $data['email'], $data);
+    }
+
+    /**
+     * Enviar un mensaje email del tipo dado (activado, recuperar_clave, etc.)
+     *
+     * @param   string
+     * @param   string
+     * @param   array
+     * @return  void
+     */
+    function _send_email($type, $email, &$data)
+    {
+        $this->load->library('email');
+        $this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
+        $this->email->reply_to($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
+        $this->email->to($email);
+        $this->email->subject(sprintf($this->lang->line('auth_subject_'.$type), $this->config->item('website_name', 'tank_auth')));
+        $this->email->message($this->load->view('email/'.$type.'-html', $data, TRUE));
+        $this->email->set_alt_message($this->load->view('email/'.$type.'-txt', $data, TRUE));
+        $this->email->send();
     }
 }
  

@@ -38,9 +38,9 @@ class Empleados extends CI_Controller {
     	    if(!$this->tank_auth->is_admin()){
     	    	$crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
     	    }
-        	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID');
+        	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_FECHA_INGRESO','CARGO_ID','CUADRILLA_ID');
     	    $crud->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID','USUARIO_ID','email','clave');
-    	    $crud->edit_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA');
+    	    $crud->edit_fields('EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','CUADRILLA_ID','CARGO_ID');
         	$crud->display_as('EMP_NOMBRE_COMPLETO','NOMBRE')
             	 ->display_as('EMP_NUMERO_CEDULA','NÚMERO CEDULA')
 	             ->display_as('EMP_FECHA_NACIMIENTO','FECHA NACIMIENTO')
@@ -63,6 +63,7 @@ class Empleados extends CI_Controller {
 	        $crud->set_rules('EMP_NOMBRE_COMPLETO','nombre del empleado','trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback_alpha_dash_space');
             $crud->set_rules('email','correo electrónico','valid_email|required|is_unique[users.email]');
             $crud->set_rules('clave','clave','required');
+            $crud->set_rules('EMP_FECHA_INGRESO','fecha de ingreso','required');
 	        $crud->callback_add_field('email',array($this,'email_field_add_callback'));
 	        $crud->callback_add_field('clave',array($this,'clave_field_add_callback'));
 			$crud->set_rules('EMP_NUMERO_CEDULA','número de cédula o RUC','required|callback_cedula_ruc_check|is_unique[empleados.EMP_NUMERO_CEDULA]');
@@ -187,9 +188,9 @@ class Empleados extends CI_Controller {
 
     function registrar_usuario($post_array) {
     	$email_activation = $this->config->item('email_activation', 'tank_auth');
-	    //$username=$post_array['EMP_NOMBRE_COMPLETO'];
+	    $username=$post_array['EMP_NOMBRE_COMPLETO'];
 		if (!is_null($data = $this->tank_auth->create_user(
-			$post_array['email'],
+			$username,
 			$post_array['email'],
 			$post_array['clave'],
 			$email_activation))){									// success

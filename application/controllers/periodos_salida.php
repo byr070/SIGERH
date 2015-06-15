@@ -58,6 +58,7 @@ class Periodos_salida extends CI_Controller {
             $crud->set_rules('PRD_HORA_INICIO','hora inicio','required');
             $crud->set_rules('PRD_HORA_FIN','hora fin','required|callback_verificar_hora[PRD_FECHA_INICIO,PRD_FECHA_FIN,PRD_HORA_INICIO,EMPLEADO_ID]');
             $crud->callback_before_insert(array($this, 'verificar_horas'));
+            $crud->callback_before_update(array($this, 'verificar_horas'));
 	        //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
