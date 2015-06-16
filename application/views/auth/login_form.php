@@ -26,7 +26,8 @@ $password = array(
 	'size'	=> 30,
 	'class' => 'form-control',
 	'placeholder'=> 'Contraseña',
-	'required'	=>	'required'
+	'required'	=>	'required',
+	'readonly' => 'readonly'
 );
 $remember = array(
 	'name'	=> 'remember',
@@ -60,10 +61,12 @@ $captcha = array(
 
 	<!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/signin.css") ?>">
+    <!-- Css keyboard -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/keyboard.css") ?>">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script type="text/javascript" src=""></script>
+
     <script src="<?php echo base_url("assets/js/ie-emulation-modes-warning.js") ?>"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -83,7 +86,8 @@ $captcha = array(
 
 	<div class="container" id="topContainer">
 		<?php echo form_open($this->uri->uri_string(),array('class'=>'form-signin')); ?>
-		<h3 style="color:white;  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+		<!-- <h3 style="color:white;  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;"> -->
+		<h3>
 			<span class="glyphicon glyphicon-home"></span> Bienvenido a SIGERH</h3>
 
 		<div class="form-group has-feedback">
@@ -140,6 +144,92 @@ $captcha = array(
 		} ?>		
 
 
+		<table>
+	        <tbody>
+		        <tr id="keyboard">
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">`</span><span class="on">~</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">1</span><span class="on">!</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">2</span><span class="on">@</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">3</span><span class="on">#</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">4</span><span class="on">$</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">5</span><span class="on">%</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">6</span><span class="on">^</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">7</span><span class="on">&amp;</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">8</span><span class="on">*</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">9</span><span class="on">(</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">0</span><span class="on">)</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">-</span><span class="on">_</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">=</span><span class="on">+</span></li></td>
+		            <td><li class="btn btn-sm btn-info delete"><span class="glyphicon glyphicon-arrow-left"></span></li></td>
+		        </tr>
+	        </tbody>
+	    </table>
+	    <table>
+	        <tbody>
+		        <tr id="keyboard">
+		            <td><li class="btn btn-sm btn-info tab" sytle="width: 70px;"><span class="glyphicon glyphicon-step-forward"></span> Tab</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">q</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">w</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">e</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">r</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">t</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">y</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">u</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">i</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">o</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">p</li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">[</span><span class="on">{</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">]</span><span class="on">}</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">\</span><span class="on">|</span></li></td>
+		        </tr>
+	        </tbody>
+	    </table>
+	    <table>
+	        <tbody>
+		        <tr id="keyboard">
+		            <td><li class="btn btn-sm btn-info capslock">Bloq Mayús</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">a</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">s</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">d</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">f</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">g</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">h</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">j</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">k</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">l</li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">;</span><span class="on">:</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">'</span><span class="on">"</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">'</span><span class="on">"</span></li></td>
+		            <!-- <td><li class="btn btn-sm btn-info return">Enter</li></td> -->
+		        </tr>
+	        </tbody>
+	    </table>
+	    <table>
+	        <tbody>
+		        <tr id="keyboard">
+		            <td><li class="btn btn-sm btn-info left-shift"><span class="glyphicon glyphicon-arrow-up"></span> Shift</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">z</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">x</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">c</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">v</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">b</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">n</li></td>
+		            <td><li class="btn btn-sm btn-primary letter">m</li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">,</span><span class="on">&lt;</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">.</span><span class="on">&gt;</span></li></td>
+		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">/</span><span class="on">?</span></li></td>
+		            <td><li class="btn btn-sm btn-info right-shift"><span class="glyphicon glyphicon-arrow-up"></span> Shift</li></td>
+		        </tr>
+	        </tbody>
+	    </table>
+	    <table>
+	        <tbody>
+		        <tr id="keyboard">
+		            <td><li class="btn btn-sm space">&nbsp;</li></td>
+		        </tr>
+	        </tbody>
+	    </table>
+
 
 
 		<div class="form-group">
@@ -149,8 +239,10 @@ $captcha = array(
 		</div>
 
 		<div class="form-group has-feedback">
-			<?php echo form_submit($signin); ?>
-			<span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+			<button type="submit" class="btn btn-lg btn-success btn-block" name="entrar">
+			<!-- <?php echo form_submit($signin); ?> -->
+			Entrar <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+			</button>
 		</div>
 
 		
@@ -234,10 +326,13 @@ $captcha = array(
 		</div> -->
 	</div> <!-- /container -->
 
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="<?php echo base_url("assets/js/ie10-viewport-bug-workaround.js") ?>"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.js") ?>"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js") ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/js/keyboard.js") ?>"></script>    
 
     <script type="text/javascript">
       $(".contentContainer").css("min-height",$(window).height());
-      </script>
+    </script>
 </body>
