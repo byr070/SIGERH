@@ -353,8 +353,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('96980b86f14f6dbf4746d53498796319','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1434359728,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
-INSERT INTO `ci_sessions` VALUES ('d188709455fc85f9ab6d310a45b1316c','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1434357819,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"4\";s:8:\"username\";s:19:\"Usuario De Prueba C\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"2\";}');
+INSERT INTO `ci_sessions` VALUES ('03f320ead96a9bfbd5279c8fe498c5cc','::1','Mozilla/5.0 (Windows NT 6.1; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0',1434433209,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"4\";s:8:\"username\";s:19:\"Usuario De Prueba C\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"2\";}');
+INSERT INTO `ci_sessions` VALUES ('79aeee8d693b8e6b424cacf72f644bee','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1434433039,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,7 +403,6 @@ CREATE TABLE `empleados` (
   `LUGAR_NACIMIENTO` int(11) DEFAULT NULL,
   `PROVINCIA_RESIDENCIA` int(11) DEFAULT NULL,
   `EMP_DIRECCION_DOMICILIO` varchar(80) DEFAULT NULL,
-  `EMP_ESTADO` varchar(10) DEFAULT NULL,
   `EMP_ESTADO_CIVIL` varchar(10) DEFAULT NULL,
   `EMP_NOMBRE_CONYUGE` varchar(60) DEFAULT NULL,
   `EMP_NUMERO_HIJOS` int(11) DEFAULT NULL,
@@ -414,6 +413,7 @@ CREATE TABLE `empleados` (
   `EMP_FECHA_INGRESO` date DEFAULT NULL,
   `EMP_FECHA_SALIDA` date DEFAULT NULL,
   `EMP_MENS` tinyint(1) NOT NULL DEFAULT '0',
+  `EMP_ESTADO` tinyint(1) NOT NULL DEFAULT '0',
   `EMP_CREADO` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `EMP_MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ORGANIZACION_ID` int(11) DEFAULT NULL,
@@ -448,9 +448,9 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,'Usuario De Prueba A','1717709966',NULL,'1990-10-14',870,19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-12-01',NULL,0,'0000-00-00 00:00:00','2015-06-15 08:32:27',NULL,NULL,NULL,NULL,NULL,2);
-INSERT INTO `empleados` VALUES (2,'Usuario De Prueba B','1717709958',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-12-01',NULL,0,'0000-00-00 00:00:00','2015-06-15 08:39:48',NULL,NULL,NULL,NULL,NULL,3);
-INSERT INTO `empleados` VALUES (3,'Usuario De Prueba C','1719381004',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-09-01',NULL,0,'0000-00-00 00:00:00','2015-06-15 08:41:10',NULL,NULL,NULL,NULL,NULL,4);
+INSERT INTO `empleados` VALUES (1,'Usuario De Prueba A','1717709966',NULL,'1990-10-14',870,19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-12-01',NULL,0,1,'0000-00-00 00:00:00','2015-06-16 01:17:40',NULL,NULL,NULL,NULL,NULL,2);
+INSERT INTO `empleados` VALUES (2,'Usuario De Prueba B','1717709958',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-12-01',NULL,0,0,'0000-00-00 00:00:00','2015-06-15 08:39:48',NULL,NULL,NULL,NULL,NULL,3);
+INSERT INTO `empleados` VALUES (3,'Usuario De Prueba C','1719381004',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-09-01',NULL,0,1,'0000-00-00 00:00:00','2015-06-16 01:17:44',NULL,NULL,NULL,NULL,NULL,4);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1711,7 +1711,7 @@ CREATE TABLE `periodos_salida` (
   KEY `FK_TIPO_PERMISO_ID` (`TIPO_PERMISO_ID`),
   CONSTRAINT `FK_EMPLEADO_PERIODO_ID` FOREIGN KEY (`EMPLEADO_ID`) REFERENCES `empleados` (`EMP_ID`),
   CONSTRAINT `FK_TIPO_PERMISO_ID` FOREIGN KEY (`TIPO_PERMISO_ID`) REFERENCES `tipos_permiso` (`TPP_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1720,6 +1720,7 @@ CREATE TABLE `periodos_salida` (
 
 LOCK TABLES `periodos_salida` WRITE;
 /*!40000 ALTER TABLE `periodos_salida` DISABLE KEYS */;
+INSERT INTO `periodos_salida` VALUES (1,'2015-06-01','2015-06-16','00:00:00','00:00:00',0,1,'2015-06-16 00:25:07','2015-06-16 05:25:07',1,1);
 /*!40000 ALTER TABLE `periodos_salida` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2012,7 +2013,7 @@ CREATE TABLE `tipos_permiso` (
   `TPP_CREADO` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `TPP_MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`TPP_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2021,6 +2022,8 @@ CREATE TABLE `tipos_permiso` (
 
 LOCK TABLES `tipos_permiso` WRITE;
 /*!40000 ALTER TABLE `tipos_permiso` DISABLE KEYS */;
+INSERT INTO `tipos_permiso` VALUES (1,'Paternidad',1,'2015-06-15 19:39:04','2015-06-16 00:39:04');
+INSERT INTO `tipos_permiso` VALUES (2,'Calamidad Doméstica',1,'2015-06-15 19:40:43','2015-06-16 00:40:43');
 /*!40000 ALTER TABLE `tipos_permiso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2113,10 +2116,10 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-15 03:14:42','2015-03-15 01:30:16','2015-06-15 08:14:42',1);
-INSERT INTO `users` VALUES (2,'Usuario De Prueba A','$2a$08$XlcwWMSy1hReJChxmFLkR.y4vYKGQi9LPruouGDwrf41syogsAIWq','byr@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-15 03:34:59','2015-06-15 03:32:23','2015-06-15 08:40:40',2);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-15 23:55:23','2015-03-15 01:30:16','2015-06-16 04:55:23',1);
+INSERT INTO `users` VALUES (2,'Usuario De Prueba A','$2a$08$XlcwWMSy1hReJChxmFLkR.y4vYKGQi9LPruouGDwrf41syogsAIWq','byr@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-15 19:44:26','2015-06-15 03:32:23','2015-06-16 00:44:26',2);
 INSERT INTO `users` VALUES (3,'Usuario De Prueba B','$2a$08$8NVRmGS8PqLKnsKUJAiLe.F1g50NXbKfLsYTOszNaK/m2v2CfSOH.','byron.o2013@hotmail.com',0,0,NULL,NULL,NULL,NULL,'ed6ff47158cc8668676f4c8400c7db21','::1','0000-00-00 00:00:00','2015-06-15 03:33:45','2015-06-15 08:33:45',2);
-INSERT INTO `users` VALUES (4,'Usuario De Prueba C','$2a$08$E5NFKG6ukTVG8LFS4WxgouOjytNykMlAsV/94Q6riX1zi0XwgezGC','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-15 03:43:49','2015-06-15 03:41:07','2015-06-15 09:17:19',2);
+INSERT INTO `users` VALUES (4,'Usuario De Prueba C','$2a$08$E5NFKG6ukTVG8LFS4WxgouOjytNykMlAsV/94Q6riX1zi0XwgezGC','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-16 00:43:10','2015-06-15 03:41:07','2015-06-16 05:43:10',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2139,7 +2142,7 @@ CREATE TABLE `vacaciones` (
   PRIMARY KEY (`VCC_ID`),
   KEY `FK_EMPLEADO_VACACION_ID` (`EMPLEADO_ID`),
   CONSTRAINT `FK_EMPLEADO_VACACION_ID` FOREIGN KEY (`EMPLEADO_ID`) REFERENCES `empleados` (`EMP_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2148,6 +2151,7 @@ CREATE TABLE `vacaciones` (
 
 LOCK TABLES `vacaciones` WRITE;
 /*!40000 ALTER TABLE `vacaciones` DISABLE KEYS */;
+INSERT INTO `vacaciones` VALUES (1,'2015-06-26','2015-06-30',15,1,'2015-06-16 00:37:49','2015-06-16 05:37:49',3);
 /*!40000 ALTER TABLE `vacaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -2160,4 +2164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-15  4:36:52
+-- Dump completed on 2015-06-16  0:44:28

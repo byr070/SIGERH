@@ -31,13 +31,14 @@ class Periodos_salida extends CI_Controller {
 	public function listar() {
         if(!is_null($this->id_modulo)){
 			$table_name='periodos_salida';
+            $table_name_empleados='empleados';
 			$crud = new grocery_CRUD();
     	    $crud->set_subject('Periodo de salida');
     	    $crud->set_table($table_name);
-    	    if(!$this->tank_auth->is_admin()){
+            if(!$this->tank_auth->is_admin()){
                 $crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
             }
-        	$crud->columns('EMPLEADO_ID','TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
+            $crud->columns('EMPLEADO_ID','TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
     	    $crud->add_fields('EMPLEADO_ID','TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
     	    $crud->edit_fields('TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
         	$crud->display_as('PRD_FECHA_INICIO','FECHA INICIO')
@@ -45,20 +46,19 @@ class Periodos_salida extends CI_Controller {
                  ->display_as('PRD_HORA_INICIO','HORA INICIO')
                  ->display_as('PRD_HORA_FIN','HORA FIN')
             	 ->display_as('EMPLEADO_ID','EMPLEADO')
-            	 ->display_as('TIPO_PERMISO_ID','TIPO DE PERMISO');
-           	//$crud->change_field_type('USUARIO_ID','invisible');
-	        $crud->set_relation('EMPLEADO_ID','empleados','EMP_NOMBRE_COMPLETO');
-            $crud->set_relation('TIPO_PERMISO_ID','tipos_permiso','TPP_DESCRIPCION');
-            $crud->field_type('PRD_HORA_INICIO','time');
-            $crud->field_type('PRD_HORA_FIN','time');
-            $crud->set_rules('EMPLEADO_ID','nombre de empleado','required');
-            $crud->set_rules('TIPO_PERMISO_ID','tipo de permiso','required');
-            $crud->set_rules('PRD_FECHA_INICIO','fecha inicio','required|callback_verificar_fecha_cruzada[EMPLEADO_ID]');
-            $crud->set_rules('PRD_FECHA_FIN','fecha fin','required|callback_verificar_fecha[PRD_FECHA_INICIO]|callback_verificar_fecha_cruzada[EMPLEADO_ID]|callback_verificar_periodo_cruzado[PRD_FECHA_INICIO,EMPLEADO_ID]');
-            $crud->set_rules('PRD_HORA_INICIO','hora inicio','required');
-            $crud->set_rules('PRD_HORA_FIN','hora fin','required|callback_verificar_hora[PRD_FECHA_INICIO,PRD_FECHA_FIN,PRD_HORA_INICIO,EMPLEADO_ID]');
-            $crud->callback_before_insert(array($this, 'verificar_horas'));
-            $crud->callback_before_update(array($this, 'verificar_horas'));
+            	 ->display_as('TIPO_PERMISO_ID','TIPO DE PERMISO')
+	             ->set_relation('EMPLEADO_ID','empleados','EMP_NOMBRE_COMPLETO',array('EMP_ESTADO' => 1))
+                 ->set_relation('TIPO_PERMISO_ID','tipos_permiso','TPP_DESCRIPCION')
+                 ->field_type('PRD_HORA_INICIO','time')
+                 ->field_type('PRD_HORA_FIN','time')
+                 ->set_rules('EMPLEADO_ID','nombre de empleado','required')
+                 ->set_rules('TIPO_PERMISO_ID','tipo de permiso','required')
+                 ->set_rules('PRD_FECHA_INICIO','fecha inicio','required|callback_verificar_fecha_cruzada[EMPLEADO_ID]')
+                 ->set_rules('PRD_FECHA_FIN','fecha fin','required|callback_verificar_fecha[PRD_FECHA_INICIO]|callback_verificar_fecha_cruzada[EMPLEADO_ID]|callback_verificar_periodo_cruzado[PRD_FECHA_INICIO,EMPLEADO_ID]')
+                 ->set_rules('PRD_HORA_INICIO','hora inicio','required')
+                 ->set_rules('PRD_HORA_FIN','hora fin','required|callback_verificar_hora[PRD_FECHA_INICIO,PRD_FECHA_FIN,PRD_HORA_INICIO,EMPLEADO_ID]')
+                 ->callback_before_insert(array($this, 'verificar_horas'))
+                 ->callback_before_update(array($this, 'verificar_horas'));
 	        //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
