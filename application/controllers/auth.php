@@ -9,6 +9,7 @@ class Auth extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->library('security');
 		$this->load->library('tank_auth_groups','','tank_auth');
+		$this->load->model('empleados/empleados_model');
 		$this->lang->load('tank_auth');
 		$this->lang->load('form_validation');
 	}
@@ -246,6 +247,7 @@ class Auth extends CI_Controller
 		// Activate user
 		if ($this->tank_auth->activate_user($user_id, $new_email_key)) {		// success
 			$this->tank_auth->logout();
+			$this->empleados_model->activar_empleado($user_id);
 			$this->_show_message($this->lang->line('auth_message_activation_completed').' '.anchor('/auth/login/', 'Login'));
 
 		} else {																// fail

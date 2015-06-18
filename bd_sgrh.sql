@@ -544,8 +544,9 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('198b86fee4559a812a046039eb2dec16','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1434595252,'');
-INSERT INTO `ci_sessions` VALUES ('84a18c884aa8357e961f7c61a9b728df','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1434601964,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('18dc54740a82bf7061271110298e40e6','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1434626361,'');
+INSERT INTO `ci_sessions` VALUES ('aa0ba9d95f37e2222f17da9fc5d9d43b','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1434626216,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('ca535cebd44d9b65818dceb3adc8267c','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1434626195,'a:2:{s:9:\"user_data\";s:0:\"\";s:17:\"flash:old:message\";s:73:\"El código de activación que ha introducido es incorrecto o ha caducado.\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -630,7 +631,7 @@ CREATE TABLE `empleados` (
   CONSTRAINT `FK_TARJETA_ID` FOREIGN KEY (`TARJETA_ID`) REFERENCES `tarjetas` (`TRJ_ID`),
   CONSTRAINT `FK_TIPO_ID` FOREIGN KEY (`TIPO_ID`) REFERENCES `tipos` (`TIP_ID`),
   CONSTRAINT `FK_USUARIO_ID` FOREIGN KEY (`USUARIO_ID`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -639,10 +640,11 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,'Usuario De Prueba A','1717709966',NULL,'1990-10-14',870,19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-12-01',NULL,0,1,'0000-00-00 00:00:00','2015-06-16 01:17:40',NULL,NULL,NULL,NULL,NULL,2);
-INSERT INTO `empleados` VALUES (2,'Usuario De Prueba B','1717709958',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-12-01',NULL,0,0,'0000-00-00 00:00:00','2015-06-15 08:39:48',NULL,NULL,NULL,NULL,NULL,3);
+INSERT INTO `empleados` VALUES (1,'Usuario De Prueba A','1717709965',NULL,'1990-10-14',870,19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-12-01',NULL,0,1,'0000-00-00 00:00:00','2015-06-18 11:17:28',NULL,NULL,NULL,NULL,NULL,2);
 INSERT INTO `empleados` VALUES (3,'Usuario De Prueba C','1719381004',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2014-09-01',NULL,0,1,'0000-00-00 00:00:00','2015-06-16 01:17:44',NULL,NULL,NULL,NULL,NULL,4);
 INSERT INTO `empleados` VALUES (4,'Usuario De Prueba D','1717709966001',NULL,NULL,306,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-01',NULL,0,0,'0000-00-00 00:00:00','2015-06-17 06:01:56',NULL,NULL,NULL,NULL,103,5);
+INSERT INTO `empleados` VALUES (5,'Usuario De Prueba E','1717709958001',NULL,'1990-10-14',870,19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-01',NULL,0,1,'0000-00-00 00:00:00','2015-06-18 11:14:41',NULL,NULL,NULL,NULL,4,6);
+INSERT INTO `empleados` VALUES (6,'Usuario De Prueba F','1717709966',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-06-01',NULL,0,1,'0000-00-00 00:00:00','2015-06-18 11:19:21',NULL,NULL,NULL,NULL,1,7);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2259,7 +2261,7 @@ CREATE TABLE `user_profiles` (
   `country` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `website` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2271,6 +2273,8 @@ LOCK TABLES `user_profiles` WRITE;
 INSERT INTO `user_profiles` VALUES (1,2,NULL,NULL);
 INSERT INTO `user_profiles` VALUES (2,4,NULL,NULL);
 INSERT INTO `user_profiles` VALUES (3,5,NULL,NULL);
+INSERT INTO `user_profiles` VALUES (4,6,NULL,NULL);
+INSERT INTO `user_profiles` VALUES (5,7,NULL,NULL);
 /*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2301,7 +2305,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   KEY `FK_ROL_USER_ID` (`group_id`),
   CONSTRAINT `FK_ROL_USER_ID` FOREIGN KEY (`group_id`) REFERENCES `roles` (`RLS_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2310,11 +2314,12 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-17 21:41:28','2015-03-15 01:30:16','2015-06-18 02:41:28',1);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-18 06:17:04','2015-03-15 01:30:16','2015-06-18 11:17:04',1);
 INSERT INTO `users` VALUES (2,'Usuario De Prueba A','$2a$08$XlcwWMSy1hReJChxmFLkR.y4vYKGQi9LPruouGDwrf41syogsAIWq','byr@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-15 19:44:26','2015-06-15 03:32:23','2015-06-16 00:44:26',2);
-INSERT INTO `users` VALUES (3,'Usuario De Prueba B','$2a$08$8NVRmGS8PqLKnsKUJAiLe.F1g50NXbKfLsYTOszNaK/m2v2CfSOH.','byron.o2013@hotmail.com',0,0,NULL,NULL,NULL,NULL,'ed6ff47158cc8668676f4c8400c7db21','::1','0000-00-00 00:00:00','2015-06-15 03:33:45','2015-06-15 08:33:45',2);
 INSERT INTO `users` VALUES (4,'Usuario De Prueba C','$2a$08$E5NFKG6ukTVG8LFS4WxgouOjytNykMlAsV/94Q6riX1zi0XwgezGC','by@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-16 00:43:10','2015-06-15 03:41:07','2015-06-17 06:01:10',2);
-INSERT INTO `users` VALUES (5,'Usuario De Prueba D','$2a$08$aAD3IKyfoTbQvJbNo2ea7OSQvdJIiSOfdd23MAhOlhLhAeXTtCUOq','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','0000-00-00 00:00:00','2015-06-17 01:01:48','2015-06-17 06:21:13',2);
+INSERT INTO `users` VALUES (5,'Usuario De Prueba D','$2a$08$aAD3IKyfoTbQvJbNo2ea7OSQvdJIiSOfdd23MAhOlhLhAeXTtCUOq','b@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','0000-00-00 00:00:00','2015-06-17 01:01:48','2015-06-18 05:32:07',2);
+INSERT INTO `users` VALUES (6,'Usuario De Prueba E','$2a$08$/ML9UuwyhwewBOukZMeWh.rvT238PJDaGAxm153kdFpfh7ziXfhTm','byr_07@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','0000-00-00 00:00:00','2015-06-18 00:34:55','2015-06-18 11:16:52',2);
+INSERT INTO `users` VALUES (7,'Usuario De Prueba F','$2a$08$udszSNPEVBpLyqHQr4uZS.MZefus/zd9DanYVzy8fbgCVsemqWwPq','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','0000-00-00 00:00:00','2015-06-18 06:17:48','2015-06-18 11:19:20',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2359,4 +2364,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-17 23:33:40
+-- Dump completed on 2015-06-18  6:21:32
