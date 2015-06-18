@@ -38,10 +38,10 @@ class Periodos_salida extends CI_Controller {
                 $crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
             }
             $crud->columns('EMPLEADO_ID','TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
-
+            
     	    $crud->set_table($table_name);
     	    $crud->add_fields('EMPLEADO_ID','TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
-    	    $crud->edit_fields('TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
+            $crud->edit_fields('TIPO_PERMISO_ID','PRD_FECHA_INICIO','PRD_FECHA_FIN','PRD_HORA_INICIO','PRD_HORA_FIN');
         	$crud->display_as('PRD_FECHA_INICIO','FECHA INICIO')
     	         ->display_as('PRD_FECHA_FIN','FECHA FIN')
                  ->display_as('PRD_HORA_INICIO','HORA INICIO')
