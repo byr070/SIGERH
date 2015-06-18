@@ -30,6 +30,7 @@ class Roles extends CI_Controller {
             $table_name='roles';
             $crud = new grocery_CRUD();
             $crud->where($table_name.'.ACTIVADO',1);
+            $crud->set_theme('bootstrap');
             $crud->set_subject('Rol');
             $crud->set_table($table_name);
             $crud->columns('RLS_DESCRIPCION','ACTIVADO','MODIFICADO');
@@ -38,12 +39,8 @@ class Roles extends CI_Controller {
                  ->display_as('ACTIVADO','ESTADO');
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
-            //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
-            //Ocultar botón Ver, Exportar, Imprimir
-            $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
-            
             if (is_null($arr_acciones)) {
                 redirect('/inicio/');
             } else {
@@ -64,7 +61,6 @@ class Roles extends CI_Controller {
                     $crud->unset_delete();
                 }
             }
-
             try {
                 $output = $crud->render();
             } catch(Exception $e) {

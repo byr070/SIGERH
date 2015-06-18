@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/bootstrap-clockpicker.min.css") ?>">
 
-    <?php if(!is_null($css_files)) {
-        foreach($css_files as $file): ?>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <?php if(!is_null($css_files)) { ?>
+    <?php foreach($css_files as $file): ?>
         <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
     <?php endforeach; 
     } 
@@ -16,8 +26,6 @@
             <script src="<?php echo $file; ?>"></script>
         <?php endforeach;
     } ?>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" />
     <style type="text/css">
     div.footer{
         text-align: right;
@@ -31,32 +39,14 @@
 </head>
 <body>
     <!-- Inicio Cabecera -->
-    <div class="navbar navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="" class="navbar-brand">SIGERH</a>
-
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><?php echo anchor('/inicio/', 'Inicio');?></li>
-            <li><?php if ($is_admin): echo anchor('/configuracion/', 'Configuración'); endif;?></li>
-            <li><?php echo anchor('/auth/logout/', 'Salir');?></li>
-          </ul>
-        </div>
-      </div> <!-- end container -->
-    </div> <!-- end navbar -->
+    <div class="top" style="text-align:right;">
+        <?php echo anchor('/inicio/', 'Inicio');?>
+        <?php if ($is_admin): echo anchor('/configuracion/', 'Configuración'); endif;?>
+         Hola, <strong><?php echo $username; ?></strong>!
+         <?php echo anchor('/auth/logout/', 'Salir'); ?>
+    </div>
     <!-- Fin Cabecera -->
-
     <?php $modulo=$this->uri->segment(1); ?>
-
     <!-- Inicio Menu -->
     <?php if(!is_null($menu)): ?>
     <ul class="nav nav-tabs nav-justified">
@@ -67,10 +57,10 @@
             <a href='<?php echo site_url(''.strtolower($item).'/')?>'>
                 <?php switch ($item):
                 case 'Periodos_salida':
-                    echo 'Periodos de Salida';
+                    echo 'Salidas';
                     break;
                 case 'Tipos_permiso': 
-                    echo 'Tipos de Permiso'; 
+                    echo 'Permisos'; 
                     break;
                 case 'Modulos':
                     echo 'Módulos';
@@ -85,31 +75,16 @@
         <?php endif; ?>
     </ul>
     <!-- Fin Menu -->
-
     <div>
-        <?php if(!is_null($output)) {
-           echo $output;
-        }?>
+        <?php if(!is_null($output)) { ?>
+        <?php echo $output; ?>
+        <?php } ?>
     </div>
-
-
-
-
     <!-- Inicio Pie -->
     <div class="footer">
-            <p class="text-muted" style="float: left;">
-                <span class="glyphicon glyphicon-copyright-mark"></span>
-                2015 SIGERH. Todos los derechos reservados
-            </p>
-            <p class="text-muted" style="float: right;">
-                <span class="glyphicon glyphicon-time  "></span>
-                Página mostrada en <strong>{elapsed_time}</strong> segundos
-            </p>
+            <p style="float: left;">© 2015 SIGERH. Todos los derechos reservados.</p>
+            <p style="float: right;">Página mostrada en <strong>{elapsed_time}</strong> segundos.</p>
     </div>
     <!-- Fin Pie -->
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
 </body>
 </html>

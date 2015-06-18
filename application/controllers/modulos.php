@@ -30,14 +30,15 @@ class Modulos extends CI_Controller {
             $table_name='modulos';
             $crud = new grocery_CRUD();
             $crud->where($table_name.'.ACTIVADO',1);
-            //$crud->set_theme('twitter-bootstrap');
+            $crud->set_theme('bootstrap');
             $crud->set_subject('Modulo');
             $crud->set_table($table_name);
             $crud->columns('MDL_DESCRIPCION','ADMIN','ACTIVADO','MODIFICADO');
             $crud->fields('MDL_DESCRIPCION');
-            $crud->display_as('MDL_DESCRIPCION','MÓDULO')
-                 ->display_as('ADMIN','ADMINISTRACIÓN')
-                 ->display_as('ACTIVADO','ESTADO');
+            $crud->display_as('MDL_DESCRIPCION','Módulo')
+                 ->display_as('ADMIN','Administración')
+                 ->display_as('ACTIVADO','Estado')
+                 ->display_as('MODIFICADO','Modificado');
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
@@ -47,7 +48,6 @@ class Modulos extends CI_Controller {
             $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
-            
             if (is_null($arr_acciones)) {
                 redirect('/inicio/');
             } else {
@@ -68,7 +68,6 @@ class Modulos extends CI_Controller {
                     $crud->unset_delete();
                 }
             }
-
             try {
                 $output = $crud->render();
             } catch(Exception $e) {

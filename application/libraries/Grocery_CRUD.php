@@ -259,6 +259,14 @@ class grocery_CRUD_Field_Types
 		$real_type = $field_info->crud_type;
 
 		switch ($real_type) {
+			case 'time':
+				if(!empty($value) && $value != '00:00:00') {
+					list($hours,$minutes) = explode(":",substr($value,0));
+					$value = $hours.':'.$minutes;
+				} else {
+					$value = '';
+				}
+			break;
 			case 'hidden':
 			case 'invisible':
 			case 'integer':

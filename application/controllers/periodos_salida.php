@@ -15,7 +15,7 @@ class Periodos_salida extends CI_Controller {
         $this->load->model('catalogos/modulos_model');
 		$this->id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
 	}
-
+	
 	public function index() {
         if (!$this->tank_auth->is_logged_in()) {
             redirect('/auth/login/');
@@ -23,7 +23,7 @@ class Periodos_salida extends CI_Controller {
         	if(!is_null($this->id_modulo)){
                 redirect('/periodos_salida/listar/');
             } else {
-            	redirect('/inicio/');
+                redirect('/inicio/');
             }
         }
     }
@@ -33,8 +33,10 @@ class Periodos_salida extends CI_Controller {
 			$table_name='periodos_salida';
             $table_name_empleados='empleados';
 			$crud = new grocery_CRUD();
+            $crud->set_theme('bootstrap');
     	    $crud->set_subject('Periodo de salida');
     	    $crud->set_table($table_name);
+
             if(!$this->tank_auth->is_admin()){
                 $crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
             }
@@ -61,33 +63,24 @@ class Periodos_salida extends CI_Controller {
                  ->callback_before_update(array($this, 'verificar_horas'));
 	        //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
-            //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
-            //Ocultar botón Ver, Exportar, Imprimir
-            $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
-
-            if (is_null($arr_acciones)) {
-                redirect('/inicio/');
-            } else {
-                //si no tiene permiso para add entonces
-                if(!in_array('Crear', $arr_acciones)) {
-                    $crud->unset_add();
-                }
-                //si no tiene permiso para editar entonces
-                if(!in_array('Editar', $arr_acciones)) {
-                    $crud->unset_edit();
-                }
-                //si no tiene permiso para leer entonces
-                if(!in_array('Ver', $arr_acciones)) {
-                    $crud->unset_list();
-                }
-                //si no tiene permiso para borrar entonces
-                if(!in_array('Eliminar', $arr_acciones)) {
-                    $crud->unset_delete();
-                }
+            //si no tiene permiso para add entonces
+            if(!in_array('Crear', $arr_acciones)) {
+                $crud->unset_add();
             }
-            
+            //si no tiene permiso para editar entonces
+            if(!in_array('Editar', $arr_acciones)) {
+                $crud->unset_edit();
+            }
+            //si no tiene permiso para leer entonces
+            if(!in_array('Ver', $arr_acciones)) {
+                $crud->unset_list();
+            }
+            //si no tiene permiso para borrar entonces
+            if(!in_array('Eliminar', $arr_acciones)) {
+                $crud->unset_delete();
+            }
             try {
                 $output = $crud->render();
             } catch(Exception $e) {
@@ -99,7 +92,7 @@ class Periodos_salida extends CI_Controller {
             }
 	        $this->_periodo_output($output);
         } else {
-            redirect('/inicio/');
+        	redirect('/inicio/');
         }
     }
 
@@ -190,8 +183,6 @@ class Periodos_salida extends CI_Controller {
         $output = array_merge($output,$menu);
         $this->load->view('template/template.php',$output);    
     }
-
-
 }
 
 /* End of file periodos_salida.php */

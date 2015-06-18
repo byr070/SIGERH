@@ -11,7 +11,7 @@ class Vacaciones extends CI_Controller {
 		$this->load->library('tank_auth_groups','','tank_auth');
 		$this->load->library('table');
 		$this->lang->load('tank_auth','spanish');
-		$this->load->model('p_salida/vacaciones_model');
+        $this->load->model('p_salida/vacaciones_model');
 		$this->load->model('catalogos/modulos_model');
 		$this->id_modulo = $this->modulos_model->get_id_modulo_por_nombre(get_class($this));
 	}
@@ -32,6 +32,7 @@ class Vacaciones extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='vacaciones';
 			$crud = new grocery_CRUD();
+            $crud->set_theme('bootstrap');
     	    $crud->set_subject('Vacaciones')
                  ->set_table($table_name)
                  ->columns('EMPLEADO_ID','VCC_FECHA_INICIO','VCC_FECHA_FIN')
@@ -40,7 +41,6 @@ class Vacaciones extends CI_Controller {
         	     ->display_as('VCC_FECHA_INICIO','FECHA INICIO')
     	         ->display_as('VCC_FECHA_FIN','FECHA FIN')
             	 ->display_as('EMPLEADO_ID','EMPLEADO');
-           	//$crud->change_field_type('USUARIO_ID','invisible');
             if(!$this->tank_auth->is_admin()){
                 $crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
             }
@@ -50,11 +50,11 @@ class Vacaciones extends CI_Controller {
             $crud->set_rules('VCC_FECHA_FIN','fecha fin','required|callback_verificar_fecha[VCC_FECHA_INICIO]|callback_verificar_fecha_cruzada[EMPLEADO_ID]|callback_verificar_periodo_cruzado[VCC_FECHA_INICIO,EMPLEADO_ID]');
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
-            //deshabilitar opciones unset_read,unset_edit,unset_delete,unset_add
             //Ocultar botón Ver, Exportar, Imprimir
             $crud->unset_read();
             $crud->unset_export();
             $crud->unset_print();
+
 
             if (is_null($arr_acciones)) {
                 redirect('/inicio/');
@@ -76,7 +76,6 @@ class Vacaciones extends CI_Controller {
                     $crud->unset_delete();
                 }
             }
-            
             try {
                 $output = $crud->render();
             } catch(Exception $e) {
@@ -152,8 +151,6 @@ class Vacaciones extends CI_Controller {
         $output = array_merge($output,$menu);
         $this->load->view('template/template.php',$output);    
     }
-
-
 }
 
 /* End of file vacaciones.php */
