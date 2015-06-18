@@ -71,7 +71,8 @@
                 endswitch; ?>
             </a>
         </li>
-        <?php endforeach; }?>
+        <?php endforeach; ?>
+        <?php endif; ?>
     </ul>
     <!-- Fin Menu -->
     <div>

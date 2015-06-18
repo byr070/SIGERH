@@ -44,7 +44,7 @@ class Vacaciones extends CI_Controller {
             if(!$this->tank_auth->is_admin()){
                 $crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
             }
-            $crud->set_relation('EMPLEADO_ID','empleados','EMP_NOMBRE_COMPLETO');
+            $crud->set_relation('EMPLEADO_ID','empleados','EMP_NOMBRE_COMPLETO',array('EMP_ESTADO' => 1));
             $crud->set_rules('EMPLEADO_ID','nombre de empleado','required');
             $crud->set_rules('VCC_FECHA_INICIO','fecha inicio','required|callback_verificar_fecha_cruzada[EMPLEADO_ID]');
             $crud->set_rules('VCC_FECHA_FIN','fecha fin','required|callback_verificar_fecha[VCC_FECHA_INICIO]|callback_verificar_fecha_cruzada[EMPLEADO_ID]|callback_verificar_periodo_cruzado[VCC_FECHA_INICIO,EMPLEADO_ID]');

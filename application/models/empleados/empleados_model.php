@@ -72,6 +72,32 @@ class Empleados_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+
+	/**
+	 * Activate user if activation key is valid.
+	 * Can be called for not activated users only.
+	 *
+	 * @param	int
+	 * @param	string
+	 * @param	bool
+	 * @return	bool
+	 */
+	function activar_empleado($user_id) {
+		$this->db->select('1', FALSE);
+		$this->db->where('USUARIO_ID', $user_id);
+		$this->db->where('EMP_ESTADO', 0);
+		$query = $this->db->get($this->table_name);
+
+		if ($query->num_rows() == 1) {
+
+			$this->db->set('EMP_ESTADO', 1);
+			$this->db->where('USUARIO_ID', $user_id);
+			$this->db->update($this->table_name);
+
+			return TRUE;
+		}
+		return FALSE;
+	}
 }
 
 /* End of file empleados_model.php */
