@@ -36,11 +36,11 @@ $remember = array(
 	'checked'	=> set_value('remember'),
 	'style' => 'margin:0;padding:0',
 );
-$signin = array(
-	'class' => 'btn btn-lg btn-success btn-block',
-	'name' => 'entrar',
-	'value'=> 'Entrar'
-);
+// $signin = array(
+// 	'class' => 'btn btn-lg btn-default btn-block',
+// 	'name' => 'entrar',
+// 	'value'=> 'Entrar'
+// );
 $captcha = array(
 	'name'	=> 'captcha',
 	'id'	=> 'captcha',
@@ -160,14 +160,15 @@ $captcha = array(
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">0</span><span class="on">)</span></li></td>
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">-</span><span class="on">_</span></li></td>
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">=</span><span class="on">+</span></li></td>
-		            <td><li class="btn btn-sm btn-info delete"><span class="glyphicon glyphicon-arrow-left"></span></li></td>
-		        </tr>
+		            <td colspan="2"><li class="btn btn-sm btn-info delete"><span class="glyphicon glyphicon-arrow-left"></span></li></td>
+		<!--         </tr>
 	        </tbody>
 	    </table>
 	    <table>
-	        <tbody>
+	        <tbody> -->
 		        <tr id="keyboard">
-		            <td><li class="btn btn-sm btn-info tab" sytle="width: 70px;"><span class="glyphicon glyphicon-step-forward"></span> Tab</li></td>
+		            <!-- <td><li class="btn btn-sm btn-info tab" sytle="width: 70px;"><span class="glyphicon glyphicon-step-forward"></span> Tab</li></td> -->
+		            <td colspan="2"><button class="btn btn-sm btn-default return">Entrar</button></td>
 		            <td><li class="btn btn-sm btn-primary letter">q</li></td>
 		            <td><li class="btn btn-sm btn-primary letter">w</li></td>
 		            <td><li class="btn btn-sm btn-primary letter">e</li></td>
@@ -181,13 +182,14 @@ $captcha = array(
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">[</span><span class="on">{</span></li></td>
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">]</span><span class="on">}</span></li></td>
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">\</span><span class="on">|</span></li></td>
-		        </tr>
+		        <!-- </tr>
 	        </tbody>
 	    </table>
 	    <table>
-	        <tbody>
+	        <tbody> -->
 		        <tr id="keyboard">
-		            <td><li class="btn btn-sm btn-info capslock">Bloq Mayús</li></td>
+		            
+		            <td colspan="3"><li class="btn btn-sm btn-info capslock">Bloq Mayús</li></td>
 		            <td><li class="btn btn-sm btn-primary letter">a</li></td>
 		            <td><li class="btn btn-sm btn-primary letter">s</li></td>
 		            <td><li class="btn btn-sm btn-primary letter">d</li></td>
@@ -199,15 +201,14 @@ $captcha = array(
 		            <td><li class="btn btn-sm btn-primary letter">l</li></td>
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">;</span><span class="on">:</span></li></td>
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">'</span><span class="on">"</span></li></td>
-		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">'</span><span class="on">"</span></li></td>
 		            <!-- <td><li class="btn btn-sm btn-info return">Enter</li></td> -->
-		        </tr>
+		        <!-- </tr>
 	        </tbody>
 	    </table>
 	    <table>
-	        <tbody>
+	        <tbody> -->
 		        <tr id="keyboard">
-		            <td><li class="btn btn-sm btn-info left-shift"><span class="glyphicon glyphicon-arrow-up"></span> Shift</li></td>
+		            <td colspan="2"><li class="btn btn-sm btn-info left-shift"><span class="glyphicon glyphicon-arrow-up"></span> Shift</li></td>
 		            <td><li class="btn btn-sm btn-primary letter">z</li></td>
 		            <td><li class="btn btn-sm btn-primary letter">x</li></td>
 		            <td><li class="btn btn-sm btn-primary letter">c</li></td>
@@ -218,17 +219,17 @@ $captcha = array(
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">,</span><span class="on">&lt;</span></li></td>
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">.</span><span class="on">&gt;</span></li></td>
 		            <td><li class="btn btn-sm btn-primary symbol"><span class="off">/</span><span class="on">?</span></li></td>
-		            <td><li class="btn btn-sm btn-info right-shift"><span class="glyphicon glyphicon-arrow-up"></span> Shift</li></td>
+		            <td colspan="2"><li class="btn btn-sm btn-info right-shift"><span class="glyphicon glyphicon-arrow-up"></span> Shift</li></td>
 		        </tr>
 	        </tbody>
 	    </table>
-	    <table>
+	    <!-- <table>
 	        <tbody>
 		        <tr id="keyboard">
-		            <td><li class="btn btn-sm space">&nbsp;</li></td>
+		            <td><li class="btn btn-sm btn-primary space">&nbsp;</li></td>
 		        </tr>
 	        </tbody>
-	    </table>
+	    </table> -->
 
 
 
@@ -239,7 +240,7 @@ $captcha = array(
 		</div>
 
 		<div class="form-group has-feedback">
-			<button type="submit" class="btn btn-lg btn-success btn-block" name="entrar">
+			<button type="submit" class="btn btn-lg btn-default btn-block" name="entrar">
 			<!-- <?php echo form_submit($signin); ?> -->
 			Entrar <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
 			</button>
