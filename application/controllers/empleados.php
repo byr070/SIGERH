@@ -38,13 +38,23 @@ class Empleados extends CI_Controller {
     	    if(!$this->tank_auth->is_admin()){
     	    	$crud->where('USUARIO_ID',$this->tank_auth->get_user_id());
     	    }
-        	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_FECHA_INGRESO','CARGO_ID','CUADRILLA_ID','EMP_ESTADO');
-    	    $crud->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CUADRILLA_ID','TIPO_ID','TARJETA_ID','CARGO_ID','USUARIO_ID','email','clave');
-    	    $crud->edit_fields('EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','CUADRILLA_ID','CARGO_ID');
+        	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_FECHA_INGRESO','CARGO_ID','CUADRILLA_ID');
+    	    $crud->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_FECHA_INGRESO','CARGO_ID','USUARIO_ID','email','clave');
+    	    $crud->edit_fields('EMP_CEDULA_MILITAR','EMP_FECHA_NACIMIENTO','LUGAR_NACIMIENTO','PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO','EMP_ESTADO_CIVIL','EMP_NOMBRE_CONYUGE','EMP_NUMERO_HIJOS','EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO','EMP_EMERG_TIPO_SANGRE','CUADRILLA_ID','CARGO_ID');
         	$crud->display_as('EMP_NOMBRE_COMPLETO','NOMBRE')
             	 ->display_as('EMP_NUMERO_CEDULA','NÚMERO CEDULA')
 	             ->display_as('EMP_FECHA_NACIMIENTO','FECHA NACIMIENTO')
     	         ->display_as('EMP_FECHA_INGRESO','FECHA INGRESO')
+    	         
+    	         ->display_as('EMP_DIRECCION_DOMICILIO','DIRECCIÓN DOMICILIO')
+    	         ->display_as('EMP_ESTADO_CIVIL','ESTADO CIVIL')
+    	         ->display_as('EMP_NOMBRE_CONYUGE','NOMBRE CONYUGE')
+    	         ->display_as('EMP_NUMERO_HIJOS','NUMERO DE HIJOS')
+    	         ->display_as('EMP_EMERG_NOMBRE','EMERG NOMBRE')
+    	         ->display_as('EMP_EMERG_PARENTESCO','EMERG PARENTESCO')
+    	         ->display_as('EMP_EMERG_TELEFONO','EMERG TELEFONO')
+    	         ->display_as('EMP_EMERG_TIPO_SANGRE','EMERG TIPO SANGRE')
+        	     
         	     ->display_as('ORGANIZACION_ID','ORGANIZACIÓN')
             	 ->display_as('CUADRILLA_ID','CUADRILLA')
             	 ->display_as('TIPO_ID','TIPO')
@@ -61,6 +71,7 @@ class Empleados extends CI_Controller {
 	        $crud->set_relation('TARJETA_ID','tarjetas','TRJ_ID');
 	        $crud->set_relation('CARGO_ID','cargos','CRG_NOMBRE');
 	        $crud->set_rules('EMP_NOMBRE_COMPLETO','nombre del empleado','trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback_alpha_dash_space');
+            $crud->set_rules('CARGO_ID','cargo','required');
             $crud->set_rules('email','correo electrónico','valid_email|required|is_unique[users.email]');
             $crud->set_rules('clave','clave','required');
             $crud->set_rules('EMP_FECHA_INGRESO','fecha de ingreso','required');
