@@ -1,20 +1,20 @@
-#keyboard li {
-	margin: 0 2px 2px 0;
+#keyboard li, #keyboard button {
+	margin: 0 2px 2px 0px;
 	padding: 0;
 	width: 22px;
 	height: 22px;
 }
-#keyboard .tab, #keyboard .delete{
-width: 54px;	
+#keyboard .delete, #keyboard .return, #keyboard .left-shift, #keyboard .right-shift {
+	width: 46px;
+}
+#keyboard .tab, {
+width: 46px;	
 }
 #keyboard .capslock {
-width: 79px;
-}
-#keyboard .left-shift, #keyboard .right-shift {
-width: 63px;
+width: 70px;
 }
 #keyboard .space {
-width: 387px;
+width: 368px;
 }
 .uppercase {
 text-transform: uppercase;

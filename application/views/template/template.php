@@ -48,7 +48,7 @@
     <!-- Fin Cabecera -->
     <?php $modulo=$this->uri->segment(1); ?>
     <!-- Inicio Menu -->
-    <?php if(!is_null($menu)): ?>
+    <?php if(!is_null($menu)) { ?>
     <ul class="nav nav-tabs nav-justified">
         <?php foreach($menu as $item):
             $modulo=$this->uri->segment(1); ?>
@@ -64,15 +64,14 @@
                     break;
                 case 'Modulos':
                     echo 'Módulos';
-                    break;
+                    break; 
                 default: 
                     echo $item; 
                     break;
                 endswitch; ?>
             </a>
         </li>
-        <?php endforeach; ?>
-        <?php endif; ?>
+        <?php endforeach; }?>
     </ul>
     <!-- Fin Menu -->
     <div>

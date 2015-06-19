@@ -18,16 +18,16 @@
 
 #RewriteEngine on
 #RewriteCond $1 !^(index\.php|css|js|images|robots\.txt)
-#RewriteRule ^(.*)$ index.php/$1 [L]
+#RewriteRule ^(.*)$ index.php?/$1 [L]
 
 #RewriteEngine on
 #RewriteCond $1 !^(index\.php|css|js|images|robots\.txt)
-#RewriteRule ^(.*)$ /index.php/$1 [L]
+#RewriteRule ^(.*)$ /index.php?/$1 [L]
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /SIGERH/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ index.php/$1 [L] 
+    RewriteRule ^(.*)$ index.php?/$1 [L] 
 </IfModule>  
