@@ -85,12 +85,12 @@ class Empleados_model extends CI_Model
 	function activar_empleado($user_id) {
 		$this->db->select('1', FALSE);
 		$this->db->where('USUARIO_ID', $user_id);
-		$this->db->where('EMP_ESTADO', 0);
+		$this->db->where('EMP_ACTIVADO', 0);
 		$query = $this->db->get($this->table_name);
 
 		if ($query->num_rows() == 1) {
 
-			$this->db->set('EMP_ESTADO', 1);
+			$this->db->set('EMP_ACTIVADO', 1);
 			$this->db->where('USUARIO_ID', $user_id);
 			$this->db->update($this->table_name);
 

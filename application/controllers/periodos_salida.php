@@ -49,7 +49,7 @@ class Periodos_salida extends CI_Controller {
                  ->display_as('PRD_HORA_FIN','HORA FIN')
             	 ->display_as('EMPLEADO_ID','EMPLEADO')
             	 ->display_as('TIPO_PERMISO_ID','TIPO DE PERMISO')
-	             ->set_relation('EMPLEADO_ID','empleados','EMP_NOMBRE_COMPLETO',array('EMP_ESTADO' => 1))
+	             ->set_relation('EMPLEADO_ID','empleados','EMP_NOMBRE_COMPLETO',array('EMP_ACTIVADO' => 1))
                  ->set_relation('TIPO_PERMISO_ID','tipos_permiso','TPP_DESCRIPCION')
                  ->field_type('PRD_HORA_INICIO','time')
                  ->field_type('PRD_HORA_FIN','time')
