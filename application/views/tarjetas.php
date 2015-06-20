@@ -16,16 +16,21 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style type="text/css">
+    #tarjeta{
+      width: 220px;
+    }
+    </style>
   </head>
   <body>
     <div class="container">      
-      <h6>tarjeta</h6>
-          <table class="table text-center col-md-12">
+
+          <!-- <table class="table text-center col-md-12">
             <tbody>
               <tr class="danger">
                 <th>&nbsp;</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th>
               </tr>
-
               <?php 
               $pos;
               for ($fila=0; $fila < 9; $fila++) { 
@@ -58,8 +63,19 @@
               } ?>
               
             </tbody>
-          </table>
-          <h2 class="text-right">000000001</h2>
+          </table> -->
+          <div class="table-responsive">
+            <table class="table table-bordered center-block" id="tarjeta">
+              <tbody>
+                  <?php for ($i=1; $i <= 10; $i++) { 
+                    $pos='TRJ_' . $i . '_VALOR';
+                    if($i%2){echo '<tr>';}
+                    echo '<td class="info"> <span class="glyphicon glyphicon-unchecked"></span> '.$generado[$pos].'</td>';
+                    if(!($i%2)){echo '</tr>';}
+                  } ?>
+              </tbody>
+            </table>
+          </div>  <!-- table-responsive -->
     </div> <!-- container -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

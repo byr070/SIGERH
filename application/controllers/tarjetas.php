@@ -26,30 +26,43 @@ class Tarjetas extends CI_Controller {
 		
     }
     public function crearTarjeta(){
-        $pos;
-    	for ($fila=0; $fila < 9; $fila++) { 
-    		for ($columna=0; $columna < 9; $columna++) {
-                switch ($columna) {
-                    case '0':$pos="A";break;
-                    case '1':$pos="B";break;
-                    case '2':$pos="C";break;
-                    case '3':$pos="D";break;
-                    case '4':$pos="E";break;
-                    case '5':$pos="F";break;
-                    case '6':$pos="G";break;
-                    case '7':$pos="H";break;
-                    case '8':$pos="I";break;
-                    default:break;
-                }
-                $pos=$pos.($fila+1);
-                $generado[$pos]=str_pad(rand(0,999),3,"0",STR_PAD_LEFT);
-                $codigo[$pos]=password_hash($generado[$pos],PASSWORD_DEFAULT);
-                $pos=""; 			
-    		}
-    	}
-        $data['generado']=$generado;
-		$this->load->view('tarjetas',$data);
+        // TARJETA COORDENADAS
+  //       $pos;
+  //   	for ($fila=0; $fila < 9; $fila++) { 
+  //   		for ($columna=0; $columna < 9; $columna++) {
+  //               switch ($columna) {
+  //                   case '0':$pos="A";break;
+  //                   case '1':$pos="B";break;
+  //                   case '2':$pos="C";break;
+  //                   case '3':$pos="D";break;
+  //                   case '4':$pos="E";break;
+  //                   case '5':$pos="F";break;
+  //                   case '6':$pos="G";break;
+  //                   case '7':$pos="H";break;
+  //                   case '8':$pos="I";break;
+  //                   default:break;
+  //               }
+  //               $pos=$pos.($fila+1);
+  //               $generado[$pos]=str_pad(rand(0,999),3,"0",STR_PAD_LEFT);
+  //               $codigo[$pos]=password_hash($generado[$pos],PASSWORD_DEFAULT);
+  //               $pos=""; 			
+  //   		}
+  //   	}
+  //       $data['generado']=$generado;
+		// $this->load->view('tarjetas',$data);
         
+  //       $this->tarjetas_model->add_tarjeta($codigo);
+
+        // TARJETA CODIGOS
+        for ($i=0; $i <10 ; $i++) { 
+            $pos='TRJ_' . ($i+1) . '_VALOR';
+            $generado[$pos] = str_pad(rand(0,9999),4,"0",STR_PAD_LEFT) . str_pad(rand(0,9999),4,"0",STR_PAD_LEFT);
+            $codigo[$pos] = password_hash($generado[$pos], PASSWORD_DEFAULT);
+        }
+        $data['generado'] = $generado;
+        print_r($generado);
+        print_r($codigo);
+        $this->load->view('tarjetas',$data);
         $this->tarjetas_model->add_tarjeta($codigo);
     }
 
