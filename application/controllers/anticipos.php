@@ -112,6 +112,7 @@ class Anticipos extends CI_Controller {
     	    ->fields('ANT_FECHA','ANT_MONTO','ANT_OPCIONES','EMPLEADO_ID')
        		->display_as('ANT_FECHA','Fecha')
 	    	->display_as('ANT_MONTO','Monto')
+            ->display_as('ANT_OPCIONES','Opciones')
 
 			->change_field_type('EMPLEADO_ID','invisible')
 

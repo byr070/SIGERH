@@ -1,4 +1,9 @@
-    <!-- Inicio Pie -->
+<style type="text/css">
+	.footer{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+</style>    <!-- Inicio Pie -->
     <div class="footer">
         <p style="float: left;">© 2015 SIGERH. Todos los derechos reservados.</p>
         <p style="float: right;">Página mostrada en <strong>{elapsed_time}</strong> segundos.</p>

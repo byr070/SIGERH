@@ -17,8 +17,8 @@
         $this->set_js_config($this->default_theme_path.'/bootstrap/js/form/add.js');
     }
 
-	$this->set_js_lib($this->default_javascript_path.'/jquery_plugins/jquery.noty.js');
-	$this->set_js_config($this->default_javascript_path.'/jquery_plugins/config/jquery.noty.config.js');
+    $this->set_js_lib($this->default_javascript_path.'/jquery_plugins/jquery.noty.js');
+    $this->set_js_config($this->default_javascript_path.'/jquery_plugins/config/jquery.noty.config.js');
 ?>
 <div class="crud-form" data-unique-hash="<?php echo $unique_hash; ?>">
     <div class="container">
@@ -70,7 +70,7 @@
                                         <i class="fa fa-check"></i>
                                         <?php echo $this->l('form_save'); ?>
                                     </button>
-                                    <?php 	if(!$this->unset_back_to_list) { ?>
+                                    <?php   if(!$this->unset_back_to_list) { ?>
                                         <button class="btn btn-info b10" type="button" id="save-and-go-back-button">
                                             <i class="fa fa-rotate-left"></i>
                                             <?php echo $this->l('form_save_and_go_back'); ?>
@@ -88,23 +88,10 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap-clockpicker.min.js"); ?>"></script>
-
 <script>
-    $('.clockpicker').clockpicker({
-        'default' :'now',
-        placement: 'right',
-        // donetext:'Aceptar',
-        autoclose:true,  
-        // fromnow:1000,
-        }).find('input').change(function(){
-            console.log(this.value);
-        });
+    var validation_url = '<?php echo $validation_url?>';
+    var list_url = '<?php echo $list_url?>';
 
-	var validation_url = '<?php echo $validation_url?>';
-	var list_url = '<?php echo $list_url?>';
-
-	var message_alert_add_form = "<?php echo $this->l('alert_add_form')?>";
-	var message_insert_error = "<?php echo $this->l('insert_error')?>";
+    var message_alert_add_form = "<?php echo $this->l('alert_add_form')?>";
+    var message_insert_error = "<?php echo $this->l('insert_error')?>";
 </script>

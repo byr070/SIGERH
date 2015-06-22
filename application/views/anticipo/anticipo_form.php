@@ -79,10 +79,11 @@
     
     <label class="text-justify">Si no dispone de una tarjeta o sus códigos ya fueron utilizados, puede <a href="<?php echo base_url('tarjetas'); ?>" >
         crear una tarjeta</a></label>
-    <br>
-    <button id="btn_ver_tarjeta" class="btn btn-success block-center" data-target="#myModal" data-toggle="modal">Ver tarjeta</button>
-
-
+    <br><br>
+    <div id="btn_ver_tarjeta"class="alert alert-success" role="alert">Tarjeta creada con éxito.
+      <a href="#" class="alert-link" data-target="#myModal" data-toggle="modal"> Ver tarjeta.</a>
+    </div>
+    <br><br>
     <div class="modal" id="myModal">
         <div class="modal-dialog"> <!-- modal-sm menor taman -->
           <div class="modal-content">

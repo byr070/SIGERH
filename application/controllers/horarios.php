@@ -32,7 +32,6 @@ class Horarios extends CI_Controller {
         if(!is_null($this->id_modulo)){
 			$table_name='horarios';
 			$crud = new grocery_CRUD();
-            $crud->set_theme('bootstrap');
     	    $crud->set_subject('Horario')
             ->set_table($table_name)
 
@@ -129,9 +128,7 @@ class Horarios extends CI_Controller {
         $output = array_merge($output,$menu);
         $this->load->view('template/template.php',$output);    
     }
-
-
 }
 
-/* End of file periodos_salida.php */
-/* Location: ./application/controllers/periodos_salida.php */
+/* End of file horarios.php */
+/* Location: ./application/controllers/horarios.php */
