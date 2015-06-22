@@ -115,6 +115,7 @@ class Empleados extends CI_Controller {
             ->set_rules('EMP_EMERG_NOMBRE','trim|max_length[55]|callback__alpha_dash_space')
             ->set_rules('EMP_EMERG_PARENTESCO','trim|max_length[20]|callback__alpha_dash_space')
             ->set_rules('EMP_EMERG_TELEFONO','trim|max_length[10]|numeric')
+            ->set_rules('EMP_FECHA_SALIDA','Fecha de salida','callback_verificar_fecha[EMP_FECHA_INGRESO]')
 	        
 	        ->callback_add_field('email',array($this,'email_field_add_callback'))
 	        ->callback_add_field('clave',array($this,'clave_field_add_callback'))
@@ -274,8 +275,21 @@ class Empleados extends CI_Controller {
     function email_field_add_callback() {
     	return '<input type="text" maxlength="50" value="" name="email">';
     }
+    
     function clave_field_add_callback() {
     	return '<input type="password" maxlength="10" value="" name="clave">';
+    }
+
+    function verificar_fecha($fecha_fin,$fecha_inicio_name) {
+        $fecha_inicio = $_POST[$fecha_inicio_name];
+        $fecha_i_f=date_format(date_create($fecha_inicio),"Y-m-d");
+        $fecha_f_f=date_format(date_create($fecha_fin),"Y-m-d");
+        if ($fecha_f_f < $fecha_i_f) {
+            $this->form_validation->set_message('verificar_fecha', 'La %s debe ser mayor que %s.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 
 	function listar_anterior(){
