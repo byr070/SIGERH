@@ -31,15 +31,15 @@ class Pagos extends CI_Controller {
             $crud->set_subject('Pago')
     	    ->set_table($table_name)
 
-            ->columns('EMPLEADO_NOMBRE','EMPLEADO_CARGO','EMPLEADO_SUELDO','PGS_DIAS_TRABAJADOS','PGS_SUELDO_GANADO',
+            ->columns('EMPLEADO_ID','EMPLEADO_CARGO','EMPLEADO_SUELDO','PGS_DIAS_TRABAJADOS','PGS_SUELDO_GANADO',
                 'PGS_HORAS_EXTRAS_50','PGS_HORAS_EXTRAS_100','PGS_VALOR_HORAS_EXTRAS','PGS_COMISIONES','PGS_INGRESOS',
                 'PGS_IESS','PGS_QUIROGRAFARIO','PGS_ANTICIPOS','PGS_DESCUENTOS','PGS_TOTAL')
-            ->fields('EMPLEADO_NOMBRE','EMPLEADO_CARGO','EMPLEADO_SUELDO','PGS_DIAS_TRABAJADOS','PGS_SUELDO_GANADO',
+            ->fields('EMPLEADO_ID','EMPLEADO_CARGO','PGS_DIAS_TRABAJADOS','PGS_SUELDO_GANADO',
                 'PGS_HORAS_EXTRAS_50','PGS_HORAS_EXTRAS_100','PGS_COMISIONES','PGS_VALOR_HORAS_EXTRAS','PGS_INGRESOS',
                 'PGS_IESS','PGS_QUIROGRAFARIO','PGS_ANTICIPOS','PGS_DESCUENTOS','PGS_TOTAL')
-            // ->required_fields('EMPLEADO_NOMBRE','PGS_DIAS_TRABAJADOS','PGS_HORAS_EXTRAS_50','PGS_HORAS_EXTRAS_100','PGS_COMISIONES',
+            // ->required_fields('EMPLEADO_ID','PGS_DIAS_TRABAJADOS','PGS_HORAS_EXTRAS_50','PGS_HORAS_EXTRAS_100','PGS_COMISIONES',
             //     'PGS_QUIROGRAFARIO','PGS_ANTICIPOS')
-            ->order_by('EMPLEADO_NOMBRE','asc')
+            ->order_by('EMPLEADO_ID','asc')
 
             ->change_field_type('EMPLEADO_CARGO','invisible')
             // ->change_field_type('EMPLEADO_SUELDO','invisible')
@@ -50,7 +50,7 @@ class Pagos extends CI_Controller {
             ->change_field_type('PGS_DESCUENTOS','invisible')
             ->change_field_type('PGS_TOTAL','invisible')
 
-            ->display_as('EMPLEADO_NOMBRE','Nombre')
+            ->display_as('EMPLEADO_ID','Nombre')
             ->display_as('EMPLEADO_CARGO','Cargo')
             ->display_as('EMPLEADO_SUELDO','Sueldo')
             ->display_as('PGS_DIAS_TRABAJADOS','Días trabajados')
@@ -66,7 +66,7 @@ class Pagos extends CI_Controller {
             ->display_as('PGS_DESCUENTOS','DESCUENTOS')
             ->display_as('PGS_TOTAL','TOTAL')
 
-            ->set_relation('EMPLEADO_NOMBRE','empleados','EMP_NOMBRE_COMPLETO')
+            ->set_relation('EMPLEADO_ID','empleados','EMP_NOMBRE_COMPLETO',array('EMP_ACTIVADO' => 1))
 
             ->callback_column('EMPLEADO_SUELDO',array($this,'valueToDollar'))
             ->callback_column('PGS_SUELDO_GANADO',array($this,'valueToDollar'))
