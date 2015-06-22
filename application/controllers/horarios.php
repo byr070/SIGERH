@@ -37,15 +37,12 @@ class Horarios extends CI_Controller {
 
             ->columns('HRR_HORA_INICIO','HRR_HORA_FIN')
             ->fields('HRR_HORA_INICIO','HRR_HORA_FIN')
-            ->display_as('HRR_FECHA_INICIO','FECHA INICIO')
-            ->display_as('HRR_FECHA_FIN','FECHA FIN')
 
-            ->display_as('HRR_HORA_INICIO','HORA INICIO')
-            ->display_as('','HORA FIN')
+            ->display_as('HRR_HORA_INICIO','Hora de inicio')
+            ->display_as('HRR_HORA_FIN','Hora fin')
 
-            ->set_rules('HRR_HORA_INICIO','hora de inicio','required')
-            ->set_rules('HRR_HORA_FIN','hora de fin','required')
-
+            ->set_rules('HRR_HORA_INICIO','Hora de inicio','required')
+            ->set_rules('HRR_HORA_FIN','Hora fin','required|callback_verificar_hora[HRR_HORA_INICIO]')
 
             // ->field_type('HRR_HORA_INICIO','time')
             // ->field_type('HRR_HORA_FIN','time')
@@ -113,6 +110,16 @@ class Horarios extends CI_Controller {
                 </span>
             </div>
         ';
+    }
+
+    function verificar_hora($hora_fin,$hora_inicio_param) {
+        $hora_inicio = $_POST[$hora_inicio_param];
+        if($hora_fin <= $hora_inicio) {
+            $this->form_validation->set_message('verificar_hora', 'La %s debe ser mayor que la %s.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 
     function _horarios_output($output = null) {

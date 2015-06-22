@@ -565,7 +565,7 @@ CREATE TABLE `ci_sessions` (
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
 INSERT INTO `ci_sessions` VALUES ('433d8bff9955a8e816c0f8d590e237d1','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.3',1435010226,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
-INSERT INTO `ci_sessions` VALUES ('6b2c79f9fc0ac158348294b07dd5236e','192.168.1.2','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1435004460,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('a914fdaa994ba1bfeafb95c0d38ba642','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1435013124,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -667,7 +667,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,'Usuario De Prueba A','1717709966','1990-10-14',NULL,NULL,NULL,NULL,NULL,1,NULL,'Tipo O Rh -',NULL,NULL,NULL,NULL,NULL,'2015-06-01',NULL,0,1,'0000-00-00 00:00:00','2015-06-22 17:25:37',NULL,NULL,NULL,NULL,1,NULL);
+INSERT INTO `empleados` VALUES (1,'Usuario De Prueba A','1717709966','1990-10-14',NULL,NULL,NULL,NULL,NULL,1,NULL,'Tipo O Rh -',NULL,NULL,NULL,NULL,NULL,'2015-06-01','2015-06-01',0,1,'0000-00-00 00:00:00','2015-06-22 22:19:43',NULL,NULL,NULL,NULL,1,NULL);
 INSERT INTO `empleados` VALUES (2,'Usuario A','1717709966001','1990-10-14',NULL,NULL,NULL,NULL,NULL,1,NULL,'Tipo O Rh +',NULL,NULL,NULL,NULL,NULL,'2015-06-01',NULL,0,0,'0000-00-00 00:00:00','2015-06-22 17:43:52',NULL,NULL,NULL,NULL,1,NULL);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2367,7 +2367,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-22 23:57:08','2015-03-15 01:30:16','2015-06-22 21:57:08',1);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-22 17:18:19','2015-03-15 01:30:16','2015-06-22 22:18:19',1);
 INSERT INTO `users` VALUES (2,'Usuario De Prueba A','$2a$08$SotdMIahxu5nZsM2HMkonOdV4ZpzeVd0rAB6UP//nozmN1DY/yKOO','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'192.168.1.4','0000-00-00 00:00:00','2015-06-22 04:10:40','2015-06-22 09:14:40',2);
 INSERT INTO `users` VALUES (3,'Usuario A','$2a$08$M/xJrSwGiS/RxR6lZTONwOKXJJtHDNkqxHv7vHiC1CQhpD7w.lToa','byr_070@hotmail.co',0,0,NULL,NULL,NULL,NULL,'b67f2d930808fb48ec6451b71901f39d','192.168.1.2','0000-00-00 00:00:00','2015-06-22 12:43:38','2015-06-22 17:43:38',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -2415,4 +2415,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-22 17:17:13
+-- Dump completed on 2015-06-22 17:48:24
