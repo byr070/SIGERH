@@ -6,10 +6,10 @@
         <td>
                 <div class="only-desktops"  style="white-space: nowrap">
                     <?php if(!$unset_edit){?>
-                        <a class="btn btn-warning" href="<?php echo $row->edit_url?>"><i class="fa fa-pencil"></i> <?php echo $this->l('list_edit'); ?></a>
+                        <a class="btn btn-default" href="<?php echo $row->edit_url?>"><i class="fa fa-pencil"></i> <?php echo $this->l('list_edit'); ?></a>
                     <?php } ?>
                     <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             Más
                             <span class="caret"></span>
                         </button>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="only-mobiles">
                     <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <?php echo $this->l('list_actions'); ?>
                             <span class="caret"></span>
                         </button>
@@ -85,7 +85,7 @@
                 </div>
         </td>
         <?php foreach($columns as $column){?>
-            <td >
+            <td>
                 <?php echo $row->{$column->field_name} != '' ? $row->{$column->field_name} : '&nbsp;' ; ?>
             </td>
         <?php }?>

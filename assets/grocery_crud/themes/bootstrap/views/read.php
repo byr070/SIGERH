@@ -57,7 +57,7 @@ $this->set_js_config($this->default_theme_path.'/bootstrap/js/form/view.js');
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-7">
-                            <?php 	if(!$this->unset_back_to_list) { ?>
+                            <?php if(!$this->unset_back_to_list) { ?>
                                 <button class="btn btn-default cancel-button" type="button" onclick="window.location = '<?php echo $list_url; ?>'" >
                                     <i class="fa fa-arrow-left"></i>
                                     <?php echo $this->l('form_back_to_list'); ?>
