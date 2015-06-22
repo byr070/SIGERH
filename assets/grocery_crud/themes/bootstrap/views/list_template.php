@@ -62,8 +62,8 @@
         <?php }
         ?></div>
 
- 		<div class="row">
-        	<div class="col-md-12 table-section">
+        <div class="row">
+            <div class="col-md-12 table-section">
                 <div class="table-label">
                     <div class="floatL l5">
                         <?php echo $subject_plural; ?>
@@ -81,7 +81,7 @@
                         <div class="header-tools">
                             <?php if(!$unset_add){?>
                                 <div class="floatL t5">
-                                    <a class="btn btn-success" href="<?php echo $add_url?>"><i class="fa fa-plus"></i> &nbsp; <?php echo $this->l('list_add'); ?> <?php echo $subject?></a>
+                                    <a class="btn btn-default" href="<?php echo $add_url?>"><i class="fa fa-plus"></i> &nbsp; <?php echo $this->l('list_add'); ?> <?php echo $subject?></a>
                                 </div>
                             <?php } ?>
                             <div class="floatR">
@@ -112,24 +112,24 @@
                             <div class="clear"></div>
                         </div>
                         <div class="table-responsive">
-        			    <table class="table table-bordered grocery-crud-table table-hover">
-        					<thead>
-        						<tr>
-        							<th colspan="2">
+                        <table class="table table-bordered grocery-crud-table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
                                         <?php echo $this->l('list_actions'); ?>
                                     </th>
                                     <?php foreach($columns as $column){?>
                                         <th class="column-with-ordering" data-order-by="<?php echo $column->field_name; ?>"><?php echo $column->display_as; ?></th>
                                     <?php }?>
-        						</tr>
-        						
-        						<tr class="filter-row gc-search-row">
-        							<td style="border-right: none;">
-        							     <div class="floatL t5">
-        							         <input type="checkbox" class="select-all-none" />
-        							     </div>
-        							 </td>
-        							<td style="border-left: none;">
+                                </tr>
+                                
+                                <tr class="filter-row gc-search-row">
+                                    <td style="border-right: none;">
+                                         <div class="floatL t5">
+                                             <input type="checkbox" class="select-all-none" />
+                                         </div>
+                                     </td>
+                                    <td style="border-left: none;">
                                         <div class="floatL">
                                             <a href="javascript:void(0);" title="<?php echo $this->l('list_delete')?>"
                                                class="hidden btn btn-default delete-selected-button">
@@ -149,15 +149,15 @@
                                             <input type="text" class="form-control searchable-input floatL" placeholder="Search <?php echo $column->display_as; ?>" name="<?php echo $column->field_name; ?>" />
                                         </td>
                                     <?php }?>
-        						</tr>
+                                </tr>
 
-        					</thead>
-        					<tbody>
+                            </thead>
+                            <tbody>
                                 <?php include(__DIR__."/list_tbody.php"); ?>
-        					</tbody>
+                            </tbody>
 
                             <!-- Table Footer -->
-        					<tfoot>
+                            <tfoot>
                                 <tr>
                                     <td colspan="<?php echo $colspans; ?>">
 
@@ -220,13 +220,14 @@
                                             <div class="clear"></div>
                                     </td>
                                 </tr>
-        					</tfoot>
+                            </tfoot>
                             <!-- End of: Table Footer -->
-        			    </table>
+                        </table>
                         </div>
+                        <!-- </div> -->
                     <?php echo form_close(); ?>
                 </div>
-        	</div>
+            </div>
 
             <!-- Delete confirmation dialog -->
             <div class="delete-confirmation modal fade">

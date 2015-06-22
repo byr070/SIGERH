@@ -53,7 +53,7 @@ class Vacaciones extends CI_Controller {
             //Ocultar botón Ver, Exportar, Imprimir
             $crud->unset_read();
             $crud->unset_export();
-            $crud->unset_print();
+            //$crud->unset_print();
 
 
             if (is_null($arr_acciones)) {

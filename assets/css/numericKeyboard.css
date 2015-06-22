@@ -1,0 +1,12 @@
+#keyboard li, #keyboard button {
+	margin: 0 5px 5px 0px;
+	padding: 0;
+	width: 30px;
+	height: 30px;
+}
+#keyboard .delete{
+	width: 67px;
+}
+.enter{
+ 	width: 130px;
+}

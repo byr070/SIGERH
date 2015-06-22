@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/bootstrap-clockpicker.min.css") ?>">
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,25 +15,26 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <?php if(!is_null($css_files)) { ?>
-    <?php foreach($css_files as $file): ?>
+    <?php if(!is_null($css_files)) {
+        foreach($css_files as $file): ?>
         <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
     <?php endforeach; 
     } 
+    
     if(!is_null($js_files)) {
         foreach($js_files as $file): ?>
             <script src="<?php echo $file; ?>"></script>
         <?php endforeach;
     } ?>
     <style type="text/css">
-    div.footer{
+    /*div.footer{
         text-align: right;
         font-size: 11px;
         border-top: 1px solid #D0D0D0;
         line-height: 32px;
         padding: 0 10px 0 10px;
         margin: 20px 0 0 0;
-    }
+    }*/
     </style>
 </head>
 <body>
@@ -85,5 +85,16 @@
             <p style="float: right;">Página mostrada en <strong>{elapsed_time}</strong> segundos.</p>
     </div>
     <!-- Fin Pie -->
+    <script type="text/javascript">
+        $('.clockpicker').clockpicker({
+            'default' :'now',
+            placement: 'right',
+            // donetext:'Aceptar',
+            autoclose:true,  
+            // fromnow:1000,
+            }).find('input').change(function(){
+                console.log(this.value);
+        });
+    </script>
 </body>
 </html>
