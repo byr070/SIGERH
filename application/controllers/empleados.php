@@ -131,7 +131,7 @@ class Empleados extends CI_Controller {
 	    	->display_as('clave','Clave')
 
            	->change_field_type('USUARIO_ID','invisible')
-           	->change_field_type('EMP_ESTADO','dropdown', array('1' => 'TRABAJO', '2' => 'DESCANSO'))
+           	->change_field_type('EMP_ESTADO','dropdown', array('1' => 'TRABAJO', '2' => 'DESCANSO', '3' => 'LIQUIDADO'))
            	->change_field_type('EMP_ESTADO_CIVIL','enum',array('Soltero(a)','Casado(a)','Viudo(a)',
            		'Divorciado(a)','Unión de hecho'))
            	->change_field_type('EMP_TIPO_SANGRE','enum',array(
