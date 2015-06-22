@@ -5,7 +5,6 @@ class Login extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->library('form_validation');
 		$this->load->library('security');
 		$this->load->library('tank_auth_groups','','tank_auth');
 		$this->lang->load('form_validation','spanish');

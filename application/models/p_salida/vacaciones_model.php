@@ -40,7 +40,7 @@ class Vacaciones_model extends CI_Model
 		$this->db->from($this->table_name);
 		$this->db->join($this->empleados_table_name, 'EMPLEADO_ID = EMP_ID');
 		$this->db->where('EMP_ID', $id_empleado);
-		$this->db->where(''.$this->table_name.'.VCC_ESTADO', 1);
+		$this->db->where(''.$this->table_name.'.VCC_ACTIVADO', 1);
 		$query = $this->db->get();
 		//var_dump($query->result_array());
 		//print_r($query->result_array());

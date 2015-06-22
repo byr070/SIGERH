@@ -84,19 +84,27 @@ class Empleados extends CI_Controller {
     	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
     	    	'PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO',
     	    	'EMP_ESTADO','EMP_ESTADO_CIVIL','EMP_TIPO_SANGRE',
-    	    	'EMP_NOMBRE_CONYUGUE','EMP_NUMERO_HIJOS',
+    	    	'EMP_NOMBRE_CONYUGE','EMP_NUMERO_HIJOS',
     	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
     	    	'EMP_FECHA_INGRESO','EMP_FECHA_SALIDA',
     	    	'ORGANIZACION_ID','CUADRILLA_ID','TARJETA_ID','CARGO_ID')
-    	    ->fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
+    	    ->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
     	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
     	    	'PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO',
     	    	'EMP_ESTADO','EMP_ESTADO_CIVIL','EMP_TIPO_SANGRE',
-    	    	'EMP_NOMBRE_CONYUGUE','EMP_NUMERO_HIJOS',
+    	    	'EMP_NOMBRE_CONYUGE','EMP_NUMERO_HIJOS',
     	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
     	    	'EMP_FECHA_INGRESO','EMP_FECHA_SALIDA',
     	    	'ORGANIZACION_ID','CUADRILLA_ID','TARJETA_ID','CARGO_ID',
     	    	'email','clave')
+    	    ->edit_fields('EMP_FECHA_NACIMIENTO',
+    	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
+    	    	'PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO',
+    	    	'EMP_ESTADO','EMP_ESTADO_CIVIL','EMP_TIPO_SANGRE',
+    	    	'EMP_NOMBRE_CONYUGE','EMP_NUMERO_HIJOS',
+    	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
+    	    	'EMP_FECHA_INGRESO','EMP_FECHA_SALIDA',
+    	    	'ORGANIZACION_ID','CUADRILLA_ID','TARJETA_ID','CARGO_ID')
        		->display_as('EMP_NOMBRE_COMPLETO','Nombre completo')
 	    	->display_as('EMP_NUMERO_CEDULA','Número de cédula o RUC')
 	        ->display_as('EMP_FECHA_NACIMIENTO','Fecha de nacimiento')
@@ -108,7 +116,7 @@ class Empleados extends CI_Controller {
 	        ->display_as('EMP_ESTADO','Estado')
 	        ->display_as('EMP_ESTADO_CIVIL','Estado civil')
 	        ->display_as('EMP_TIPO_SANGRE','Tipo de sangre')
-	        ->display_as('EMP_NOMBRE_CONYUGUE','Nombre del cónyugue')
+	        ->display_as('EMP_NOMBRE_CONYUGE','Nombre del cónyuge')
 	        ->display_as('EMP_NUMERO_HIJOS','Número de hijos')
 	        ->display_as('EMP_EMERG_NOMBRE','Nombre contacto emergencia')
 	        ->display_as('EMP_EMERG_PARENTESCO','Parentezco contacto emergencia')
@@ -142,14 +150,13 @@ class Empleados extends CI_Controller {
 	        ->set_relation('TARJETA_ID','tarjetas','TRJ_ID')
 	        ->set_relation('CARGO_ID','cargos','CRG_NOMBRE')
 
-	        ->required_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_TIPO_SANGRE',
-	        	'email','clave')
-
-	        ->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','callback_cedula_ruc_check')
-	        ->set_rules('EMP_NOMBRE_COMPLETO','Nombre del empleado','trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space')
-	        ->set_rules('EMP_NOMBRE_CONYUGUE','Nombre del cónyugue','trim|max_length[55]|callback__alpha_dash_space')
+	        ->required_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_TIPO_SANGRE','EMP_FECHA_INGRESO','CARGO_ID','email','clave')
+	        
+	        ->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','required|callback_cedula_ruc_check')
+	        ->set_rules('EMP_NOMBRE_COMPLETO','Nombre del empleado','required|trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space')
+	        ->set_rules('EMP_NOMBRE_CONYUGE','Nombre del cónyugue','trim|max_length[55]|callback__alpha_dash_space')
 	        ->set_rules('EMP_NUMERO_HIJOS','Número de hijos','integer')
-            ->set_rules('email','correo electrónico','valid_email|is_unique[users.email]')
+            ->set_rules('email','Correo electrónico','required|valid_email|is_unique[users.email]')
             ->set_rules('EMP_EMERG_NOMBRE','trim|max_length[55]|callback__alpha_dash_space')
             ->set_rules('EMP_EMERG_PARENTESCO','trim|max_length[20]|callback__alpha_dash_space')
             ->set_rules('EMP_EMERG_TELEFONO','trim|max_length[10]|numeric')
