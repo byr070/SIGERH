@@ -48,7 +48,9 @@ class Horarios extends CI_Controller {
             // ->field_type('HRR_HORA_FIN','time')
 
             ->callback_add_field('HRR_HORA_INICIO',array($this,'add_field_hora_inicio'))
-            ->callback_add_field('HRR_HORA_FIN',array($this,'add_field_hora_fin'));
+            ->callback_add_field('HRR_HORA_FIN',array($this,'add_field_hora_fin'))
+            ->callback_edit_field('HRR_HORA_INICIO',array($this,'edit_field_hora_inicio'))
+            ->callback_edit_field('HRR_HORA_FIN',array($this,'edit_field_hora_fin'));
 
             //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
@@ -90,10 +92,31 @@ class Horarios extends CI_Controller {
         }
     }
 
+    function edit_field_hora_inicio($value, $primary_key){
+        return '
+            <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
+                <input type="text" readonly class="form-control" value="'.$value.'" placeholder="Elegir hora" id="field-HRR_HORA_INICIO" name="HRR_HORA_INICIO">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        ';
+    }
     function add_field_hora_inicio(){
         return '
             <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
-                <input type="text" class="form-control" value="" placeholder="Elegir hora" id="field-HRR_HORA_INICIO" name="HRR_HORA_INICIO">
+                <input type="text" readonly class="form-control" value="" placeholder="Elegir hora" id="field-HRR_HORA_INICIO" name="HRR_HORA_INICIO">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        ';
+    }
+
+    function edit_field_hora_fin($value, $primary_key){
+        return '
+            <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
+                <input type="text" readonly class="form-control" value="'.$value.'" placeholder="Elegir hora" id="field-HRR_HORA_FIN" name="HRR_HORA_FIN">
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-time"></span>
                 </span>
@@ -104,7 +127,7 @@ class Horarios extends CI_Controller {
     function add_field_hora_fin(){
         return '
             <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
-                <input type="text" class="form-control" value="" placeholder="Elegir hora" id="field-HRR_HORA_FIN" name="HRR_HORA_FIN">
+                <input type="text" readonly class="form-control" value="" placeholder="Elegir hora" id="field-HRR_HORA_FIN" name="HRR_HORA_FIN">
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-time"></span>
                 </span>

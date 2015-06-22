@@ -60,7 +60,12 @@ class Periodos_salida extends CI_Controller {
                  ->set_rules('PRD_HORA_INICIO','hora inicio','required')
                  ->set_rules('PRD_HORA_FIN','hora fin','required|callback_verificar_hora[PRD_FECHA_INICIO,PRD_FECHA_FIN,PRD_HORA_INICIO,EMPLEADO_ID]')
                  ->callback_before_insert(array($this, 'verificar_horas'))
-                 ->callback_before_update(array($this, 'verificar_horas'));
+                 ->callback_before_update(array($this, 'verificar_horas'))
+                 ->callback_add_field('PRD_HORA_INICIO',array($this,'add_field_hora_inicio'))
+                 ->callback_add_field('PRD_HORA_FIN',array($this,'add_field_hora_fin'))
+                 ->callback_edit_field('PRD_HORA_INICIO',array($this,'edit_field_hora_inicio'))
+                 ->callback_edit_field('PRD_HORA_FIN',array($this,'add_field_hora_fin'))
+                 ;
 	        //leer permisos desde la bd
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             $crud->unset_export();
@@ -96,6 +101,48 @@ class Periodos_salida extends CI_Controller {
         }
     }
 
+    function add_field_hora_inicio(){
+        return '
+            <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
+                <input type="text" readonly class="form-control" value="" placeholder="Elegir hora" id="field-PRD_HORA_INICIO" name="PRD_HORA_INICIO">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        ';
+    }
+
+    function add_field_hora_fin(){
+        return '
+            <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
+                <input type="text" readonly class="form-control" value="" placeholder="Elegir hora" id="field-PRD_HORA_FIN" name="PRD_HORA_FIN">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        ';
+    }
+    function edit_field_hora_inicio($value, $primary_key){
+        return '
+            <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
+                <input type="text" readonly class="form-control" value="'.$value.'" placeholder="Elegir hora" id="field-PRD_HORA_INICIO" name="PRD_HORA_INICIO">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        ';
+    }
+
+    function edit_field_hora_fin($value, $primary_key){
+        return '
+            <div class="input-group clockpicker " style="width: 135px; margin-bottom: 10px;">
+                <input type="text" readonly class="form-control" value="'.$value.'" placeholder="Elegir hora" id="field-PRD_HORA_FIN" name="PRD_HORA_FIN">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        ';
+    }
     function verificar_horas($post_array) {
         if($post_array['PRD_FECHA_INICIO']!=$post_array['PRD_FECHA_FIN']){
             $post_array['PRD_HORA_INICIO']="00:00";
