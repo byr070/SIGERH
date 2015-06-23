@@ -149,7 +149,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('05c03aec65df637cb9591bd1afd35d2b','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.3',1435031518,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"5\";s:8:\"username\";s:19:\"Usuario De Prueba C\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"2\";}'),('c77574ee7460f2ef0d23078e69e2d9aa','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.3',1435024209,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"5\";s:8:\"username\";s:19:\"Usuario De Prueba C\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"2\";}');
+INSERT INTO `ci_sessions` VALUES ('5427db5ddacfd6a9f31b629254054f09','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/600.6.3 (KHTML, like Gecko) Version/8.0.6 Safari/600.6.3',1435040693,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}'),('766d01a5d8b016723e28184d7f837c58','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.3',1435039519,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}'),('bc55f1bdc510750c93dd4e85a5eb8aad','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.3',1435033600,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}'),('d41dcad90eb763c8a5a2c9549213b714','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.3',1435040580,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}'),('e417a73471001a39a4ac87b5564bfa48','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.3',1435039761,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -674,7 +674,7 @@ CREATE TABLE `tarjetas` (
   PRIMARY KEY (`TRJ_ID`),
   KEY `FK_TRJ_EMPLEADO_ID` (`EMPLEADO_ID`),
   CONSTRAINT `FK_TRJ_EMPLEADO_ID` FOREIGN KEY (`EMPLEADO_ID`) REFERENCES `empleados` (`EMP_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -829,7 +829,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-23 05:39:57','2015-03-15 01:30:16','2015-06-23 03:39:57',1),(2,'Usuario De Prueba A','$2a$08$SotdMIahxu5nZsM2HMkonOdV4ZpzeVd0rAB6UP//nozmN1DY/yKOO','by@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-23 01:06:08','2015-06-22 04:10:40','2015-06-23 00:33:21',2),(3,'Usuario A','$2a$08$M/xJrSwGiS/RxR6lZTONwOKXJJtHDNkqxHv7vHiC1CQhpD7w.lToa','byr@hotmail.co',0,0,NULL,NULL,NULL,NULL,'b67f2d930808fb48ec6451b71901f39d','192.168.1.2','0000-00-00 00:00:00','2015-06-22 12:43:38','2015-06-23 00:33:28',2),(4,'Usuario De Prueba B','$2a$08$k7vvtLEFJ5DQfWu/zXGHVOmsSRzpLIAt/ShXnwbVa/je7u3aiYYfq','byron.o2013@hotmail.com',0,0,NULL,NULL,NULL,NULL,'ea785b4c912dfae2d5d9b25d0ae35630','::1','0000-00-00 00:00:00','2015-06-22 19:27:49','2015-06-23 00:27:49',2),(5,'Usuario De Prueba C','$2a$08$3bli27bimuuFC5OequhJje4zHUqmS4VAQferomylsCxWqPeJ5fpkm','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,'e05eba72324befebea12c4bd08289689','::1','2015-06-23 05:44:50','2015-06-22 19:33:38','2015-06-23 03:44:50',2);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-23 08:25:21','2015-03-15 01:30:16','2015-06-23 06:25:21',1),(2,'Usuario De Prueba A','$2a$08$SotdMIahxu5nZsM2HMkonOdV4ZpzeVd0rAB6UP//nozmN1DY/yKOO','by@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-23 01:06:08','2015-06-22 04:10:40','2015-06-23 00:33:21',2),(3,'Usuario A','$2a$08$M/xJrSwGiS/RxR6lZTONwOKXJJtHDNkqxHv7vHiC1CQhpD7w.lToa','byr@hotmail.co',0,0,NULL,NULL,NULL,NULL,'b67f2d930808fb48ec6451b71901f39d','192.168.1.2','0000-00-00 00:00:00','2015-06-22 12:43:38','2015-06-23 00:33:28',2),(4,'Usuario De Prueba B','$2a$08$k7vvtLEFJ5DQfWu/zXGHVOmsSRzpLIAt/ShXnwbVa/je7u3aiYYfq','byron.o2013@hotmail.com',0,0,NULL,NULL,NULL,NULL,'ea785b4c912dfae2d5d9b25d0ae35630','::1','0000-00-00 00:00:00','2015-06-22 19:27:49','2015-06-23 00:27:49',2),(5,'Usuario De Prueba C','$2a$08$3bli27bimuuFC5OequhJje4zHUqmS4VAQferomylsCxWqPeJ5fpkm','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,'e05eba72324befebea12c4bd08289689','::1','2015-06-23 05:44:50','2015-06-22 19:33:38','2015-06-23 03:44:50',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -874,4 +874,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-22 22:53:13
+-- Dump completed on 2015-06-23  1:28:39
