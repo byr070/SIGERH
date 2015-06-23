@@ -53,19 +53,19 @@
     <table class="center-table">
         <tbody>
           <tr id="keyboard">
-              <td><li class="btn btn-primary">1</li></td>
-              <td><li class="btn btn-primary">2</li></td>
+              <td><li class="btn btn-primary">9</li></td>
               <td><li class="btn btn-primary">3</li></td>
+              <td><li class="btn btn-primary">7</li></td>
           </tr>
           <tr id="keyboard">
-              <td><li class="btn btn-primary">4</li></td>
               <td><li class="btn btn-primary">5</li></td>
+              <td><li class="btn btn-primary">1</li></td>
               <td><li class="btn btn-primary">6</li></td>
           </tr>
           <tr id="keyboard">
-              <td><li class="btn btn-primary">7</li></td>
+              <td><li class="btn btn-primary">2</li></td>
               <td><li class="btn btn-primary">8</li></td>
-              <td><li class="btn btn-primary">9</li></td>
+              <td><li class="btn btn-primary">4</li></td>
           </tr>
           <tr id="keyboard">
               <td><li class="btn btn-primary center-block">0</li></td>
