@@ -228,7 +228,10 @@ class Periodos_salida extends CI_Controller {
         $menu['menu'] = $arr_menu;
         //}else{$menu['menu'] = '';}
         $output = array_merge($output,$menu);
-        $this->load->view('template/template.php',$output);    
+        $this->load->view('template/header',$output);
+        $this->load->view('template/menu',$output);
+        $this->load->view('template/template',$output);
+        $this->load->view('template/footer',$output);
     }
 }
 
