@@ -97,18 +97,21 @@ class Modulos_model extends CI_Model
 
 		$this->db->distinct();
 		$this->db->select('MDL_DESCRIPCION');
+		$this->db->select('MDL_NAV_BAR');
 		$this->db->from($this->permisos_table_name);
 		$this->db->join($this->roles_table_name, 'ROL_ID = RLS_ID');
 		$this->db->join($this->table_name, 'MODULO_ID = MDL_ID');
 		$this->db->where('RLS_ID', $id_rol);
 		$this->db->where('ADMIN', $configuracion ? 1 : 0);
+
 		$this->db->where(''.$this->permisos_table_name.'.ACTIVADO', 1);
 		$this->db->where(''.$this->roles_table_name.'.ACTIVADO', 1);
 		$this->db->where(''.$this->table_name.'.ACTIVADO', 1);
+		
 		$query = $this->db->get();
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $row) {
-				array_push($arr_modulos,$row['MDL_DESCRIPCION']);
+				array_push($arr_modulos,$row['MDL_DESCRIPCION'],$row['MDL_NAV_BAR']);
 			}
 			return $arr_modulos;
 		}
