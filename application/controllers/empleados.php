@@ -40,6 +40,7 @@ class Empleados extends CI_Controller {
         	$crud->columns('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
     	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
     	    	'PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO',
+                'EMP_TELEFONO_FIJO','EMP_TELEFONO_MOVIL',
     	    	'EMP_ESTADO','EMP_ESTADO_CIVIL','EMP_TIPO_SANGRE',
     	    	'EMP_NOMBRE_CONYUGE','EMP_NUMERO_HIJOS',
     	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
@@ -48,6 +49,7 @@ class Empleados extends CI_Controller {
     	    ->add_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO',
     	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
     	    	'PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO',
+                'EMP_TELEFONO_FIJO','EMP_TELEFONO_MOVIL',
     	    	'EMP_ESTADO','EMP_ESTADO_CIVIL','EMP_TIPO_SANGRE',
     	    	'EMP_NOMBRE_CONYUGE','EMP_NUMERO_HIJOS',
     	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
@@ -57,6 +59,7 @@ class Empleados extends CI_Controller {
     	    ->edit_fields('EMP_FECHA_NACIMIENTO',
     	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
     	    	'PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO',
+                'EMP_TELEFONO_FIJO','EMP_TELEFONO_MOVIL',
     	    	'EMP_ESTADO','EMP_ESTADO_CIVIL','EMP_TIPO_SANGRE',
     	    	'EMP_NOMBRE_CONYUGE','EMP_NUMERO_HIJOS',
     	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
@@ -70,6 +73,8 @@ class Empleados extends CI_Controller {
 	        ->display_as('PARROQUIA_NACIMIENTO','Parroquia de nacimiento')
 	        ->display_as('PROVINCIA_RESIDENCIA','Provincia de residencia')
 	        ->display_as('EMP_DIRECCION_DOMICILIO','Dirección de domicilio')
+            ->display_as('EMP_TELEFONO_FIJO','Teléfono fijo')
+            ->display_as('EMP_TELEFONO_MOVIL','Teléfono móvil')
 	        ->display_as('EMP_ESTADO','Estado')
 	        ->display_as('EMP_ESTADO_CIVIL','Estado civil')
 	        ->display_as('EMP_TIPO_SANGRE','Tipo de sangre')
@@ -114,7 +119,9 @@ class Empleados extends CI_Controller {
             ->set_rules('email','Correo electrónico','required|valid_email|is_unique[users.email]')
             ->set_rules('EMP_EMERG_NOMBRE','trim|max_length[55]|callback__alpha_dash_space')
             ->set_rules('EMP_EMERG_PARENTESCO','trim|max_length[20]|callback__alpha_dash_space')
-            ->set_rules('EMP_EMERG_TELEFONO','trim|max_length[10]|numeric')
+            ->set_rules('EMP_EMERG_TELEFONO','trim|max_length[15]|numeric')
+            ->set_rules('EMP_TELEFONO_FIJO','trim|max_length[15]|numeric')
+            ->set_rules('EMP_TELEFONO_MOVIL','trim|max_length[15]|numeric')
             ->set_rules('EMP_FECHA_SALIDA','Fecha de salida','callback_verificar_fecha[EMP_FECHA_INGRESO]')
 	        
 	        ->callback_add_field('email',array($this,'email_field_add_callback'))
