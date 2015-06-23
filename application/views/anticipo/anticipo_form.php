@@ -119,7 +119,4 @@
           </div> <!-- end modal-content -->
         </div> <!-- end modal-dialog -->
       </div> <!-- end modal -->
-
-
-
   </div> <!-- container -->

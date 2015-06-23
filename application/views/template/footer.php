@@ -13,6 +13,10 @@
 	<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-1.11.2.js") ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js") ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("assets/js/numericKeyboard.js") ?>"></script>
-
+    <script type="text/javascript">
+    $('#myModal').on('hidden.bs.modal', function (e) {
+        window.location = "<?php echo base_url("/anticipos") ?>"
+    })
+    </script>
 </body>
 </html>
