@@ -31,14 +31,34 @@
 </head>
 <body>
     <!-- Inicio Cabecera -->
-    <div class="top" style="text-align:right;">
-        <?php echo anchor('/inicio/', 'Inicio');?>
-        <?php if ($is_admin): echo anchor('/configuracion/', 'Configuración'); endif;?>
-         Hola, <strong><?php echo $username; ?></strong>!
-         <?php echo anchor('/auth/logout/', 'Salir'); ?>
-    </div>
-    <!-- Fin Cabecera -->
+<div class="navbar navbar-inverse ">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="" class="navbar-brand">SIGERH</a>
+
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-right">
+          <ul class="nav navbar-nav">
+              <li><?php echo anchor('/inicio/', 'Inicio');?></li>
+              <li><?php if ($is_admin): echo anchor('/configuracion/', 'Configuración'); endif;?></li>
+              <li><?php echo anchor('/auth/logout/', 'Salir'); ?></li>
+          </ul>
+        </div>
+      </div> <!-- end container -->
+    </div> <!-- end navbar -->
+<!-- Fin Cabecera -->
+
+
     <?php $modulo=$this->uri->segment(1); ?>
+    
+
     <!-- Inicio Menu -->
     <?php if(!is_null($menu)) { ?>
     <ul class="nav nav-tabs nav-justified">
