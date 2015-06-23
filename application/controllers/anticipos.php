@@ -42,7 +42,7 @@ class Anticipos extends CI_Controller {
 				unset($datos_formulario['btn_aceptar']);
                 $codigo = $datos_formulario['codigo'];
 
-                $resultado = $this->tarjetas_model->get_todos($this->tank_auth->get_user_id());
+                $resultado = $this->tarjetas_model->get_todos($this->tank_auth->get_user_id()-1);
                 $tarjeta = get_object_vars($resultado['0']);
 
                 for ($i=1; $i <= 10; $i++) {
@@ -88,7 +88,7 @@ class Anticipos extends CI_Controller {
         $data['display_alr_utilizado'] = $display_alr_utilizado;
         $data['display_alr_incorrecto'] = $display_alr_incorrecto;
 
-        $data['user_id']    = $this->tank_auth->get_user_id();
+        $data['user_id']    = $this->tank_auth->get_user_id()-1;
         $data['username']   = $this->tank_auth->get_username();
         $data['is_admin']   = $this->tank_auth->is_admin();
 
@@ -163,7 +163,7 @@ class Anticipos extends CI_Controller {
 
     
     function _grocery_output($output = null) {
-    	$data['user_id']    = $this->tank_auth->get_user_id();
+    	$data['user_id']    = $this->tank_auth->get_user_id()-1;
         $data['username']   = $this->tank_auth->get_username();
         $data['is_admin']   = $this->tank_auth->is_admin();
         $output = array_merge((array)$output,$data);

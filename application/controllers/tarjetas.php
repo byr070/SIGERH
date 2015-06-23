@@ -57,7 +57,7 @@ class Tarjetas extends CI_Controller {
         $data['display_alr_utilizado'] = 'none';
         $data['display_alr_incorrecto'] = 'none';
 
-        $data['user_id']    = $this->tank_auth->get_user_id();
+        $data['user_id']    = $this->tank_auth->get_user_id()-1;
         $data['username']   = $this->tank_auth->get_username();
         $data['is_admin']   = $this->tank_auth->is_admin();
 
@@ -67,7 +67,7 @@ class Tarjetas extends CI_Controller {
             $generado[$pos] = str_pad(rand(0,9999),4,"0",STR_PAD_LEFT) . str_pad(rand(0,9999),4,"0",STR_PAD_LEFT);
             $codigo[$pos] = password_hash($generado[$pos], PASSWORD_DEFAULT);
         }
-        $codigo['EMPLEADO_ID']=$this->tank_auth->get_user_id();
+        $codigo['EMPLEADO_ID']=$this->tank_auth->get_user_id()-1;
         $data['generado'] = $generado;
         // print_r($generado);
         // echo '<br><br><br>';
@@ -82,7 +82,7 @@ class Tarjetas extends CI_Controller {
       $data['display_alr_utilizado'] = $display_alr_utilizado;
       $data['display_alr_incorrecto'] = $display_alr_incorrecto;
 
-      $data['user_id']    = $this->tank_auth->get_user_id();
+      $data['user_id']    = $this->tank_auth->get_user_id()-1;
       $data['username']   = $this->tank_auth->get_username();
       $data['is_admin']   = $this->tank_auth->is_admin();
 

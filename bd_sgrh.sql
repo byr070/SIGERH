@@ -149,7 +149,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('3cff398871883ba47f4613cc63aa1a65','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.3',1435022310,'a:4:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"5\";s:8:\"username\";s:19:\"Usuario De Prueba C\";s:6:\"status\";s:1:\"0\";}'),('766c542911cad7581ed0ed61c3a14eeb','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.3',1435015917,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}'),('89a2dcf3ee4e24805373c95fde5e4d50','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1435021405,''),('cfd38fa2bc09e3a87bf0e705de605063','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1435021402,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('2b78ec837e3bb0f5308c9bc995294cf9','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.3',1435022616,'a:4:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"5\";s:8:\"username\";s:19:\"Usuario De Prueba C\";s:6:\"status\";s:1:\"0\";}'),('89a2dcf3ee4e24805373c95fde5e4d50','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1435021405,''),('c77574ee7460f2ef0d23078e69e2d9aa','::1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.3',1435024209,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"5\";s:8:\"username\";s:19:\"Usuario De Prueba C\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"2\";}'),('cfd38fa2bc09e3a87bf0e705de605063','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36',1435021402,'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,7 +382,7 @@ CREATE TABLE `modulos` (
   `CREADO` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `MODIFICADO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`MDL_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -391,7 +391,7 @@ CREATE TABLE `modulos` (
 
 LOCK TABLES `modulos` WRITE;
 /*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
-INSERT INTO `modulos` VALUES (1,'Empleados',0,1,1,'2015-03-31 00:44:15','2015-06-23 00:43:35'),(2,'Cargos',0,1,1,'2015-06-21 02:47:59','2015-06-23 00:43:39'),(3,'Pagos',0,1,1,'2015-06-21 02:47:59','2015-06-23 00:44:33'),(4,'Anticipos',0,1,1,'2015-06-21 02:47:59','2015-06-23 00:44:27'),(5,'Cuadrillas',0,2,1,'2015-06-21 02:47:59','2015-06-23 00:46:47'),(6,'Proyectos',0,2,1,'2015-06-21 02:47:59','2015-06-23 00:46:49'),(7,'Jornadas',0,2,1,'2015-06-21 02:47:59','2015-06-23 00:46:54'),(8,'Horarios',0,2,1,'2015-03-31 00:44:15','2015-06-23 00:46:37'),(9,'Periodos_salida',0,3,1,'2015-05-27 02:56:07','2015-06-23 00:48:15'),(10,'Vacaciones',0,3,1,'2015-05-27 02:51:40','2015-06-23 00:48:19'),(11,'Tipos_permiso',0,3,1,'2015-05-27 03:36:13','2015-06-23 00:48:23'),(12,'Usuarios',1,4,1,'2015-03-31 00:44:15','2015-06-23 00:50:34'),(13,'Roles',1,4,1,'2015-03-31 00:44:15','2015-06-23 00:50:31'),(14,'Modulos',1,4,1,'2015-03-31 00:44:15','2015-06-23 00:50:39'),(15,'Permisos',1,4,1,'2015-03-31 00:44:15','2015-06-23 00:50:42');
+INSERT INTO `modulos` VALUES (1,'Empleados',0,1,1,'2015-03-31 00:44:15','2015-06-23 00:43:35'),(2,'Cargos',0,1,1,'2015-06-21 02:47:59','2015-06-23 00:43:39'),(3,'Pagos',0,1,1,'2015-06-21 02:47:59','2015-06-23 00:44:33'),(4,'Anticipos',0,1,1,'2015-06-21 02:47:59','2015-06-23 00:44:27'),(5,'Cuadrillas',0,2,1,'2015-06-21 02:47:59','2015-06-23 00:46:47'),(6,'Proyectos',0,2,1,'2015-06-21 02:47:59','2015-06-23 00:46:49'),(7,'Jornadas',0,2,1,'2015-06-21 02:47:59','2015-06-23 00:46:54'),(8,'Horarios',0,2,1,'2015-03-31 00:44:15','2015-06-23 00:46:37'),(9,'Periodos_salida',0,3,1,'2015-05-27 02:56:07','2015-06-23 00:48:15'),(10,'Vacaciones',0,3,1,'2015-05-27 02:51:40','2015-06-23 00:48:19'),(11,'Tipos_permiso',0,3,1,'2015-05-27 03:36:13','2015-06-23 00:48:23'),(12,'Usuarios',1,4,1,'2015-03-31 00:44:15','2015-06-23 00:50:34'),(13,'Roles',1,4,1,'2015-03-31 00:44:15','2015-06-23 00:50:31'),(14,'Modulos',1,4,1,'2015-03-31 00:44:15','2015-06-23 00:50:39'),(15,'Permisos',1,4,1,'2015-03-31 00:44:15','2015-06-23 00:50:42'),(17,'Tarjetas',0,0,1,'0000-00-00 00:00:00','2015-06-23 01:28:12');
 /*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -673,8 +673,8 @@ CREATE TABLE `tarjetas` (
   `EMPLEADO_ID` int(11) NOT NULL,
   PRIMARY KEY (`TRJ_ID`),
   KEY `FK_TRJ_EMPLEADO_ID` (`EMPLEADO_ID`),
-  CONSTRAINT `FK_TRJ_EMPLEADO_ID` FOREIGN KEY (`EMPLEADO_ID`) REFERENCES `empleados` (`EMP_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_TRJ_EMPLEADO_ID` FOREIGN KEY (`EMPLEADO_ID`) REFERENCES `empleados` (`EMP_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -683,6 +683,7 @@ CREATE TABLE `tarjetas` (
 
 LOCK TABLES `tarjetas` WRITE;
 /*!40000 ALTER TABLE `tarjetas` DISABLE KEYS */;
+INSERT INTO `tarjetas` VALUES (10,'$2y$10$2d7EFExSOZbqEr5nhA78j.69RK/eCg/u4dIgY1c.nKldI8jgmWELa',1,'$2y$10$p78X9Ks6yqvAjp59QBllVuoA2Qo65P6lTb2LTIyh..r53VcuuB4By',1,'$2y$10$6KPWlipnRyl.NfeAlrjuQ.lnSiUsPvHrZihmM946foce8rmUwfNtq',1,'$2y$10$QyXSnY1Y50XQEPjp8Kx2ieRVzPhfON9tF.XNGB0yCCc3skgyxWw86',1,'$2y$10$fhYQ9F.SyhoSJLLmm0RvT.8VpMbR7b2sx1f.5FlpfxuYe6TxS8qt6',1,'$2y$10$UXEBW4NdWx52FDP3gjw8ief8RnheMxY7ablhw.m6bknkCQUYfhpsO',1,'$2y$10$24yUQeZCbPOFEFRCC2JA9.o5dcPsCfwaKMXgtnt7qBfM1DTweDUmO',1,'$2y$10$ZGxHVL3fREduQ8LY05NkneDFBHgqDlQIaZF2vSJbriteSPc82pkzy',1,'$2y$10$q64/qDzyRYGaDEZuCLAr2O04WAiqEBIwffUibd9DGoiWABtp/QrzS',1,'$2y$10$mVRZmEcKRT/pKFsEIORXaujAFtaGCFY1//WmLWtUPNWkwqa8jD.R6',1,'0000-00-00 00:00:00','2015-06-23 01:53:15',4);
 /*!40000 ALTER TABLE `tarjetas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -828,7 +829,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-22 18:43:24','2015-03-15 01:30:16','2015-06-22 23:43:24',1),(2,'Usuario De Prueba A','$2a$08$SotdMIahxu5nZsM2HMkonOdV4ZpzeVd0rAB6UP//nozmN1DY/yKOO','by@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-23 01:06:08','2015-06-22 04:10:40','2015-06-23 00:33:21',2),(3,'Usuario A','$2a$08$M/xJrSwGiS/RxR6lZTONwOKXJJtHDNkqxHv7vHiC1CQhpD7w.lToa','byr@hotmail.co',0,0,NULL,NULL,NULL,NULL,'b67f2d930808fb48ec6451b71901f39d','192.168.1.2','0000-00-00 00:00:00','2015-06-22 12:43:38','2015-06-23 00:33:28',2),(4,'Usuario De Prueba B','$2a$08$k7vvtLEFJ5DQfWu/zXGHVOmsSRzpLIAt/ShXnwbVa/je7u3aiYYfq','byron.o2013@hotmail.com',0,0,NULL,NULL,NULL,NULL,'ea785b4c912dfae2d5d9b25d0ae35630','::1','0000-00-00 00:00:00','2015-06-22 19:27:49','2015-06-23 00:27:49',2),(5,'Usuario De Prueba C','$2a$08$3bli27bimuuFC5OequhJje4zHUqmS4VAQferomylsCxWqPeJ5fpkm','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,'e05eba72324befebea12c4bd08289689','::1','0000-00-00 00:00:00','2015-06-22 19:33:38','2015-06-23 01:18:54',2);
+INSERT INTO `users` VALUES (1,'admin','$2a$08$hhroDoFe4DyNAkDPmrhoh./UzIjifcT/2pzApLoriRnNroeWFc2Tu','admin',1,0,NULL,NULL,NULL,NULL,'1eb29d2deb07b87d3d2db6f567bf683a','::1','2015-06-23 03:23:51','2015-03-15 01:30:16','2015-06-23 01:23:51',1),(2,'Usuario De Prueba A','$2a$08$SotdMIahxu5nZsM2HMkonOdV4ZpzeVd0rAB6UP//nozmN1DY/yKOO','by@hotmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2015-06-23 01:06:08','2015-06-22 04:10:40','2015-06-23 00:33:21',2),(3,'Usuario A','$2a$08$M/xJrSwGiS/RxR6lZTONwOKXJJtHDNkqxHv7vHiC1CQhpD7w.lToa','byr@hotmail.co',0,0,NULL,NULL,NULL,NULL,'b67f2d930808fb48ec6451b71901f39d','192.168.1.2','0000-00-00 00:00:00','2015-06-22 12:43:38','2015-06-23 00:33:28',2),(4,'Usuario De Prueba B','$2a$08$k7vvtLEFJ5DQfWu/zXGHVOmsSRzpLIAt/ShXnwbVa/je7u3aiYYfq','byron.o2013@hotmail.com',0,0,NULL,NULL,NULL,NULL,'ea785b4c912dfae2d5d9b25d0ae35630','::1','0000-00-00 00:00:00','2015-06-22 19:27:49','2015-06-23 00:27:49',2),(5,'Usuario De Prueba C','$2a$08$3bli27bimuuFC5OequhJje4zHUqmS4VAQferomylsCxWqPeJ5fpkm','byr_070@hotmail.com',1,0,NULL,NULL,NULL,NULL,'e05eba72324befebea12c4bd08289689','::1','2015-06-23 03:50:13','2015-06-22 19:33:38','2015-06-23 01:50:13',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -873,4 +874,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-22 20:20:17
+-- Dump completed on 2015-06-22 21:01:16
