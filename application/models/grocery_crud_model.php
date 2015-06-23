@@ -480,6 +480,7 @@ class grocery_CRUD_Model  extends CI_Model  {
 
     function db_insert($post_array)
     {
+        $post_array['CREADO'] = date('Y-m-d H:i:s');
     	$insert = $this->db->insert($this->table_name,$post_array);
     	if($insert)
     	{
