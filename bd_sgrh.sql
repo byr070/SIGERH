@@ -569,8 +569,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
+INSERT INTO `ci_sessions` VALUES ('2f129eb2a37bdf5ad427d4fbfbb58652','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36',1435136809,'a:4:{s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 INSERT INTO `ci_sessions` VALUES ('754c4f3c171452094ea13e7d6fc91f91','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36',1435134806,'');
-INSERT INTO `ci_sessions` VALUES ('e1525e43cda1f106a7f5307d43a3e21b','::1','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36',1435136429,'a:4:{s:7:\"user_id\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:6:\"status\";s:1:\"1\";s:8:\"group_id\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -744,7 +744,7 @@ CREATE TABLE `horarios` (
 
 LOCK TABLES `horarios` WRITE;
 /*!40000 ALTER TABLE `horarios` DISABLE KEYS */;
-INSERT INTO `horarios` VALUES (2,'01:00:00','12:00:00','0000-00-00 00:00:00');
+INSERT INTO `horarios` VALUES (2,'01:00:00','04:55:00','0000-00-00 00:00:00');
 INSERT INTO `horarios` VALUES (3,'04:00:00','18:15:00','0000-00-00 00:00:00');
 INSERT INTO `horarios` VALUES (4,'18:40:00','20:15:00','0000-00-00 00:00:00');
 INSERT INTO `horarios` VALUES (5,'12:05:00','19:35:00','2015-06-22 19:36:00');
@@ -764,7 +764,7 @@ CREATE TABLE `jornadas` (
   `JRN_DIAS_DESCANSO` smallint(2) NOT NULL,
   `CREADO` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`JRN_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -775,6 +775,7 @@ LOCK TABLES `jornadas` WRITE;
 /*!40000 ALTER TABLE `jornadas` DISABLE KEYS */;
 INSERT INTO `jornadas` VALUES (1,21,7,'0000-00-00 00:00:00');
 INSERT INTO `jornadas` VALUES (2,6,7,'0000-00-00 00:00:00');
+INSERT INTO `jornadas` VALUES (3,17,15,'2015-06-24 04:07:29');
 /*!40000 ALTER TABLE `jornadas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2401,4 +2402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-24  4:02:43
+-- Dump completed on 2015-06-24  4:12:57

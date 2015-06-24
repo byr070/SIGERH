@@ -80,7 +80,7 @@ class Cargos extends CI_Controller {
                     show_error($e->getMessage());
                 }
             }
-	        $this->_periodo_output($output);
+	        $this->_cargo_output($output);
         } else {
         	redirect('/inicio/');
         }
@@ -110,7 +110,7 @@ class Cargos extends CI_Controller {
         ';
     }
 
-    function _periodo_output($output = null) {
+    function _cargo_output($output = null) {
     	$data['user_id']    = $this->tank_auth->get_user_id();
         $data['username']   = $this->tank_auth->get_username();
         $data['is_admin']   = $this->tank_auth->is_admin();
@@ -128,5 +128,5 @@ class Cargos extends CI_Controller {
     }
 }
 
-/* End of file periodos_salida.php */
-/* Location: ./application/controllers/periodos_salida.php */
+/* End of file cargos.php */
+/* Location: ./application/controllers/cargos.php */
