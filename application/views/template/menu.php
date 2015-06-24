@@ -3,6 +3,9 @@
       $empleados=array();
       $cuadrillas=array();
       $salidas=array();
+      $configuracion=array();
+
+
       for ($i=0; $i < sizeof($menu); $i++) { 
         if($i % 2){
           switch ($menu[$i]) {
@@ -15,6 +18,8 @@
             case '3':
               array_push($salidas, $menu[$i-1]);
               break;
+            case '4':
+              array_push($configuracion,$menu[$i-1]);
             default:
               # code...
               break;
@@ -25,8 +30,9 @@
       ?>
 
 
+
     <div class="container" role="main">
-      <nav class="navbar navbar-inverse">
+      <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2">
@@ -39,6 +45,7 @@
           </div>
           <div id="navbar2" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              <?php if(!sizeof($configuracion)>0){//inicio ?>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Empleados <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -92,6 +99,12 @@
                   <?php } ?>
                 </ul>
               </li>
+              <?php }else{ //configuracion ?>
+              <?php for ($i=0; $i < sizeof($configuracion) ; $i++) { ?>
+              <li><a href="<?php echo base_url('').strtolower($configuracion[$i]) ?>"><?php echo $configuracion[$i]; ?></a></li>
+              <?php } ?>
+              
+              <?php } ?>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

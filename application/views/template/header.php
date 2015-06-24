@@ -42,7 +42,7 @@
   <body>
 
     <!-- Inicio Cabecera -->
-    <div class="navbar">
+    <div class="navbar navbar-inverse">
           <div class="container">
             <div class="navbar-header">
               <a href="" class="navbar-brand">SIGERH</a>
