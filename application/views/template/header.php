@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/numericKeyboard.css") ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap-clockpicker.min.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap-datetimepicker.min.css') ?>">
 
     <?php if(!is_null($css_files)) {
         foreach($css_files as $file): ?>
@@ -23,16 +24,6 @@
         <script src="<?php echo $file; ?>"></script>
         <?php endforeach;
     } ?>
-    <style type="text/css">
-    /*div.footer{
-        text-align: right;
-        font-size: 11px;
-        border-top: 1px solid #D0D0D0;
-        line-height: 32px;
-        padding: 0 10px 0 10px;
-        margin: 20px 0 0 0;
-    }*/
-    </style>
     <style type="text/css">
       .footer{
         padding-left: 15px;
@@ -51,7 +42,7 @@
   <body>
 
     <!-- Inicio Cabecera -->
-    <div class="navbar navbar-inverse">
+    <div class="navbar">
           <div class="container">
             <div class="navbar-header">
               <a href="" class="navbar-brand">SIGERH</a>
@@ -66,9 +57,9 @@
 
             <div id="navbar1" class="collapse navbar-collapse navbar-right">
               <ul class="nav navbar-nav">
-                  <li><?php echo anchor('/inicio/', 'Inicio');?></li>
-                  <li><?php if ($is_admin): echo anchor('/configuracion/', 'Configuración'); endif;?></li>
-                  <li><?php echo anchor('/auth/logout/', 'Salir'); ?></li>
+                  <li><?php echo anchor('/inicio/', '<span class="glyphicon glyphicon-home"></span> INICIO');?></li>
+                  <li><?php if ($is_admin): echo anchor('/configuracion/', '<span class="glyphicon glyphicon-cog"></span> Configuración'); endif;?></li>
+                  <li><?php echo anchor('/auth/logout/', '<span class="glyphicon glyphicon-log-out"></span> Salir'); ?></li>
               </ul>
             </div>
           </div> <!-- end container -->

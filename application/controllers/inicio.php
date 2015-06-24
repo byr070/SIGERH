@@ -38,7 +38,11 @@ class Inicio extends CI_Controller
 	        	$output['js_files'] = null;
 	        	$output['output'] = null;
 	        	$data = array_merge($data,$output);
-				$this->load->view('template/template', $data);
+
+				$this->load->view('template/header',$data);
+		        $this->load->view('template/menu',$data);
+		        $this->load->view('template/template',$data);
+		        $this->load->view('template/footer',$data);
 			}
 		}
 	}
