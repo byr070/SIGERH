@@ -55,7 +55,7 @@ class Empleados extends CI_Controller {
     	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
     	    	'EMP_FECHA_INGRESO','EMP_FECHA_SALIDA',
     	    	'ORGANIZACION_ID','CUADRILLA_ID','CARGO_ID',
-    	    	'email','clave')
+    	    	'USUARIO_ID','email','clave')
     	    ->edit_fields('EMP_FECHA_NACIMIENTO',
     	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
     	    	'PROVINCIA_RESIDENCIA','EMP_DIRECCION_DOMICILIO',
