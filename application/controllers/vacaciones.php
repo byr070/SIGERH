@@ -52,7 +52,10 @@ class Vacaciones extends CI_Controller {
             $arr_acciones = $this->modulos_model->get_acciones_por_rol_modulo($this->tank_auth->is_admin(), $this->id_modulo[0]);
             //Ocultar botón Ver, Exportar, Imprimir
             $crud->unset_read();
-            $crud->unset_export();
+            $crud->unset_export()
+            ->callback_add_field('VCC_FECHA_INICIO',array($this,'add_field_fecha_inicio'))
+            ->callback_add_field('VCC_FECHA_FIN',array($this,'add_field_fecha_fin'))
+            ;
             //$crud->unset_print();
 
 
@@ -89,6 +92,30 @@ class Vacaciones extends CI_Controller {
         } else {
         	redirect('/inicio/');
         }
+    }
+
+    function add_field_fecha_inicio(){
+        return '
+           <div id="datepicker_fecha_inicio" class="input-append date">
+              <input type="text" name="VCC_FECHA_INICIO"></input>
+              <span class="add-on glyphicon glyphicon-calendar"></span>
+              <!-- <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span> -->
+            </div>
+        ';
+    }
+
+    function add_field_fecha_fin(){
+        return '
+            <div id="datepicker_fecha_fin" class="input-append date">
+              <input type="text" name="VCC_FECHA_FIN"></input>
+              <span class="add-on glyphicon glyphicon-calendar"></span>
+              <!-- <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span> -->
+            </div>
+        ';
     }
 
     function verificar_fecha($fecha_fin,$fecha_inicio_name) {

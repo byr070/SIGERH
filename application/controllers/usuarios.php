@@ -114,7 +114,10 @@ class Usuarios extends CI_Controller {
         $arr_menu = $this->modulos_model->get_modulos_por_rol($this->session->userdata('group_id'), TRUE);
         $menu['menu'] = $arr_menu;
         $output = array_merge($output,$menu);
-        $this->load->view('template/template.php',$output);    
+        $this->load->view('template/header',$output);
+        $this->load->view('template/menu',$output);
+        $this->load->view('template/template',$output);
+        $this->load->view('template/footer',$output);   
     }
 
     function enviar_mail($post_array,$primary_key) {
