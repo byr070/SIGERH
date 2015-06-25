@@ -90,7 +90,6 @@ class Empleados extends CI_Controller {
 	    	->display_as('CARGO_ID','Cargo')
 	    	->display_as('email','Correo electónico')
 	    	->display_as('clave','Clave')
-
            	->change_field_type('USUARIO_ID','invisible')
            	->change_field_type('EMP_ESTADO','dropdown', array('1' => 'TRABAJO', '2' => 'DESCANSO', '3' => 'LIQUIDADO'))
            	->change_field_type('EMP_ESTADO_CIVIL','enum',array('Soltero(a)','Casado(a)','Viudo(a)',
@@ -100,18 +99,14 @@ class Empleados extends CI_Controller {
            		'Tipo A Rh +','Tipo A Rh -',
            		'Tipo B Rh +','Tipo B Rh -',
            		'Tipo AB Rh +','Tipo AB Rh -'))
-
 	        ->set_relation('PROVINCIA_NACIMIENTO','provincias','PRV_NOMBRE')
 	        ->set_relation('CANTON_NACIMIENTO','cantones','CNT_NOMBRE')
 	        ->set_relation('PARROQUIA_NACIMIENTO','parroquias','PRR_NOMBRE')
-
 	        ->set_relation('PROVINCIA_RESIDENCIA','provincias','PRV_NOMBRE')
 	        ->set_relation('ORGANIZACION_ID','organizaciones','ORG_NOMBRE')
 	        ->set_relation('CUADRILLA_ID','cuadrillas','CDR_NOMBRE')
 	        ->set_relation('CARGO_ID','cargos','CRG_NOMBRE')
-
-	        ->required_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_TIPO_SANGRE','EMP_FECHA_INGRESO','CARGO_ID','email','clave')
-	        
+	        ->required_fields('EMP_NOMBRE_COMPLETO','EMP_NUMERO_CEDULA','EMP_FECHA_NACIMIENTO','EMP_TIPO_SANGRE','EMP_FECHA_INGRESO','CARGO_ID','email','clave')	        
 	        ->set_rules('EMP_NUMERO_CEDULA','Número de Cédula','required|callback_cedula_ruc_check')
 	        ->set_rules('EMP_NOMBRE_COMPLETO','Nombre del empleado','required|trim|is_unique[empleados.EMP_NOMBRE_COMPLETO]|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|callback__alpha_dash_space')
 	        ->set_rules('EMP_NOMBRE_CONYUGE','Nombre del cónyugue','trim|max_length[55]|callback__alpha_dash_space')
