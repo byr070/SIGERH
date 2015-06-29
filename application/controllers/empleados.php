@@ -54,7 +54,7 @@ class Empleados extends CI_Controller {
     	    	'EMP_NOMBRE_CONYUGE','EMP_NUMERO_HIJOS',
     	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
     	    	'EMP_FECHA_INGRESO','EMP_FECHA_SALIDA',
-    	    	'ORGANIZACION_ID','CUADRILLA_ID','CARGO_ID',
+    	    	'CUADRILLA_ID','CARGO_ID',
     	    	'USUARIO_ID','email','clave')
     	    ->edit_fields('EMP_FECHA_NACIMIENTO',
     	    	'PROVINCIA_NACIMIENTO','CANTON_NACIMIENTO','PARROQUIA_NACIMIENTO',
@@ -64,7 +64,7 @@ class Empleados extends CI_Controller {
     	    	'EMP_NOMBRE_CONYUGE','EMP_NUMERO_HIJOS',
     	    	'EMP_EMERG_NOMBRE','EMP_EMERG_PARENTESCO','EMP_EMERG_TELEFONO',
     	    	'EMP_FECHA_INGRESO','EMP_FECHA_SALIDA',
-    	    	'ORGANIZACION_ID','CUADRILLA_ID','CARGO_ID')
+    	    	'CUADRILLA_ID','CARGO_ID')
        		->display_as('EMP_NOMBRE_COMPLETO','Nombre completo')
 	    	->display_as('EMP_NUMERO_CEDULA','Número de cédula o RUC')
 	        ->display_as('EMP_FECHA_NACIMIENTO','Fecha de nacimiento')
@@ -258,6 +258,8 @@ class Empleados extends CI_Controller {
 				unset($data['password']); // Clear password (just for any case)
 				//$this->_show_message($this->lang->line('auth_message_registration_completed_2').' '.anchor('/auth/login/', 'Login'));
 			}
+            $message = "wrong answer";
+            echo "<script type='text/javascript'>alert('$message');</script>";
 			$post_array['USUARIO_ID']=$data['user_id'];
 		} else {
 			$errors = $this->tank_auth->get_error_message();
