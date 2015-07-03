@@ -94,10 +94,10 @@ class Anticipos extends CI_Controller {
 
         $arr_menu = $this->modulos_model->get_modulos_por_rol($this->session->userdata('group_id'));
         $data['menu'] = $arr_menu;
-        $this->load->view('template/cabecera',$data);
+        $this->load->view('template/header',$data);
         $this->load->view('template/menu',$data);
         $this->load->view('anticipo/anticipo_form',$data);
-        $this->load->view('template/footer.php');
+        $this->load->view('template/footer');
     }
 	public function listar() {
         if(!is_null($this->id_modulo)){
