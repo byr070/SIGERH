@@ -88,10 +88,10 @@ class Tarjetas extends CI_Controller {
 
       $arr_menu = $this->modulos_model->get_modulos_por_rol($this->session->userdata('group_id'));
       $data['menu'] = $arr_menu;
-      $this->load->view('template/header',$output);
-      $this->load->view('template/menu',$output);
-      $this->load->view('template/template',$output);
-      $this->load->view('template/footer',$output);
+      // $this->load->view('template/header',$output);
+      // $this->load->view('template/menu',$output);
+      $this->load->view('anticipo/anticipo_form',$data);
+      // $this->load->view('template/footer',$output);
     }
 }
 

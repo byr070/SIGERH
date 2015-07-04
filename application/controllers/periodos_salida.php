@@ -56,7 +56,8 @@ class Periodos_salida extends CI_Controller {
                  ->set_rules('EMPLEADO_ID','nombre de empleado','required')
                  ->set_rules('TIPO_PERMISO_ID','tipo de permiso','required')
                  ->set_rules('PRD_FECHA_INICIO','fecha inicio','required|callback_verificar_fecha_cruzada[EMPLEADO_ID]')
-                 ->set_rules('PRD_FECHA_FIN','fecha fin','required|callback_verificar_fecha[PRD_FECHA_INICIO]|callback_verificar_fecha_cruzada[EMPLEADO_ID]|callback_verificar_periodo_cruzado[PRD_FECHA_INICIO,EMPLEADO_ID]')
+                 ->set_rules('PRD_FECHA_FIN','fecha fin','required|callback_verificar_fecha[PRD_FECHA_INICIO]|
+                    callback_verificar_fecha_cruzada[EMPLEADO_ID]|callback_verificar_periodo_cruzado[PRD_FECHA_INICIO,EMPLEADO_ID]')
                  ->set_rules('PRD_HORA_INICIO','hora inicio','required')
                  ->set_rules('PRD_HORA_FIN','hora fin','required|callback_verificar_hora[PRD_FECHA_INICIO,PRD_FECHA_FIN,PRD_HORA_INICIO,EMPLEADO_ID]')
                  ->callback_before_insert(array($this, 'verificar_horas'))
